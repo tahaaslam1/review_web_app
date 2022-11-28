@@ -41,7 +41,6 @@ class ButtonWidget extends StatelessWidget {
                           fontSize: 15.0,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.5,
-                          //height: 2.00,
                         ),
                       ),
                     ),

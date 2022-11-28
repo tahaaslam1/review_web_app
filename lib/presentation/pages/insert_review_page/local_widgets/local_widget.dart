@@ -15,7 +15,6 @@ class InputDataFields extends StatelessWidget {
             fieldName,
             style: const TextStyle(
               color: Color.fromARGB(255, 90, 96, 101),
-              // fontSize: MediaQuery.of(context).size.width * 0.01,
               fontSize: 20,
               fontWeight: FontWeight.w200,
               letterSpacing: 0.5,
