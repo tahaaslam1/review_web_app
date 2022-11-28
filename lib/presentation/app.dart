@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 import 'package:review_web_app/presentation/pages/playground/playground.dart';
+import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,6 +17,7 @@ class App extends StatelessWidget {
       routes: {
         Playground.route: (context) => const Playground(),
         LoginPage.route: (context) => const LoginPage(),
+        ViewProfilePage.route : ( context) => ViewProfilePage()
       },
     );
   }
