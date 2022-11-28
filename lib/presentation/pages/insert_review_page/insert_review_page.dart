@@ -25,7 +25,7 @@ class InsertReview extends StatelessWidget {
         }
 
         return SingleChildScrollView(child:
-          isLargeScreen ? const InsertReviewLargePage() : const InsertReviewPage(),
+          isLargeScreen ? const InsertReviewLargeScreen() : const InsertReviewScreen(),
         );
       }),
     );

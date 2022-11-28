@@ -1,48 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/button_widget.dart';
-import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/local_widget.dart';
+import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/input_data_fields.dart';
 
-class InsertReviewPage extends StatefulWidget {
-  const InsertReviewPage({
+class InsertReviewScreen extends StatefulWidget {
+  const InsertReviewScreen({
     super.key,
   });
 
   @override
-  State<InsertReviewPage> createState() => _InsertReviewPageState();
+  State<InsertReviewScreen> createState() => _InsertReviewScreenState();
 }
 
-class _InsertReviewPageState extends State<InsertReviewPage> {
-  // void _failSnackbar(String error) {
-  //   final snackBar = SnackBar(
-  //     behavior: SnackBarBehavior.floating,
-  //     content: Text(
-  //       error,
-  //       textAlign: TextAlign.center,
-  //       style: TextStyle(),
-  //     ),
-  //   );
-  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  // }
-
-  // void _tryInsertReview(
-  //     String empName, String review, double ratingController) async {
-  //   try {
-  //     var response = await widget.user?.tryInsertingReview(
-  //         widget.user, empName, review, ratingController.toString());
-  //     if (response == 200) {
-  //       _failSnackbar('Review posted');
-  //     }
-  //   } catch (e) {
-  //     _failSnackbar(e.toString());
-  //   }
-  // }
-
-  // TextEditingController empNameController = TextEditingController();
-
-  // TextEditingController reviewController = TextEditingController();
-
-  // double ratingController = 0;
-
+class _InsertReviewScreenState extends State<InsertReviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(

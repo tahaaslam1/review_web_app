@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {
@@ -20,16 +19,6 @@ class ButtonWidget extends StatelessWidget {
                     height: 45,
                     child: ElevatedButton(
                       onPressed: () {
-                        // if (empNameController.text != '' &&
-                        //     reviewController.text != '') {
-                        //   _tryInsertReview(
-                        //       empNameController.text,
-                        //       reviewController.text,
-                        //       ratingController);
-
-                        //   empNameController.clear();
-                        //   reviewController.clear();
-                        // }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xff0A66C2),

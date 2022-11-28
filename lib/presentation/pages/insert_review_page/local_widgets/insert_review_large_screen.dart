@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/button_widget.dart';
-import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/local_widget.dart';
+import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/input_data_fields.dart';
 
-class InsertReviewLargePage extends StatelessWidget {
-  const InsertReviewLargePage({super.key});
+class InsertReviewLargeScreen extends StatelessWidget {
+  const InsertReviewLargeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
