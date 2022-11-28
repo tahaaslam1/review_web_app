@@ -39,6 +39,12 @@ class Playground extends StatelessWidget {
                 child: const Text('Go to Landing Page'),
               ),
               TextButton(
+                onPressed: () {
+                  //Navigate to Insert Review Screen
+                },
+                child: const Text('Go to Insert Review Page'),
+              ),
+              TextButton(
                 onPressed: () {},
                 child: const Text('Main App'),
               ),
