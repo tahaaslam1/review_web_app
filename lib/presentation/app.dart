@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 import 'package:review_web_app/presentation/pages/playground/playground.dart';
 
@@ -8,6 +9,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -16,6 +18,7 @@ class App extends StatelessWidget {
       routes: {
         Playground.route: (context) => const Playground(),
         LoginPage.route: (context) => const LoginPage(),
+        HomePage.route: (context) => const HomePage(),
       },
     );
   }

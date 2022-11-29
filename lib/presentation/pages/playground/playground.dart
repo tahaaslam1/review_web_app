@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 
 class Playground extends StatelessWidget {
@@ -37,6 +38,12 @@ class Playground extends StatelessWidget {
                   //Navigate to Messages Screen
                 },
                 child: const Text('Go to Landing Page'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, HomePage.route);
+                },
+                child: const Text('Go to Home Page'),
               ),
               TextButton(
                 onPressed: () {},
