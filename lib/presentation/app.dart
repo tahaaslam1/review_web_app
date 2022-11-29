@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/presentation/pages/accept-reject-screen/accept-reject.dart';
 import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
 
@@ -21,12 +22,13 @@ class App extends StatelessWidget {
       routes: {
         Playground.route: (context) => const Playground(),
         LoginPage.route: (context) => const LoginPage(),
+      
+        AcceptReject.route: (context) => const AcceptReject(),
 
         ViewProfilePage.route : ( context) => ViewProfilePage(),
 
         HomePage.route: (context) => const HomePage(),
         InsertReview.route: (context) => const InsertReview(),
-
       },
     );
   }

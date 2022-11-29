@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/presentation/pages/accept-reject-screen/accept-reject.dart';
 import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
 import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
@@ -52,6 +53,12 @@ class Playground extends StatelessWidget {
                   //Navigate to Messages Screen
                 },
                 child: const Text('Go to Landing Page'),
+              ),
+             TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context,AcceptReject.route);
+                },
+                child: const Text('Go to Accept/Reject Invitations Page'),
               ),
               TextButton(
                 onPressed: () {
