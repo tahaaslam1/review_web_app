@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
 import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
+
+import '../../../business_logic/providers/admin_provide.dart';
+import '../admin_screen/admin_screen.dart';
 
 class Playground extends StatelessWidget {
   static const String route = '/';
@@ -40,6 +44,20 @@ class Playground extends StatelessWidget {
                   Navigator.pushNamed(context, LoginPage.route);
                 },
                 child: const Text('Go to Login Page'),
+              ),
+              ElevatedButton(
+                child: Text("Admin Screen"),
+                onPressed: () async {
+                  await context.read<AdminProvider>().GetAllUsers();
+                  // ignore: use_build_context_synchronously
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AdminScreen(),
+                    ),
+                  );
+                  //  tryGettingComp(context);
+                },
               ),
               TextButton(
                 onPressed: () {
