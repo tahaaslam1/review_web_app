@@ -8,8 +8,6 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 
-// UserController _user = UserController();
-
 class SignUpPage extends StatefulWidget {
   static const String route = 'Signup-page';
   const SignUpPage({super.key});
@@ -30,30 +28,6 @@ class _SignUpPageState extends State<SignUpPage> {
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
-
-  // void _tryRegister(String email, String username, String password) async {
-  //   try {
-  //     var response = await _user.trySignup(email, username, password);
-  //     // ignore: use_build_context_synchronously
-  //     if (response == 200) {
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) => CompanyDetails(
-  //             user: _user,
-  //           ),
-  //         ),
-  //       );
-  //       emailController.clear();
-  //       usernameController.clear();
-  //       passwordController.clear();
-  //     } else {
-  //       _failSnackbar('email already registered');
-  //     }
-  //   } catch (e) {
-  //     _failSnackbar(e.toString());
-  //   }
-  // }
 
   TextEditingController companynameController = TextEditingController();
 
@@ -76,42 +50,6 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 248, 247, 246),
-        // actions: [
-        //   Row(
-
-        //     children: [
-        //       // const Padding(
-        //       //   padding: EdgeInsets.all(5),
-        //       //   child: Text(
-        //       //     ,
-        //       //     style:
-        //       //         TextStyle(color: Color(0xff0A66C2), fontFamily: 'Anton'),
-        //       //   ),
-        //       // ),
-        //       // Padding(
-        //       //   padding: const EdgeInsets.all(10),
-        //       //   child: IconButton(
-        //       //     tooltip: "read review",
-        //       //     onPressed: () async {
-        //       //       await context.read<CompanyController>().GetCompnies();
-        //       //       // ignore: use_build_context_synchronously
-        //       //       Navigator.push(
-        //       //         context,
-        //       //         MaterialPageRoute(
-        //       //           builder: (context) => CompaniesPage(),
-        //       //         ),
-        //       //       );
-        //       //       //  tryGettingComp(context);
-        //       //     },
-        //       //     icon: const Icon(
-        //       //       Icons.rate_review_outlined,
-        //       //       color: Color(0xff0A66C2),
-        //       //     ),
-        //       //   ),
-        //       // ),
-        //     ],
-        //   ),
-        // ],
         automaticallyImplyLeading: false,
         title: const Text(
           "Review US",
@@ -295,8 +233,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       ],
                                     ),
                                   );
-                                  // Navigator.pop(context, _failSnackbar('Invalid Credentials');
-
                                 }
                               },
                               style: ElevatedButton.styleFrom(
@@ -309,7 +245,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w900,
                                   letterSpacing: 0.5,
-                                  //height: 2.00,
                                 ),
                               ),
                             ),

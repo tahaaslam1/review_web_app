@@ -24,25 +24,6 @@ class _LoginPageState extends State<LoginPage> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  // void _tryLogin(String email, String password) async {
-  //   try {
-  //     var response = 200;
-  //     //wait user.tryLogin(email, password);
-  //     if (response['code'] == 200) {
-  //       // Navigator.push(
-  //       //   context,
-  //       //   MaterialPageRoute(
-  //       //     builder: (context) => InsertReviewPage(user: user),
-  //       //   ),
-  //       // );
-  //     } else if (response['code'] == 500) {
-  //       _failSnackbar(response['error']);
-  //     }
-  //   } catch (e) {
-  //     _failSnackbar(e.toString());
-  //   }
-  // }
-
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
@@ -59,17 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.all(10),
                 child: IconButton(
                   tooltip: "read review",
-                  onPressed: () async {
-                    // await context.read<CompanyController>().GetCompnies();
-                    // // ignore: use_build_context_synchronously
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => CompaniesPage(),
-                    //   ),
-                    // );
-                    //tryGettingComp(context);
-                  },
+                  onPressed: () async {},
                   icon: const Icon(
                     Icons.rate_review_outlined,
                     color: Color(0xff0A66C2),
@@ -114,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                       const Padding(
                         padding: EdgeInsets.only(left: 40),
                         child: Text(
-                          "SignIn",
+                          "Log in",
                           style: TextStyle(
                             color: Color(0xff0A66C2),
                             fontSize: 30.0,
@@ -161,7 +132,6 @@ class _LoginPageState extends State<LoginPage> {
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w900,
                                 letterSpacing: 0.5,
-                                //height: 2.00,
                               ),
                             ),
                           ),
