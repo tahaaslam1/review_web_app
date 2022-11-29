@@ -274,6 +274,27 @@ class _SignUpPageState extends State<SignUpPage> {
                                       builder: (context) => LoginPage(),
                                     ),
                                   );
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      alignment: Alignment.topCenter,
+                                      title: const Text("Request in Panding"),
+                                      content: const Text(
+                                          "Yor request has been submited, your account in reviewing process"),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Container(
+                                            color: Colors.white,
+                                            padding: const EdgeInsets.all(14),
+                                            child: const Text("Okay"),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
                                   // Navigator.pop(context, _failSnackbar('Invalid Credentials');
 
                                 }
