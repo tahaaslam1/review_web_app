@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 
 class Playground extends StatelessWidget {
@@ -40,6 +41,10 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
+                  Navigator.pushNamed(context, HomePage.route);
+                },
+                child: const Text('Go to Home Page'),
+
                   //Navigate to Insert Review Screen
                 },
                 child: const Text('Go to Insert Review Page'),
