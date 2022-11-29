@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
 
@@ -26,6 +27,12 @@ class Playground extends StatelessWidget {
                   Navigator.pushNamed(context, ViewProfilePage.route);
                 },
                 child: const Text('Go to view profile Page'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, EditUserProfile.route);
+                },
+                child: const Text('Go to edit profile Page'),
               ),
               TextButton(
                 onPressed: () {

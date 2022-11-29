@@ -2,15 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
 
-bool bol = true;
-
-var height = 0;
+bool bol = false;
 
 class ViewProfilePage extends StatelessWidget {
   static const String route = 'view-profile-page';
 
-  const ViewProfilePage({super.key});
+  ViewProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,34 @@ class ViewProfilePage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: ElevatedButton(
-                            onPressed: (() {}),
+                            onPressed: (() {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Expanded(
+                                    child: AlertDialog(
+                                      title: Text('Edit Info'),
+                                      content: SizedBox(
+                                          width: 700,
+                                          child:
+                                              EditUserProfile(userType: bol)),
+                                      actions: [
+                                        Center(
+                                          child: SizedBox(
+                                            height: 60,
+                                            width: 90,
+                                            child: ElevatedButton(
+                                              onPressed: () {},
+                                              child: Text('SAVE'),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            }),
                             child: const Text("Edit Profile"),
                           ),
                         ),
