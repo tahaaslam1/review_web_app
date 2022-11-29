@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
+import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
+import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
 
 import '../signup-page/signup_page.dart';
 
@@ -24,6 +27,18 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
+                  Navigator.pushNamed(context, ViewProfilePage.route);
+                },
+                child: const Text('Go to view profile Page'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, EditUserProfile.route);
+                },
+                child: const Text('Go to edit profile Page'),
+              ),
+              TextButton(
+                onPressed: () {
                   Navigator.pushNamed(context, LoginPage.route);
                 },
                 child: const Text('Go to Login Page'),
@@ -42,9 +57,9 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  //Navigate to Insert Review Screen
+                  Navigator.pushNamed(context, HomePage.route);
                 },
-                child: const Text('Go to Insert Review Page'),
+                child: const Text('Go to Home Page'),
               ),
               TextButton(
                 onPressed: () {
@@ -55,12 +70,12 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {},
-                child: const Text('Main App'),
+                child: const Text('Go to Insert Review Page'),
               ),
             ],
           ),
         ),
       ),
-    );
+    ); //Navigate to Insert Review Screen
   }
 }
