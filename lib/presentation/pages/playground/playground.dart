@@ -44,6 +44,10 @@ class Playground extends StatelessWidget {
                   Navigator.pushNamed(context, HomePage.route);
                 },
                 child: const Text('Go to Home Page'),
+
+                  //Navigate to Insert Review Screen
+                },
+                child: const Text('Go to Insert Review Page'),
               ),
               TextButton(
                 onPressed: () {},

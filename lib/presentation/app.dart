@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
+import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
+
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 import 'package:review_web_app/presentation/pages/playground/playground.dart';
 
@@ -19,6 +21,8 @@ class App extends StatelessWidget {
         Playground.route: (context) => const Playground(),
         LoginPage.route: (context) => const LoginPage(),
         HomePage.route: (context) => const HomePage(),
+        InsertReview.route: (context) => const InsertReview(),
+
       },
     );
   }
