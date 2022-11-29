@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 
+import '../signup-page/signup_page.dart';
+
 class Playground extends StatelessWidget {
   static const String route = '/';
 
@@ -43,6 +45,13 @@ class Playground extends StatelessWidget {
                   //Navigate to Insert Review Screen
                 },
                 child: const Text('Go to Insert Review Page'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, SignUpPage.route);
+                  //Navigate to Insert Review Screen
+                },
+                child: const Text('Signup page'),
               ),
               TextButton(
                 onPressed: () {},

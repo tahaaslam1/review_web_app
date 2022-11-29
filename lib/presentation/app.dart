@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 import 'package:review_web_app/presentation/pages/playground/playground.dart';
+import 'package:review_web_app/presentation/pages/signup-page/signup_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -18,7 +19,7 @@ class App extends StatelessWidget {
         Playground.route: (context) => const Playground(),
         LoginPage.route: (context) => const LoginPage(),
         InsertReview.route: (context) => const InsertReview(),
-
+        SignUpPage.route: (context) => const SignUpPage(),
       },
     );
   }
