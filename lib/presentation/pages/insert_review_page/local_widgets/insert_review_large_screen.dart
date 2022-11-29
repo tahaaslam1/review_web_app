@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/button_widget.dart';
+import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/drop_down_widget.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/input_data_fields.dart';
 
 class InsertReviewLargeScreen extends StatelessWidget {
@@ -13,29 +14,72 @@ class InsertReviewLargeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Column(
-              children: const  [
-                InputDataFields('First Name'),
-                InputDataFields('Last Name'),
-                InputDataFields('Email'),
-                InputDataFields('Passport'),
-                InputDataFields('NIC'),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                InputDataFields(
+                  fieldName: 'First Name',
+                  fullWidth: false,
+                ),
+                InputDataFields(
+                  fieldName: 'Last Name',
+                  fullWidth: false,
+                ),
+                InputDataFields(
+                  fieldName: 'Email',
+                  fullWidth: false,
+                ),
+                DropDownCustomWidget(
+                  fullWidth: false,
+                ),
+                InputDataFields(
+                  fieldName: 'Phone / Mobile',
+                  fullWidth: false,
+                ),
+                InputDataFields(
+                  fieldName: 'Country',
+                  fullWidth: false,
+                )
               ],
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                InputDataFields('Submitted by'),
-                InputDataFields('Phone / Mobile'),
-                InputDataFields('Reason of Submission'),
-                InputDataFields('Submission Title'),
-                InputDataFields('Organization'),
+                InputDataFields(
+                  fieldName: 'Submitted by',
+                  fullWidth: false,
+                ),
+                InputDataFields(
+                  fieldName: 'Submission Title',
+                  fullWidth: false,
+                ),
+                InputDataFields(
+                  fieldName: 'Submission Discription',
+                  fullWidth: false,
+                ),
+                InputDataFields(
+                  fieldName: 'Reason of Submission',
+                  fullWidth: false,
+                ),
+                InputDataFields(
+                  fieldName: 'Organization',
+                  fullWidth: false,
+                ),
+                // SizedBox(
+                //   height: 120,
+                // )
               ],
             ),
+            
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.25,
+              child: const Image(
+                fit: BoxFit.fill,
+                image: NetworkImage(
+                  "https://cdn.logo.com/hotlink-ok/logo-social.png",
+                ),
+              ),
+            ),
           ],
-        ),
-        const InputDataFields('Submission Discription'),
-        const SizedBox(
-          height: 20,
         ),
         const ButtonWidget()
       ],

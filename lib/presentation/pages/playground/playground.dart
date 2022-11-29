@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 
 class Playground extends StatelessWidget {
@@ -40,7 +41,7 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  //Navigate to Insert Review Screen
+                  Navigator.pushNamed(context, InsertReview.route);
                 },
                 child: const Text('Go to Insert Review Page'),
               ),

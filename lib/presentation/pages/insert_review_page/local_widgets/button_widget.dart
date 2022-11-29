@@ -6,7 +6,7 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: SizedBox(
         width: MediaQuery.of(context).size.width*0.45,
         child: Column(
@@ -25,7 +25,7 @@ class ButtonWidget extends StatelessWidget {
                         elevation: 10,
                       ),
                       child: const Text(
-                        "POST",
+                        "SUBMIT",
                         style: TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.w600,

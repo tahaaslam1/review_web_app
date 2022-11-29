@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class InputDataFields extends StatelessWidget {
   final String fieldName;
-  const InputDataFields(this.fieldName, {super.key});
+  final bool fullWidth;
+  const InputDataFields(
+      {super.key, required this.fieldName, required this.fullWidth});
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +17,32 @@ class InputDataFields extends StatelessWidget {
             fieldName,
             style: const TextStyle(
               color: Color.fromARGB(255, 90, 96, 101),
-              fontSize: 20,
+              fontSize: 15,
               fontWeight: FontWeight.w200,
               letterSpacing: 0.5,
               height: 2.00,
             ),
           ),
           const SizedBox(
-            height: 5,
+            height: 0.1,
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.45,
-            child: const TextField(
-              decoration: InputDecoration(border: OutlineInputBorder()),
-            ),
+            width: fullWidth
+                ? MediaQuery.of(context).size.width * 0.9
+                : MediaQuery.of(context).size.width * 0.3,
+            child: !(fieldName == 'Submitted by')
+                ? TextFormField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
+                  )
+                : TextFormField(
+                    decoration: const InputDecoration(
+                      enabled: false,
+                      border: OutlineInputBorder(),
+                      hintText: 'User Name',
+                    ),
+                  ),
           ),
         ],
       ),
