@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
+import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
 
@@ -53,13 +54,19 @@ class Playground extends StatelessWidget {
                 child: const Text('Go to Landing Page'),
               ),
               TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, HomePage.route);
+                },
+                child: const Text('Go to Home Page'),
+              ),
+              TextButton(
                 onPressed: () {},
-                child: const Text('Main App'),
+                child: const Text('Go to Insert Review Page'),
               ),
             ],
           ),
         ),
       ),
-    );
+    ); //Navigate to Insert Review Screen
   }
 }
