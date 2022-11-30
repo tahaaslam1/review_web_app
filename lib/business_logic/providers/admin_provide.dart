@@ -24,6 +24,11 @@ class AdminProvider extends ChangeNotifier {
   List<HR> get allUnapproved => _allUnapproved;
   List<Employee> get allEmployees => _allEmployees;
 
+  void removeHR(String id) {
+    _allUnapproved.removeWhere((element) => element.user_id == id);
+    notifyListeners();
+  }
+
   AdminRepo adminRepository = AdminRepo();
   Future<void> GetAllUsers() async {
     _isLoading = true;
@@ -34,7 +39,7 @@ class AdminProvider extends ChangeNotifier {
     }
     var res1 = await adminRepository.getHR();
     var decodedData1 = jsonDecode(res1.body);
-    print(decodedData1);
+
     for (var m in decodedData1['data']) {
       allHR.add(HR.fromJson(m));
     }
@@ -46,10 +51,25 @@ class AdminProvider extends ChangeNotifier {
     _isLoading = true;
     var response = await adminRepository.getUnapprovedUsers();
     var decodedData = jsonDecode(response.body);
+    print(decodedData);
     for (var m in decodedData['data']) {
       allUnapproved.add(HR.fromJson(m));
     }
     _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> AcceptUser(String id) async {
+    var response = await adminRepository.acceptUser(id);
+    removeHR(id);
+
+    notifyListeners();
+  }
+
+  Future<void> RejectUser(String id) async {
+    var response = await adminRepository.rejectUser(id);
+    removeHR(id);
+
     notifyListeners();
   }
 }

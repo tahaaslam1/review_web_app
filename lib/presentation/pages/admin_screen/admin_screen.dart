@@ -1,6 +1,7 @@
 // import 'package:checkapp/controller/AdminProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:review_web_app/presentation/pages/accept-reject-screen/accept-reject.dart';
 
 import '../../../business_logic/providers/admin_provide.dart';
 import 'employeeinfo.dart';
@@ -52,7 +53,18 @@ class _AdminScreenState extends State<AdminScreen> {
                     padding: const EdgeInsets.all(10),
                     child: ElevatedButton(
                       child: const Text('PENDING FOR APPROVAL'),
-                      onPressed: () {},
+                      onPressed: () async {
+                        await context
+                            .read<AdminProvider>()
+                            .GetUnapprovedUsers();
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AcceptReject(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],
