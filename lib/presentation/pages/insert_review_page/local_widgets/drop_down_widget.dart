@@ -35,7 +35,7 @@ class _DropDownCustomWidgetState extends State<DropDownCustomWidget> {
                             fontSize: 15,
                             fontWeight: FontWeight.w200,
                             letterSpacing: 0.5,
-                            height: 2.00,
+                            height: 1.5,
                           ),
                         ),
                       ))
