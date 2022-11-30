@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
+import 'package:provider/provider.dart';
+
+import 'package:review_web_app/presentation/pages/accept-reject-screen/accept-reject.dart';
+import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
+import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
+import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
+import '../signup-page/signup_page.dart';
+import '../../../business_logic/providers/admin_provide.dart';
+import '../admin_screen/admin_screen.dart';
+
 
 class Playground extends StatelessWidget {
   static const String route = '/';
@@ -23,9 +33,35 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
+                  Navigator.pushNamed(context, ViewProfilePage.route);
+                },
+                child: const Text('Go to view profile Page'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, EditUserProfile.route);
+                },
+                child: const Text('Go to edit profile Page'),
+              ),
+              TextButton(
+                onPressed: () {
                   Navigator.pushNamed(context, LoginPage.route);
                 },
                 child: const Text('Go to Login Page'),
+              ),
+              ElevatedButton(
+                child: Text("Admin Screen"),
+                onPressed: () async {
+                  await context.read<AdminProvider>().GetAllUsers();
+                  // ignore: use_build_context_synchronously
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AdminScreen(),
+                    ),
+                  );
+                  //  tryGettingComp(context);
+                },
               ),
               TextButton(
                 onPressed: () {
@@ -39,20 +75,36 @@ class Playground extends StatelessWidget {
                 },
                 child: const Text('Go to Landing Page'),
               ),
-              TextButton(
+             TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, InsertReview.route);
+                  Navigator.pushNamed(context,AcceptReject.route);
                 },
-                child: const Text('Go to Insert Review Page'),
+                child: const Text('Go to Accept/Reject Invitations Page'),
               ),
               TextButton(
-                onPressed: () {},
-                child: const Text('Main App'),
+                onPressed: () {
+                  Navigator.pushNamed(context, HomePage.route);
+                },
+                child: const Text('Go to Home Page'),
+              ),
+              TextButton(
+                onPressed: () {
+      
+                  Navigator.pushNamed(context, SignUpPage.route);
+                  //Navigate to Insert Review Screen
+                },
+                child: const Text('Signup page'),
+              ),
+              TextButton(
+                onPressed: () {
+                Navigator.pushNamed(context, InsertReview.route);
+                },
+                child: const Text('Go to Insert Review Page'),
               ),
             ],
           ),
         ),
       ),
-    );
+    ); //Navigate to Insert Review Screen
   }
 }

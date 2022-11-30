@@ -1,0 +1,311 @@
+// import 'package:checkapp/controller/userController.dart';
+// import 'package:checkapp/screens/companyRegisterPage.dart';
+// import 'package:checkapp/screens/loginPage.dart';
+// import 'package:checkapp/screens/companiesPage.dart';
+import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+// import 'package:review_web_app/loginPage.dart';
+import 'package:provider/provider.dart';
+import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
+
+class SignUpPage extends StatefulWidget {
+  static const String route = 'Signup-page';
+  const SignUpPage({super.key});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  void _failSnackbar(String error) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(
+        error,
+        textAlign: TextAlign.center,
+        style: const TextStyle(),
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  TextEditingController companynameController = TextEditingController();
+
+  TextEditingController countrynameController = TextEditingController();
+
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController firstameController = TextEditingController();
+
+  TextEditingController lastameController = TextEditingController();
+
+  TextEditingController phnumberController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
+
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 248, 247, 246),
+        automaticallyImplyLeading: false,
+        title: const Text(
+          "Review US",
+          style: TextStyle(
+            color: Color(0xff0A66C2),
+            fontFamily: 'Anton',
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Form(
+                key: _formkey,
+                child: Card(
+                  elevation: 20,
+                  child: Container(
+                    height: 800,
+                    width: 500,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      color: Color.fromARGB(255, 248, 247, 246),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 40),
+                          child: Text(
+                            "SignUp",
+                            style: TextStyle(
+                              color: Color(0xff0A66C2),
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: 0.5,
+                              height: 2.00,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40, right: 40),
+                          child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'First Name'),
+                            controller: firstameController,
+                            validator:
+                                RequiredValidator(errorText: "Required*"),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40, right: 40),
+                          child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Last Name'),
+                            controller: lastameController,
+                            validator:
+                                RequiredValidator(errorText: "Required*"),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40, right: 40),
+                          child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Company Name'),
+                            controller: companynameController,
+                            validator:
+                                RequiredValidator(errorText: "Required*"),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40, right: 40),
+                          child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Phone Number'),
+                            controller: phnumberController,
+                            validator:
+                                RequiredValidator(errorText: "Required*"),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40, right: 40),
+                          child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Country'),
+                            controller: countrynameController,
+                            validator:
+                                RequiredValidator(errorText: "Required*"),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40, right: 40),
+                          child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Email'),
+                            controller: emailController,
+                            validator:
+                                EmailValidator(errorText: "wrong email format"),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40, right: 40),
+                          child: TextFormField(
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Password'),
+                            controller: passwordController,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Center(
+                          child: SizedBox(
+                            height: 50,
+                            width: 200,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (_formkey.currentState?.validate() ==
+                                    false) {
+                                  _failSnackbar('Invalid Credentials');
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => LoginPage(),
+                                    ),
+                                  );
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      alignment: Alignment.topCenter,
+                                      title: const Text("Request in Panding"),
+                                      content: const Text(
+                                          "Yor request has been submited, your account in reviewing process"),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Container(
+                                            color: Colors.white,
+                                            padding: const EdgeInsets.all(14),
+                                            child: const Text("Okay"),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xff0A66C2),
+                                elevation: 10,
+                              ),
+                              child: const Text(
+                                "Register",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: const [
+                            Expanded(
+                              child: Divider(
+                                indent: 20.0,
+                                endIndent: 10.0,
+                                thickness: 1.5,
+                              ),
+                            ),
+                            Text(
+                              "OR",
+                              style: TextStyle(color: Color(0xff0A66C2)),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                indent: 10.0,
+                                endIndent: 20.0,
+                                thickness: 1.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("Already have an account?"),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginPage(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                "SignIn",
+                                style: TextStyle(
+                                  color: Color(0xff0A66C2),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
