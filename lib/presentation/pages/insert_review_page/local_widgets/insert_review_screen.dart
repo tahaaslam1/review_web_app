@@ -1,48 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/button_widget.dart';
-import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/local_widget.dart';
+import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/drop_down_widget.dart';
+import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/input_data_fields.dart';
 
-class InsertReviewPage extends StatefulWidget {
-  const InsertReviewPage({
+const List<String> list = <String>['National Identity Card', 'Passport'];
+
+class InsertReviewScreen extends StatefulWidget {
+  const InsertReviewScreen({
     super.key,
   });
 
   @override
-  State<InsertReviewPage> createState() => _InsertReviewPageState();
+  State<InsertReviewScreen> createState() => _InsertReviewScreenState();
 }
 
-class _InsertReviewPageState extends State<InsertReviewPage> {
-  // void _failSnackbar(String error) {
-  //   final snackBar = SnackBar(
-  //     behavior: SnackBarBehavior.floating,
-  //     content: Text(
-  //       error,
-  //       textAlign: TextAlign.center,
-  //       style: TextStyle(),
-  //     ),
-  //   );
-  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  // }
-
-  // void _tryInsertReview(
-  //     String empName, String review, double ratingController) async {
-  //   try {
-  //     var response = await widget.user?.tryInsertingReview(
-  //         widget.user, empName, review, ratingController.toString());
-  //     if (response == 200) {
-  //       _failSnackbar('Review posted');
-  //     }
-  //   } catch (e) {
-  //     _failSnackbar(e.toString());
-  //   }
-  // }
-
-  // TextEditingController empNameController = TextEditingController();
-
-  // TextEditingController reviewController = TextEditingController();
-
-  // double ratingController = 0;
-
+class _InsertReviewScreenState extends State<InsertReviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -54,19 +26,49 @@ class _InsertReviewPageState extends State<InsertReviewPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: const [
-                  InputDataFields('First Name'),
-                  InputDataFields('Last Name'),
-                  InputDataFields('Email'),
-                  InputDataFields('Passport'),
-                  InputDataFields('NIC'),
-                  InputDataFields('Organization'),
-                  InputDataFields('Submitted by'),
-                  InputDataFields('Phone / Mobile'),
-                  InputDataFields('Reason of Submission'),
-                  InputDataFields('Submission Title'),
-                  InputDataFields('Submission Discription'),
+                  InputDataFields(
+                    fieldName: 'First Name',
+                    fullWidth: true,
+                  ),
+                  InputDataFields(
+                    fieldName: 'Last Name',
+                    fullWidth: true,
+                  ),
+                  InputDataFields(
+                    fieldName: 'Email',
+                    fullWidth: true,
+                  ),
+                  DropDownCustomWidget(fullWidth: true,),
+                  InputDataFields(
+                    fieldName: 'Phone / Mobile',
+                    fullWidth: true,
+                  ),
+                  InputDataFields(
+                    fieldName: 'Submitted by',
+                    fullWidth: true,
+                  ),
+                  InputDataFields(
+                    fieldName: 'Submission Title',
+                    fullWidth: true,
+                  ),
+                  InputDataFields(
+                    fieldName: 'Submission Discription',
+                    fullWidth: true,
+                  ),
+                  InputDataFields(
+                    fieldName: 'Reason of Submission',
+                    fullWidth: true,
+                  ),
+                  InputDataFields(
+                    fieldName: 'Organization',
+                    fullWidth: true,
+                  ),
+                  InputDataFields(
+                    fieldName: 'Country',
+                    fullWidth: true,
+                  )
                 ],
               ),
               const SizedBox(

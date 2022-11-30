@@ -23,6 +23,8 @@ class App extends StatelessWidget {
       routes: {
         Playground.route: (context) => const Playground(),
         LoginPage.route: (context) => const LoginPage(),
+        InsertReview.route: (context) => const InsertReview(),
+
       
         AcceptReject.route: (context) => const AcceptReject(),
 

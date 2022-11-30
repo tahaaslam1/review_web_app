@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
 import 'package:provider/provider.dart';
 
 import 'package:review_web_app/presentation/pages/accept-reject-screen/accept-reject.dart';
@@ -88,13 +89,16 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
+      
                   Navigator.pushNamed(context, SignUpPage.route);
                   //Navigate to Insert Review Screen
                 },
                 child: const Text('Signup page'),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                Navigator.pushNamed(context, InsertReview.route);
+                },
                 child: const Text('Go to Insert Review Page'),
               ),
             ],
