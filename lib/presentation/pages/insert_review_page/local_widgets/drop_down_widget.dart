@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class DropDownCustomWidget extends StatefulWidget {
   final bool fullWidth;
-  const DropDownCustomWidget({super.key, required this.fullWidth});
+  final TextEditingController controller;
+  const DropDownCustomWidget({super.key, required this.fullWidth, required this.controller});
 
   @override
   State<DropDownCustomWidget> createState() => _DropDownCustomWidgetState();
@@ -11,6 +12,7 @@ class DropDownCustomWidget extends StatefulWidget {
 class _DropDownCustomWidgetState extends State<DropDownCustomWidget> {
   List<String> items = ['National Identity Card', 'Passport'];
   String? selectedItem = 'National Identity Card';
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -58,6 +60,7 @@ class _DropDownCustomWidgetState extends State<DropDownCustomWidget> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                 ),
+                controller: widget.controller,
               )),
         ],
       ),
