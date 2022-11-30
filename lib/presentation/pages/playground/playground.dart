@@ -6,9 +6,10 @@ import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_pr
 import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
-
+import '../signup-page/signup_page.dart';
 import '../../../business_logic/providers/admin_provide.dart';
 import '../admin_screen/admin_screen.dart';
+
 
 class Playground extends StatelessWidget {
   static const String route = '/';
@@ -84,6 +85,13 @@ class Playground extends StatelessWidget {
                   Navigator.pushNamed(context, HomePage.route);
                 },
                 child: const Text('Go to Home Page'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, SignUpPage.route);
+                  //Navigate to Insert Review Screen
+                },
+                child: const Text('Signup page'),
               ),
               TextButton(
                 onPressed: () {},

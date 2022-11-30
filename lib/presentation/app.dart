@@ -5,6 +5,7 @@ import 'package:review_web_app/presentation/pages/insert_review_page/insert_revi
 
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 import 'package:review_web_app/presentation/pages/playground/playground.dart';
+import 'package:review_web_app/presentation/pages/signup-page/signup_page.dart';
 import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
 
 class App extends StatelessWidget {
@@ -29,6 +30,7 @@ class App extends StatelessWidget {
 
         HomePage.route: (context) => const HomePage(),
         InsertReview.route: (context) => const InsertReview(),
+        SignUpPage.route: (context) => const SignUpPage(),
       },
     );
   }
