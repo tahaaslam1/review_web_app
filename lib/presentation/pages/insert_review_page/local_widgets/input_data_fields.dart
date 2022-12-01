@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class InputDataFields extends StatelessWidget {
   final String fieldName;
   final bool fullWidth;
   final TextEditingController controller;
+  final RequiredValidator validator;
   const InputDataFields(
-      {super.key, required this.fieldName, required this.fullWidth, required this.controller});
+      {super.key, required this.fieldName, required this.fullWidth, required this.controller, required this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class InputDataFields extends StatelessWidget {
                       border: OutlineInputBorder(),
                     ),
                     controller: controller,
+                    validator: RequiredValidator(errorText: "Required!"),
                   )
                 : TextFormField(
                     decoration: const InputDecoration(

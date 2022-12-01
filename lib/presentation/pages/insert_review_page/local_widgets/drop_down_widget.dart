@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class DropDownCustomWidget extends StatefulWidget {
   final bool fullWidth;
   final TextEditingController controller;
-  const DropDownCustomWidget({super.key, required this.fullWidth, required this.controller});
+  final RequiredValidator validator;
+  const DropDownCustomWidget({super.key, required this.fullWidth, required this.controller, required this.validator});
 
   @override
   State<DropDownCustomWidget> createState() => _DropDownCustomWidgetState();
@@ -61,6 +63,7 @@ class _DropDownCustomWidgetState extends State<DropDownCustomWidget> {
                   border: OutlineInputBorder(),
                 ),
                 controller: widget.controller,
+                validator: widget.validator,
               )),
         ],
       ),
