@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:review_web_app/logger.dart';
 import 'package:review_web_app/presentation/pages/admin_screen/admin_screen.dart';
+import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
 
 import '../../../business_logic/providers/admin_provide.dart';
 import '../../../models/hr.dart';
@@ -170,7 +171,8 @@ class _EditUserProfileState extends State<EditUserProfile> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AdminScreen(),
+                            builder: (context) =>
+                                ViewProfilePage(widget.user_id, widget.type_id),
                           ),
                         );
                       } else {
