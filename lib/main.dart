@@ -10,10 +10,8 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<AdminProvider>(create: (_) => AdminProvider()),
-
-        
-        ChangeNotifierProvider<IdentityCardTypeSelection>(create: (_) => IdentityCardTypeSelection())
-
+        ChangeNotifierProvider<IdentityCardTypeSelection>(
+            create: (_) => IdentityCardTypeSelection()),
         ChangeNotifierProvider<HrProvider>(create: (_) => HrProvider()),
       ],
       child: App(),
