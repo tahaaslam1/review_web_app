@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../business_logic/providers/identity_card_type_selection.dart';
 
 class DropDownCustomWidget extends StatefulWidget {
   final bool fullWidth;
@@ -12,14 +15,17 @@ class DropDownCustomWidget extends StatefulWidget {
 }
 
 class _DropDownCustomWidgetState extends State<DropDownCustomWidget> {
-  List<String> items = ['National Identity Card', 'Passport'];
-  String? selectedItem = 'National Identity Card';
+  // List<String> items = ['National Identity Card', 'Passport'];
+  // String? selectedItem = 'National Identity Card';
   
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15.0),
-      child: Column(
+      child: 
+      Consumer<IdentityCardTypeSelection>(builder: ((context,provider, _) {
+        return
+        Column(
         children: [
           SizedBox(
             width: widget.fullWidth
@@ -28,8 +34,8 @@ class _DropDownCustomWidgetState extends State<DropDownCustomWidget> {
             child: DropdownButtonFormField(
               decoration: const InputDecoration(
                   border: InputBorder.none, fillColor: null),
-              value: selectedItem,
-              items: items
+              value: context.watch<IdentityCardTypeSelection>().selectedItem,
+              items: context.watch<IdentityCardTypeSelection>().items
                   .map((item) => DropdownMenuItem<String>(
                         value: item,
                         child: Text(
@@ -44,11 +50,7 @@ class _DropDownCustomWidgetState extends State<DropDownCustomWidget> {
                         ),
                       ))
                   .toList(),
-              onChanged: (item) {
-                setState(() {
-                  selectedItem = item;
-                });
-              },
+              onChanged: ((value) => provider.updateSelectedItem(value))
             ),
           ),
           const SizedBox(
@@ -66,7 +68,9 @@ class _DropDownCustomWidgetState extends State<DropDownCustomWidget> {
                 validator: widget.validator,
               )),
         ],
-      ),
+      );
+      } ),)
+      
     );
   }
 }

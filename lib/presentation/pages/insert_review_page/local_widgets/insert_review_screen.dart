@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:review_web_app/business_logic/providers/identity_card_type_selection.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/drop_down_widget.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/input_data_fields.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -130,7 +132,9 @@ class _InsertReviewScreenState extends State<InsertReviewScreen> {
                       width: MediaQuery.of(context).size.width * 0.45,
                       child: Column(
                         children: [
-                          Row(
+                          Consumer<IdentityCardTypeSelection>(builder: (context , provider , _){
+                            return
+                            Row(
                             children: [
                               Expanded(
                                 flex: 2,
@@ -163,6 +167,7 @@ class _InsertReviewScreenState extends State<InsertReviewScreen> {
                                       submittionReasonController.clear();
                                       print(organizationController.text);
                                       organizationController.clear();
+                                      
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color(0xff0A66C2),
@@ -180,7 +185,10 @@ class _InsertReviewScreenState extends State<InsertReviewScreen> {
                                 ),
                               ),
                             ],
-                          ),
+                          );
+                          })
+
+                          
                         ],
                       ),
                     ),
