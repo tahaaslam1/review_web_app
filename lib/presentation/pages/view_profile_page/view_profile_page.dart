@@ -1,17 +1,29 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
+import 'package:review_web_app/business_logic/providers/admin_provide.dart';
+import 'package:review_web_app/models/hr.dart';
+
 import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
 
-bool bol = false;
-
-class ViewProfilePage extends StatelessWidget {
+class ViewProfilePage extends StatefulWidget {
   static const String route = 'view-profile-page';
+  String? user_id;
+  String? type_id;
 
-  ViewProfilePage({super.key});
+  ViewProfilePage(this.user_id, this.type_id, {super.key});
 
   @override
+  State<ViewProfilePage> createState() => _ViewProfilePageState();
+}
+
+class _ViewProfilePageState extends State<ViewProfilePage> {
+  late HR response;
+  @override
+  initState() {
+    response = context.read<AdminProvider>().getUserProfile(widget.user_id!);
+    // bol = response.type_id as int;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -41,20 +53,9 @@ class ViewProfilePage extends StatelessWidget {
                                       title: Text('Edit Info'),
                                       content: SizedBox(
                                           width: 700,
-                                          child:
-                                              EditUserProfile(userType: bol)),
-                                      actions: [
-                                        Center(
-                                          child: SizedBox(
-                                            height: 60,
-                                            width: 90,
-                                            child: ElevatedButton(
-                                              onPressed: () {},
-                                              child: Text('SAVE'),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                          child: EditUserProfile(
+                                              user_id: widget.user_id!,
+                                              type_id: widget.type_id!)),
                                     ),
                                   );
                                 },
@@ -79,8 +80,8 @@ class ViewProfilePage extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Column(
                               children: [
-                                const Text(
-                                  "Hunain Arif",
+                                Text(
+                                  response.first_name! + response.last_name!,
                                   style: TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
@@ -88,13 +89,13 @@ class ViewProfilePage extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 3.0),
                                   child: Row(
-                                    children: const [
+                                    children: [
                                       Icon(
                                         Icons.email,
                                         size: 10.0,
                                       ),
                                       Text(
-                                        "huninarif30@gmail.com",
+                                        response.email!,
                                         style: TextStyle(
                                             fontWeight: FontWeight.w100,
                                             fontSize: 10),
@@ -116,7 +117,7 @@ class ViewProfilePage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Padding(
                               padding: EdgeInsets.only(left: 8.0),
                               child: Text(
@@ -127,7 +128,7 @@ class ViewProfilePage extends StatelessWidget {
                             ),
                             Padding(
                               padding: EdgeInsets.all(15.0),
-                              child: Text("Pakistan"),
+                              child: Text(response.organisation!),
                             ),
                           ],
                         ),
@@ -151,11 +152,11 @@ class ViewProfilePage extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(15.0),
+                              padding: EdgeInsets.all(15.0),
                               child: Row(
-                                children: const [
+                                children: [
                                   Icon(Icons.phone),
-                                  Text("090078601"),
+                                  Text(response.phone!),
                                 ],
                               ),
                             ),
@@ -183,9 +184,9 @@ class ViewProfilePage extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: Row(
-                                children: const [
+                                children: [
                                   Icon(Icons.location_on),
-                                  Text("Pakistan"),
+                                  Text(response.country!),
                                 ],
                               ),
                             ),
@@ -193,204 +194,208 @@ class ViewProfilePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    bol
-                        ? Column(
-                            children: [
-                              Card(
-                                elevation: 10.0,
-                                child: Container(
-                                  height: 100,
-                                  width: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 8.0),
-                                        child: Text(
-                                          "Submission Description",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: Row(
-                                          children: const [
-                                            Icon(Icons.description),
-                                            Text("description..."),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Card(
-                                elevation: 10.0,
-                                child: Container(
-                                  height: 100,
-                                  width: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 8.0),
-                                        child: Text(
-                                          "Submission Title",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: Row(
-                                          children: const [
-                                            Icon(Icons.star),
-                                            Text("Employee review"),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Card(
-                                elevation: 10.0,
-                                child: Container(
-                                  height: 100,
-                                  width: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 8.0),
-                                        child: Text(
-                                          "Reason For submission",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: Row(
-                                          children: const [
-                                            Icon(Icons.star),
-                                            Text("Hamara marzi"),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Card(
-                                elevation: 10.0,
-                                child: Container(
-                                  height: 100,
-                                  width: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 8.0),
-                                        child: Text(
-                                          "du/dtu",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: Row(
-                                          children: const [
-                                            Icon(Icons.star),
-                                            Text("Yeh pta nhi kia cheez hai"),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Card(
-                                elevation: 10.0,
-                                child: Container(
-                                  height: 100,
-                                  width: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 8.0),
-                                        child: Text(
-                                          "Submitted by:",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: Row(
-                                          children: const [
-                                            Icon(Icons.person),
-                                            Text("Hunain Arif"),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Card(
-                                elevation: 10.0,
-                                child: Container(
-                                  height: 100,
-                                  width: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(left: 8.0),
-                                        child: Text(
-                                          "National ID",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: Row(
-                                          children: const [
-                                            Icon(Icons.perm_identity),
-                                            Text("42101-123512515-3"),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        : Text(''),
+                    //
+                    //    (bol == 0)
+                    //         ? Column(
+                    //             children: [
+                    //               Card(
+                    //                 elevation: 10.0,
+                    //                 child: Container(
+                    //                   height: 100,
+                    //                   width: double.infinity,
+                    //                   child: Column(
+                    //                     crossAxisAlignment:
+                    //                         CrossAxisAlignment.start,
+                    //                     mainAxisAlignment: MainAxisAlignment.center,
+                    //                     children: [
+                    //                       const Padding(
+                    //                         padding: EdgeInsets.only(left: 8.0),
+                    //                         child: Text(
+                    //                           "Submission Description",
+                    //                           style: TextStyle(
+                    //                               fontSize: 15,
+                    //                               fontWeight: FontWeight.bold),
+                    //                         ),
+                    //                       ),
+                    //                       Padding(
+                    //                         padding: const EdgeInsets.all(15.0),
+                    //                         child: Row(
+                    //                           children: const [
+                    //                             Icon(Icons.description),
+                    //                             Text(""),
+                    //                           ],
+                    //                         ),
+                    //                       ),
+                    //                     ],
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //               Card(
+                    //                 elevation: 10.0,
+                    //                 child: Container(
+                    //                   height: 100,
+                    //                   width: double.infinity,
+                    //                   child: Column(
+                    //                     crossAxisAlignment:
+                    //                         CrossAxisAlignment.start,
+                    //                     mainAxisAlignment: MainAxisAlignment.center,
+                    //                     children: [
+                    //                       const Padding(
+                    //                         padding: EdgeInsets.only(left: 8.0),
+                    //                         child: Text(
+                    //                           "Submission Title",
+                    //                           style: TextStyle(
+                    //                               fontSize: 15,
+                    //                               fontWeight: FontWeight.bold),
+                    //                         ),
+                    //                       ),
+                    //                       Padding(
+                    //                         padding: const EdgeInsets.all(15.0),
+                    //                         child: Row(
+                    //                           children: const [
+                    //                             Icon(Icons.star),
+                    //                             Text("Employee review"),
+                    //                           ],
+                    //                         ),
+                    //                       ),
+                    //                     ],
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //               Card(
+                    //                 elevation: 10.0,
+                    //                 child: Container(
+                    //                   height: 100,
+                    //                   width: double.infinity,
+                    //                   child: Column(
+                    //                     crossAxisAlignment:
+                    //                         CrossAxisAlignment.start,
+                    //                     mainAxisAlignment: MainAxisAlignment.center,
+                    //                     children: [
+                    //                       const Padding(
+                    //                         padding: EdgeInsets.only(left: 8.0),
+                    //                         child: Text(
+                    //                           "Reason For submission",
+                    //                           style: TextStyle(
+                    //                               fontSize: 15,
+                    //                               fontWeight: FontWeight.bold),
+                    //                         ),
+                    //                       ),
+                    //                       Padding(
+                    //                         padding: const EdgeInsets.all(15.0),
+                    //                         child: Row(
+                    //                           children: const [
+                    //                             Icon(Icons.star),
+                    //                             Text("Hamara marzi"),
+                    //                           ],
+                    //                         ),
+                    //                       ),
+                    //                     ],
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //               Card(
+                    //                 elevation: 10.0,
+                    //                 child: Container(
+                    //                   height: 100,
+                    //                   width: double.infinity,
+                    //                   child: Column(
+                    //                     crossAxisAlignment:
+                    //                         CrossAxisAlignment.start,
+                    //                     mainAxisAlignment: MainAxisAlignment.center,
+                    //                     children: [
+                    //                       const Padding(
+                    //                         padding: EdgeInsets.only(left: 8.0),
+                    //                         child: Text(
+                    //                           "du/dtu",
+                    //                           style: TextStyle(
+                    //                               fontSize: 15,
+                    //                               fontWeight: FontWeight.bold),
+                    //                         ),
+                    //                       ),
+                    //                       Padding(
+                    //                         padding: const EdgeInsets.all(15.0),
+                    //                         child: Row(
+                    //                           children: const [
+                    //                             Icon(Icons.star),
+                    //                             Text("Yeh pta nhi kia cheez hai"),
+                    //                           ],
+                    //                         ),
+                    //                       ),
+                    //                     ],
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //               Card(
+                    //                 elevation: 10.0,
+                    //                 child: Container(
+                    //                   height: 100,
+                    //                   width: double.infinity,
+                    //                   child: Column(
+                    //                     crossAxisAlignment:
+                    //                         CrossAxisAlignment.start,
+                    //                     mainAxisAlignment: MainAxisAlignment.center,
+                    //                     children: [
+                    //                       const Padding(
+                    //                         padding: EdgeInsets.only(left: 8.0),
+                    //                         child: Text(
+                    //                           "Submitted by:",
+                    //                           style: TextStyle(
+                    //                               fontSize: 15,
+                    //                               fontWeight: FontWeight.bold),
+                    //                         ),
+                    //                       ),
+                    //                       Padding(
+                    //                         padding: const EdgeInsets.all(15.0),
+                    //                         child: Row(
+                    //                           children: const [
+                    //                             Icon(Icons.person),
+                    //                             Text("Hunain Arif"),
+                    //                           ],
+                    //                         ),
+                    //                       ),
+                    //                     ],
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //               Card(
+                    //                 elevation: 10.0,
+                    //                 child: Container(
+                    //                   height: 100,
+                    //                   width: double.infinity,
+                    //                   child: Column(
+                    //                     crossAxisAlignment:
+                    //                         CrossAxisAlignment.start,
+                    //                     mainAxisAlignment: MainAxisAlignment.center,
+                    //                     children: [
+                    //                       const Padding(
+                    //                         padding: EdgeInsets.only(left: 8.0),
+                    //                         child: Text(
+                    //                           "National ID",
+                    //                           style: TextStyle(
+                    //                               fontSize: 15,
+                    //                               fontWeight: FontWeight.bold),
+                    //                         ),
+                    //                       ),
+                    //                       Padding(
+                    //                         padding: const EdgeInsets.all(15.0),
+                    //                         child: Row(
+                    //                           children: const [
+                    //                             Icon(Icons.perm_identity),
+                    //                             Text("42101-123512515-3"),
+                    //                           ],
+                    //                         ),
+                    //                       ),
+                    //                     ],
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //             ],
+                    //           )
+                    //         : Text(''),
+                    //   ],
+                    // ),
+                    //   ),
                   ],
                 ),
               ),
