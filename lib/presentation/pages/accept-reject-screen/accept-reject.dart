@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:review_web_app/business_logic/providers/admin_provide.dart';
+import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_admin.dart';
+
 
 class AcceptReject extends StatelessWidget {
   static const String route = 'accept-reject';
@@ -55,35 +57,40 @@ class accept_reject_widget extends StatelessWidget {
               title: Text(firstname! + lastname!),
               subtitle: Text(organisation!),
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await context.read<AdminProvider>().AcceptUser(user_id!);
-                  },
-                  child: const Text('Accept'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      await context.read<AdminProvider>().AcceptUser(user_id!);
+                    },
+                    child: const Text('Accept'),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await context.read<AdminProvider>().RejectUser(user_id!);
-                  },
-                  child: const Text('Reject'),
+                Padding(
+                  padding: const EdgeInsets.only(right: 5.0),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      await context.read<AdminProvider>().RejectUser(user_id!);
+                    },
+                    child: const Text('Reject'),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0),
-                child: ElevatedButton(
+                TextButton(
                   onPressed: () async {
-                    await context.read<AdminProvider>().RejectUser(user_id!);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ViewProfileAdmin(user_id: user_id!),
+                      ),
+                    );
                   },
                   child: const Text('View Profile'),
-                ),
-              ),
-            ]),
+                )
+              ],
+            ),
           ],
         ),
       ),
