@@ -7,9 +7,9 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider<AdminProvider>(create: (_) => AdminProvider())
+        ChangeNotifierProvider<AdminProvider>(create: (_) => AdminProvider()),
       ],
-      child: App(),
+      child: const App(),
     ),
   );
 }

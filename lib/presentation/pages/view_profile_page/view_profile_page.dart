@@ -38,11 +38,11 @@ class ViewProfilePage extends StatelessWidget {
                                 builder: (BuildContext context) {
                                   return Expanded(
                                     child: AlertDialog(
-                                      title: Text('Edit Info'),
+                                      title: const Text('Edit Info'),
                                       content: SizedBox(
-                                          width: 700,
-                                          child:
-                                              EditUserProfile(userType: bol)),
+                                        width: 700,
+                                        child: EditUserProfile(userType: bol),
+                                      ),
                                       actions: [
                                         Center(
                                           child: SizedBox(
@@ -50,7 +50,7 @@ class ViewProfilePage extends StatelessWidget {
                                             width: 90,
                                             child: ElevatedButton(
                                               onPressed: () {},
-                                              child: Text('SAVE'),
+                                              child: const Text('SAVE'),
                                             ),
                                           ),
                                         ),
@@ -72,8 +72,7 @@ class ViewProfilePage extends StatelessWidget {
                         children: [
                           const CircleAvatar(
                             radius: 50, // Image radius
-                            backgroundImage: NetworkImage(
-                                'https://www.shutterstock.com/image-vector/my-account-profile-user-icon-260nw-1700343232.jpg'),
+                            backgroundImage: NetworkImage('https://www.shutterstock.com/image-vector/my-account-profile-user-icon-260nw-1700343232.jpg'),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
@@ -81,9 +80,7 @@ class ViewProfilePage extends StatelessWidget {
                               children: [
                                 const Text(
                                   "Hunain Arif",
-                                  style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 3.0),
@@ -95,9 +92,7 @@ class ViewProfilePage extends StatelessWidget {
                                       ),
                                       Text(
                                         "huninarif30@gmail.com",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w100,
-                                            fontSize: 10),
+                                        style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10),
                                       ),
                                     ],
                                   ),
@@ -121,8 +116,7 @@ class ViewProfilePage extends StatelessWidget {
                               padding: EdgeInsets.only(left: 8.0),
                               child: Text(
                                 "Company/ Organization:",
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Padding(
@@ -146,8 +140,7 @@ class ViewProfilePage extends StatelessWidget {
                               padding: EdgeInsets.only(left: 8.0),
                               child: Text(
                                 "Phone Number",
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Padding(
@@ -176,8 +169,7 @@ class ViewProfilePage extends StatelessWidget {
                               padding: EdgeInsets.only(left: 8.0),
                               child: Text(
                                 "Country",
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Padding(
@@ -202,17 +194,14 @@ class ViewProfilePage extends StatelessWidget {
                                   height: 100,
                                   width: double.infinity,
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Padding(
                                         padding: EdgeInsets.only(left: 8.0),
                                         child: Text(
                                           "Submission Description",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       Padding(
@@ -234,17 +223,14 @@ class ViewProfilePage extends StatelessWidget {
                                   height: 100,
                                   width: double.infinity,
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Padding(
                                         padding: EdgeInsets.only(left: 8.0),
                                         child: Text(
                                           "Submission Title",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       Padding(
@@ -266,17 +252,14 @@ class ViewProfilePage extends StatelessWidget {
                                   height: 100,
                                   width: double.infinity,
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Padding(
                                         padding: EdgeInsets.only(left: 8.0),
                                         child: Text(
                                           "Reason For submission",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       Padding(
@@ -298,17 +281,14 @@ class ViewProfilePage extends StatelessWidget {
                                   height: 100,
                                   width: double.infinity,
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Padding(
                                         padding: EdgeInsets.only(left: 8.0),
                                         child: Text(
                                           "du/dtu",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       Padding(
@@ -330,17 +310,14 @@ class ViewProfilePage extends StatelessWidget {
                                   height: 100,
                                   width: double.infinity,
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Padding(
                                         padding: EdgeInsets.only(left: 8.0),
                                         child: Text(
                                           "Submitted by:",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       Padding(
@@ -362,17 +339,14 @@ class ViewProfilePage extends StatelessWidget {
                                   height: 100,
                                   width: double.infinity,
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Padding(
                                         padding: EdgeInsets.only(left: 8.0),
                                         child: Text(
                                           "National ID",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
+                                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       Padding(
@@ -390,7 +364,7 @@ class ViewProfilePage extends StatelessWidget {
                               ),
                             ],
                           )
-                        : Text(''),
+                        : const Text(''),
                   ],
                 ),
               ),

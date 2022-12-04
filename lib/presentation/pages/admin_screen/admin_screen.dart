@@ -54,9 +54,7 @@ class _AdminScreenState extends State<AdminScreen> {
                     child: ElevatedButton(
                       child: const Text('PENDING FOR APPROVAL'),
                       onPressed: () async {
-                        await context
-                            .read<AdminProvider>()
-                            .GetUnapprovedUsers();
+                        await context.read<AdminProvider>().GetUnapprovedUsers();
 
                         Navigator.push(
                           context,
@@ -120,33 +118,23 @@ class _AdminScreenState extends State<AdminScreen> {
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(user.last_name.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.last_name.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(user.email.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.email.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(user.country.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.country.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(user.organisation.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.organisation.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(user.phone.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.phone.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                               ],
                             );
@@ -184,67 +172,43 @@ class _AdminScreenState extends State<AdminScreen> {
                               children: [
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.first_name.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.firstName.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.last_name.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.lastName.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.email.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.email.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.passport.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.passport.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.organisation.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.organisation.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.submitted_by.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.submittedBy.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.phone.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.phone.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(
-                                      employee.reason_for_submission.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.reasonForSubmission.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(
-                                      employee.submission_title.toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.submissionTitle.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text(
-                                      employee.submission_description
-                                          .toString(),
-                                      style: TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.submissionDescription.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                               ],
                             );
@@ -266,8 +230,7 @@ class _AdminScreenState extends State<AdminScreen> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              content:
-                                  SizedBox(width: 400, child: EmployeeInfo()),
+                              content: SizedBox(width: 400, child: EmployeeInfo()),
                             );
                           },
                         );

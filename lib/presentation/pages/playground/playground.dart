@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/data/repositories/employees_repository/employees_repository.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,6 @@ import 'package:review_web_app/presentation/pages/view_profile_page/view_profile
 import '../signup-page/signup_page.dart';
 import '../../../business_logic/providers/admin_provide.dart';
 import '../admin_screen/admin_screen.dart';
-
 
 class Playground extends StatelessWidget {
   static const String route = '/';
@@ -75,9 +75,9 @@ class Playground extends StatelessWidget {
                 },
                 child: const Text('Go to Landing Page'),
               ),
-             TextButton(
+              TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context,AcceptReject.route);
+                  Navigator.pushNamed(context, AcceptReject.route);
                 },
                 child: const Text('Go to Accept/Reject Invitations Page'),
               ),
@@ -89,7 +89,6 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-      
                   Navigator.pushNamed(context, SignUpPage.route);
                   //Navigate to Insert Review Screen
                 },
@@ -97,9 +96,19 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                Navigator.pushNamed(context, InsertReview.route);
+                  Navigator.pushNamed(context, InsertReview.route);
                 },
                 child: const Text('Go to Insert Review Page'),
+              ),
+              TextButton(
+                onPressed: () async {
+                  EmployeesRepository em = EmployeesRepository();
+
+                  em.getSearchedEmployees(value: 'taha aslam');
+
+                  
+                },
+                child: const Text('Check Api'),
               ),
             ],
           ),

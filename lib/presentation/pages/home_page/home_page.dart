@@ -1,12 +1,20 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:review_web_app/data/repositories/employees_repository/employees_repository.dart';
+import 'package:review_web_app/logger.dart';
+import 'package:review_web_app/models/employees.dart';
 import 'package:review_web_app/presentation/pages/home_page/local_widgets/employee_info_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static const String route = 'home-page';
 
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  EmployeesRepository emp = EmployeesRepository();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,12 +30,70 @@ class HomePage extends StatelessWidget {
             color: const Color.fromARGB(255, 200, 212, 248),
             child: SizedBox(
               width: MediaQuery.of(context).size.width / 2,
-              //TODO: functionality
-              child: DropdownSearch(
-                dropdownButtonProps: const DropdownButtonProps(
-                  color: Color(0xFF0A66C2),
-                  icon: Icon(Icons.search, size: 24.0),
-                ),
+              child: LayoutBuilder(
+                builder: (_, BoxConstraints constraints) {
+                  return Autocomplete<Employee>(
+                    displayStringForOption: (option) {
+                      return '${option.firstName} ${option.lastName}';
+                    },
+                    optionsBuilder: (textEditingValue) {
+                      if (textEditingValue.text == '') {
+                        return const Iterable<Employee>.empty();
+                      }
+                      return emp.getSearchedEmployees(value: textEditingValue.text);
+                    },
+                    optionsViewBuilder: (context, onSelected, options) {
+                      return Align(
+                        alignment: Alignment.topLeft,
+                        child: Material(
+                          elevation: 20.0,
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height / 2,
+                            width: constraints.maxWidth,
+                            child: ListView.separated(
+                              padding: EdgeInsets.zero,
+                              itemCount: options.length,
+                              itemBuilder: (context, index) {
+                                final option = options.elementAt(index);
+                                return GestureDetector(
+                                  onTap: () {
+                                    logger.i(option.firstName); //TODO : Navigate to that option profile screen
+                                  },
+                                  child: ListTile(
+                                    title: Text(
+                                      '${option.firstName} ${option.lastName}',
+                                    ),
+                                  ),
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return const Divider();
+                              },
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
+                      return TextField(
+                        controller: textEditingController,
+                        focusNode: focusNode,
+                        onEditingComplete: onFieldSubmitted,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                              // borderSide: BorderSide()
+
+                              ),
+                          hintText: 'Search Employees',
+                          suffixIcon: Icon(
+                            Icons.search,
+                            color: Color(0xFF0A66C2),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ),
