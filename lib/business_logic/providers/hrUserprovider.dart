@@ -11,6 +11,16 @@ class HrProvider extends ChangeNotifier {
 
   HR get hrUser => _hrUser;
 
+  void updateHRProfile(String firstname, String lastname, String phone,
+      String country, String organisation, String id) {
+    _hrUser.first_name = firstname;
+    _hrUser.last_name = lastname;
+    _hrUser.country = country;
+    _hrUser.organisation = organisation;
+    _hrUser.phone = phone;
+    notifyListeners();
+  }
+
   Future<dynamic> trySignup(
       String firstname,
       String lastname,
@@ -38,6 +48,14 @@ class HrProvider extends ChangeNotifier {
       hasError = true;
     } else {
       _hrUser = HR.fromJson(decodedData['data']);
+      notifyListeners();
     }
+    
+  Future<void> UpdateHR(String firstname, String lastname, String phone,
+      String country, String organisation, String id) async {
+    var response = await _hrRepository.updateUser(
+        firstname, lastname, phone, country, organisation, id);
+    updateHRProfile(firstname, lastname, phone, country, organisation, id);
+    notifyListeners();
   }
 }

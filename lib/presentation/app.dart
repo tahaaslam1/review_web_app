@@ -28,7 +28,7 @@ class App extends StatelessWidget {
       
         AcceptReject.route: (context) => const AcceptReject(),
 
-        ViewProfilePage.route : ( context) => ViewProfilePage(),
+     //   ViewProfilePage.route : ( context) => ViewProfilePage(),
 
         HomePage.route: (context) => const HomePage(),
         InsertReview.route: (context) => const InsertReview(),
