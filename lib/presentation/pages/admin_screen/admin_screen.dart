@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:review_web_app/presentation/pages/accept-reject-screen/accept-reject.dart';
+import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
 
 import '../../../business_logic/providers/admin_provide.dart';
 import 'employeeinfo.dart';
@@ -17,7 +18,7 @@ class _AdminScreenState extends State<AdminScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 248, 247, 246),
+        backgroundColor: const Color.fromARGB(255, 248, 247, 246),
         actions: [
           Consumer<AdminProvider>(
             builder: (context, provider, _) {
@@ -39,7 +40,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: ElevatedButton(
-                      child: Text("USERS"),
+                      child: const Text("USERS"),
                       onPressed: () {
                         setState(() {
                           provider.value = "USERS TABLE";
@@ -59,7 +60,7 @@ class _AdminScreenState extends State<AdminScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AcceptReject(),
+                            builder: (context) => const AcceptReject(),
                           ),
                         );
                       },
@@ -91,7 +92,7 @@ class _AdminScreenState extends State<AdminScreen> {
                     children: [
                       Text(
                         provider.value,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 30,
                           color: Color(0xff0A66C2),
                           fontFamily: 'Anton',
@@ -99,7 +100,87 @@ class _AdminScreenState extends State<AdminScreen> {
                       ),
                       Table(
                         border: TableBorder.all(
-                          color: Color.fromRGBO(0, 0, 0, 1),
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                        children: List<TableRow>.generate(
+                          provider.allHR.length == 0 ? 0 : 1,
+                          (index) {
+                            return const TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text(
+                                    "FIRST NAME",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("LAST NAME",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("EMAIL",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("COUNTRY",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("ORGANISATION",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("PHONE",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("STATUS",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("EDIT/DELETE",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                      Table(
+                        border: TableBorder.all(
+                          color: const Color.fromRGBO(0, 0, 0, 1),
                         ),
                         children: List<TableRow>.generate(
                           provider.allHR.length,
@@ -109,32 +190,81 @@ class _AdminScreenState extends State<AdminScreen> {
                             return TableRow(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   child: Text(
                                     user.first_name.toString(),
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 18),
+                                    style: const TextStyle(fontSize: 18),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(user.last_name.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(user.last_name.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(user.email.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(user.email.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(user.country.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(user.country.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(user.organisation.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(user.organisation.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(user.phone.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(user.phone.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(user.is_approved.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    IconButton(
+                                      icon: const Icon(Icons.edit),
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text('Edit Info'),
+                                              content: SizedBox(
+                                                  width: 700,
+                                                  child: EditUserProfile(
+                                                    user_id: user.user_id!,
+                                                    type_id: 0,
+                                                  )),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.delete),
+                                      onPressed: () async {
+                                        await context
+                                            .read<AdminProvider>()
+                                            .DeleteUser(user.user_id!);
+                                      },
+                                    ),
+                                  ],
                                 ),
                               ],
                             );
@@ -153,7 +283,7 @@ class _AdminScreenState extends State<AdminScreen> {
                     children: [
                       Text(
                         provider.value,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color(0xff0A66C2),
                           fontSize: 30,
                           fontFamily: 'Anton',
@@ -161,7 +291,98 @@ class _AdminScreenState extends State<AdminScreen> {
                       ),
                       Table(
                         border: TableBorder.all(
-                          color: Color.fromRGBO(0, 0, 0, 1),
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                        children: List<TableRow>.generate(
+                          provider.allHR.length == 0 ? 0 : 1,
+                          (index) {
+                            return const TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+
+                                  child: Text(
+                                    "FIRST NAME",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text(
+                                    "LAST NAME",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("EMAIL",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("ORGANISATION",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("SUBMITTED BY",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("PHONE",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("REASON FOR SUBMISSION",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("SUBMISSION TITLE",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Text("SUBMISSION DESCRIPTION,",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                      Table(
+                        border: TableBorder.all(
+                          color: const Color.fromRGBO(0, 0, 0, 1),
                         ),
                         children: List<TableRow>.generate(
                           provider.allEmployees.length,
@@ -171,44 +392,63 @@ class _AdminScreenState extends State<AdminScreen> {
                             return TableRow(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.firstName.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(employee.first_name.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.lastName.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(employee.last_name.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.email.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(employee.email.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.passport.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(employee.organisation.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.organisation.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(employee.submitted_by.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.submittedBy.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(employee.phone.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.phone.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                      employee.reason_for_submission.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.reasonForSubmission.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                      employee.submission_title.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.submissionTitle.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text(employee.submissionDescription.toString(), style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                      employee.submission_description
+                                          .toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.center),
+
                                 ),
                               ],
                             );
@@ -244,11 +484,12 @@ class _AdminScreenState extends State<AdminScreen> {
                       ),
                     ),
                   )
+
                 ],
               );
             }
           } else {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
         },
       ),

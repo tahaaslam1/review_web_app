@@ -22,8 +22,18 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 248, 247, 246),
           automaticallyImplyLeading: false,
-          leading: const Icon(
-            Icons.person_outline,
+          leading: IconButton(
+            onPressed: () async {
+            var response =  await context.read<HrProvider>().hrUser;
+              // ignore: use_build_context_synchronously
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ViewProfilePage(
+                        response.user_id, response.type_id)),
+              );
+            },
+            icon: Icon(Icons.person_outline),
             color: Color(0xFF0A66C2),
           ),
           title: Container(

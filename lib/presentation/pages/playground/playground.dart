@@ -63,6 +63,20 @@ class Playground extends StatelessWidget {
                   //  tryGettingComp(context);
                 },
               ),
+              ElevatedButton(
+                child: Text("goto user profile"),
+                onPressed: () async {
+                  await context.read<AdminProvider>().GetAllUsers();
+                  // ignore: use_build_context_synchronously
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ViewProfilePage(
+                            "5020b68e-d0a2-4062-8713-cf7cea98d387", 1)),
+                  );
+                  //  tryGettingComp(context);
+                },
+              ),
               TextButton(
                 onPressed: () {
                   //Navigate to Register Screen

@@ -1,15 +1,15 @@
 class HR {
-  final String? first_name;
-  final String? user_id;
+  late String? first_name;
+  late final String? user_id;
   final String? adminId;
-  final String? country;
-  final String? last_name;
+  late String? country;
+  late String? last_name;
   final String? email;
-  final String? organisation;
-  final String? phone;
-  final String? type_id;
+  late String? organisation;
+  late String? phone;
+  final int? type_id;
   final String? password;
-  final bool? is_approved;
+  late bool? is_approved;
 
   HR({
     this.first_name,
