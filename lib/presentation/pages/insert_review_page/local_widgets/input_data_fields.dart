@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:provider/provider.dart';
+import 'package:review_web_app/business_logic/providers/hrUserprovider.dart';
 
 class InputDataFields extends StatelessWidget {
   final String fieldName;
@@ -7,7 +9,11 @@ class InputDataFields extends StatelessWidget {
   final TextEditingController controller;
   final RequiredValidator validator;
   const InputDataFields(
-      {super.key, required this.fieldName, required this.fullWidth, required this.controller, required this.validator});
+      {super.key,
+      required this.fieldName,
+      required this.fullWidth,
+      required this.controller,
+      required this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +48,12 @@ class InputDataFields extends StatelessWidget {
                     validator: RequiredValidator(errorText: "Required!"),
                   )
                 : TextFormField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       enabled: false,
                       border: OutlineInputBorder(),
-                      hintText: 'User Name',
+                      hintText: context.read<HrProvider>().hrUser.first_name! +
+                          " " +
+                          context.read<HrProvider>().hrUser.last_name!,
                     ),
                   ),
           ),

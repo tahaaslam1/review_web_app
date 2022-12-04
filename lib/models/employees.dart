@@ -1,12 +1,14 @@
 class Employee {
   final String? firstName;
   final String? userId;
+  final String? identity_type;
+  final String? identity_number;
   final String? employeeId;
   final String? rating;
   final String? lastName;
   final String? email;
-  final String? identity_number;
-  final String? identity_type;
+  final String? passport;
+  final String? nationalId;
   final String? organisation;
   final String? submittedBy;
   final String? phone;
@@ -20,6 +22,7 @@ class Employee {
     this.userId,
     this.lastName,
     this.identity_type,
+    this.identity_number,
     this.submittedBy,
     this.reasonForSubmission,
     this.submissionTitle,
@@ -27,7 +30,7 @@ class Employee {
     this.employeeId,
     this.email,
     this.organisation,
-    this.identity_number,
+    
     this.phone,
     this.rating,
     this.password,
