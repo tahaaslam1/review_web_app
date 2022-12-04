@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:review_web_app/data/repositories/employees_repository/employees_repository.dart';
 import 'package:review_web_app/logger.dart';
 import 'package:review_web_app/models/employees.dart';
 import 'package:review_web_app/presentation/pages/home_page/local_widgets/employee_info_widget.dart';
+
+import '../../../business_logic/providers/hrUserprovider.dart';
+import '../view_profile_page/view_profile_page.dart';
 
 class HomePage extends StatefulWidget {
   static const String route = 'home-page';
@@ -67,7 +71,9 @@ class _HomePageState extends State<HomePage> {
                                 final option = options.elementAt(index);
                                 return GestureDetector(
                                   onTap: () {
-                                    logger.i(option.firstName); //TODO : Navigate to that option profile screen
+                                    logger.i(
+                                      context.read<HrProvider>().GetUser(option.userId!)
+                                    ); //TODO : Navigate to that option profile screen
                                   },
                                   child: ListTile(
                                     title: Text(

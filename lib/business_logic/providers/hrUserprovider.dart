@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:review_web_app/data/repositories/hr_repository/hr_repository.dart';
+import 'package:review_web_app/models/employees.dart';
 import 'dart:convert';
 
 import 'package:review_web_app/models/hr.dart';
@@ -8,8 +9,9 @@ class HrProvider extends ChangeNotifier {
   final HrRepository _hrRepository = HrRepository();
   late HR _hrUser;
   bool hasError = false;
-
+  late Employee _employee;
   HR get hrUser => _hrUser;
+  Employee get employeeUser => _employee;
 
   void updateHRProfile(String firstname, String lastname, String phone,
       String country, String organisation, String id) {
@@ -59,4 +61,12 @@ class HrProvider extends ChangeNotifier {
     updateHRProfile(firstname, lastname, phone, country, organisation, id);
     notifyListeners();
   }
+
+   Future<dynamic> GetUser(String id) async {
+    var response = await _hrRepository.getUser(id);
+     var decodedData = jsonDecode(response.body);
+      _employee = Employee.fromJson(decodedData['data'][0]);
+    notifyListeners();
+  }
+
 }

@@ -67,4 +67,23 @@ class HrRepository {
       print(e);
     }
   }
+   
+   Future<dynamic> getUser(String id) async {
+    try {
+      var response = await http.post(
+        Uri.parse("http://192.168.3.150:3000/v1/users/updateUser"), //TODO route 
+        headers: <String, String>{
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        },
+        body: jsonEncode(<String, String>{
+          'user_id': id,
+        }),
+      );
+      return response;
+    } catch (e) {
+      print(e);
+    }
+  }
+
 }
