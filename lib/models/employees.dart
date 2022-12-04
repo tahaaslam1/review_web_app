@@ -1,35 +1,36 @@
 class Employee {
-  final String? first_name;
-  final String? user_id;
+  final String? firstName;
+  final String? userId;
   final String? employeeId;
   final String? rating;
-  final String? last_name;
-  final String? email;
-  final String? identity_type;
+  final String? lastName;
+  final String? email;  final String? identity_type;
   final String? identity_number;
+
   final String? organisation;
-  final String? submitted_by;
+  final String? submittedBy;
   final String? phone;
-  final String? reason_for_submission;
-  final String? submission_title;
-  final String? submission_description;
+  final String? reasonForSubmission;
+  final String? submissionTitle;
+  final String? submissionDescription;
   final String? password;
 
   Employee({
-    this.first_name,
-    this.last_name,
+    this.firstName,
+    this.userId,
+    this.lastName,
+    this.nationalId,
+    this.submittedBy,
+    this.reasonForSubmission,
+    this.submissionTitle,
+    this.submissionDescription,
     this.employeeId,
-    this.email,
-    this.identity_number,
+    this.email,    this.identity_number,
+
     this.organisation,
     this.identity_type,
     this.phone,
     this.rating,
-    this.reason_for_submission,
-    this.submission_description,
-    this.submission_title,
-    this.submitted_by,
-    this.user_id,
     this.password,
   });
 
@@ -49,5 +50,6 @@ class Employee {
         reason_for_submission: json['reason_of_submission'],
         submission_title: json['submission_title'],
         submission_description: json['submission_description']);
+
   }
 }

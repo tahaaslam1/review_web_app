@@ -35,6 +35,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
             child: Container(
               height: 500,
               width: 500,
+
               child: SingleChildScrollView(child: Consumer<HrProvider>(
                 builder: (context, provider, _) {
                   return Column(
@@ -58,6 +59,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                                             child: EditUserProfile(
                                                 user_id: widget.user_id!,
                                                 type_id: widget.type_id!)),
+
                                       ),
                                     );
                                   },
@@ -68,6 +70,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                           ),
                         ],
                       ),
+
                       Container(
                         width: 500,
                         child: Row(
@@ -77,6 +80,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                               radius: 50, // Image radius
                               backgroundImage: NetworkImage(
                                   'https://www.shutterstock.com/image-vector/my-account-profile-user-icon-260nw-1700343232.jpg'),
+
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0),
@@ -112,6 +116,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                           ],
                         ),
                       ),
+
                       Card(
                         elevation: 10.0,
                         child: Container(
@@ -129,6 +134,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
+
                               ),
                               Padding(
                                 padding: EdgeInsets.all(15.0),
@@ -147,6 +153,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+
                               const Padding(
                                 padding: EdgeInsets.only(left: 8.0),
                                 child: Text(
