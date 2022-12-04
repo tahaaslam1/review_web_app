@@ -27,7 +27,6 @@ class HrRepository {
     return response.body;
   }
 
-
   Future<dynamic> login(String email, String password) async {
     var response = await http.post(
       Uri.parse("http://192.168.3.150:3000/v1/login"),
@@ -43,7 +42,8 @@ class HrRepository {
       ),
     );
     return response.body;
-    }
+  }
+
   Future<dynamic> updateUser(String firstname, String lastname, String phone,
       String country, String organisation, String id) async {
     try {
@@ -66,4 +66,5 @@ class HrRepository {
     } catch (e) {
       print(e);
     }
+  }
 }

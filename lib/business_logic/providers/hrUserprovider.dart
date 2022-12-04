@@ -50,7 +50,8 @@ class HrProvider extends ChangeNotifier {
       _hrUser = HR.fromJson(decodedData['data']);
       notifyListeners();
     }
-    
+  }
+
   Future<void> UpdateHR(String firstname, String lastname, String phone,
       String country, String organisation, String id) async {
     var response = await _hrRepository.updateUser(
