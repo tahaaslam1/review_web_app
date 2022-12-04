@@ -4,6 +4,7 @@ import 'package:review_web_app/data/repositories/employees_repository/employees_
 import 'package:review_web_app/logger.dart';
 import 'package:review_web_app/models/employees.dart';
 import 'package:review_web_app/presentation/pages/home_page/local_widgets/employee_info_widget.dart';
+import 'package:review_web_app/presentation/pages/view_profile_page/employee_profile_screen.dart';
 
 import '../../../business_logic/providers/hrUserprovider.dart';
 import '../view_profile_page/view_profile_page.dart';
@@ -28,13 +29,13 @@ class _HomePageState extends State<HomePage> {
           automaticallyImplyLeading: false,
           leading: IconButton(
             onPressed: () async {
-            var response =  await context.read<HrProvider>().hrUser;
+              var response = await context.read<HrProvider>().hrUser;
               // ignore: use_build_context_synchronously
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ViewProfilePage(
-                        response.user_id, response.type_id)),
+                    builder: (context) =>
+                        ViewProfilePage(response.user_id, response.type_id)),
               );
             },
             icon: Icon(Icons.person_outline),
@@ -54,7 +55,8 @@ class _HomePageState extends State<HomePage> {
                       if (textEditingValue.text == '') {
                         return const Iterable<Employee>.empty();
                       }
-                      return emp.getSearchedEmployees(value: textEditingValue.text);
+                      return emp.getSearchedEmployees(
+                          value: textEditingValue.text);
                     },
                     optionsViewBuilder: (context, onSelected, options) {
                       return Align(
@@ -70,10 +72,16 @@ class _HomePageState extends State<HomePage> {
                               itemBuilder: (context, index) {
                                 final option = options.elementAt(index);
                                 return GestureDetector(
-                                  onTap: () {
-                                    logger.i(
-                                      context.read<HrProvider>().GetUser(option.userId!)
-                                    ); //TODO : Navigate to that option profile screen
+                                  onTap: () async {
+                                    await context
+                                        .read<HrProvider>()
+                                        .GetUser(option.employeeId!);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              EmployeeProfileScreen()),
+                                    );
                                   },
                                   child: ListTile(
                                     title: Text(
@@ -90,7 +98,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
-                    fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
+                    fieldViewBuilder: (context, textEditingController,
+                        focusNode, onFieldSubmitted) {
                       return TextField(
                         controller: textEditingController,
                         focusNode: focusNode,

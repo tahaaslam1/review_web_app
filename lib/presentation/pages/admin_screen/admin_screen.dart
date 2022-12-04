@@ -55,7 +55,9 @@ class _AdminScreenState extends State<AdminScreen> {
                     child: ElevatedButton(
                       child: const Text('PENDING FOR APPROVAL'),
                       onPressed: () async {
-                        await context.read<AdminProvider>().GetUnapprovedUsers();
+                        await context
+                            .read<AdminProvider>()
+                            .GetUnapprovedUsers();
 
                         Navigator.push(
                           context,
@@ -300,7 +302,6 @@ class _AdminScreenState extends State<AdminScreen> {
                               children: [
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-
                                   child: Text(
                                     "FIRST NAME",
                                     textAlign: TextAlign.center,
@@ -393,13 +394,13 @@ class _AdminScreenState extends State<AdminScreen> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(employee.first_name.toString(),
+                                  child: Text(employee.firstName.toString(),
                                       style: const TextStyle(fontSize: 18),
                                       textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(employee.last_name.toString(),
+                                  child: Text(employee.lastName.toString(),
                                       style: const TextStyle(fontSize: 18),
                                       textAlign: TextAlign.center),
                                 ),
@@ -417,7 +418,7 @@ class _AdminScreenState extends State<AdminScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(employee.submitted_by.toString(),
+                                  child: Text(employee.submittedBy.toString(),
                                       style: const TextStyle(fontSize: 18),
                                       textAlign: TextAlign.center),
                                 ),
@@ -430,25 +431,23 @@ class _AdminScreenState extends State<AdminScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                      employee.reason_for_submission.toString(),
+                                      employee.reasonForSubmission.toString(),
                                       style: const TextStyle(fontSize: 18),
                                       textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                      employee.submission_title.toString(),
+                                      employee.submissionTitle.toString(),
                                       style: const TextStyle(fontSize: 18),
                                       textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                      employee.submission_description
-                                          .toString(),
+                                      employee.submissionDescription.toString(),
                                       style: const TextStyle(fontSize: 18),
                                       textAlign: TextAlign.center),
-
                                 ),
                               ],
                             );
@@ -470,7 +469,8 @@ class _AdminScreenState extends State<AdminScreen> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              content: SizedBox(width: 400, child: EmployeeInfo()),
+                              content:
+                                  SizedBox(width: 400, child: EmployeeInfo()),
                             );
                           },
                         );
@@ -484,7 +484,6 @@ class _AdminScreenState extends State<AdminScreen> {
                       ),
                     ),
                   )
-
                 ],
               );
             }

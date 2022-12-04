@@ -5,10 +5,13 @@ import 'dart:convert';
 
 import 'package:review_web_app/models/hr.dart';
 
+import '../../logger.dart';
+
 class HrProvider extends ChangeNotifier {
   final HrRepository _hrRepository = HrRepository();
   late HR _hrUser;
   bool hasError = false;
+  bool isLoading = false;
   late Employee _employee;
   HR get hrUser => _hrUser;
   Employee get employeeUser => _employee;
@@ -62,11 +65,12 @@ class HrProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-   Future<dynamic> GetUser(String id) async {
+  Future<dynamic> GetUser(String id) async {
+    isLoading = true;
     var response = await _hrRepository.getUser(id);
-     var decodedData = jsonDecode(response.body);
-      _employee = Employee.fromJson(decodedData['data'][0]);
+    var decodedData = jsonDecode(response);
+    _employee = Employee.fromJson(decodedData['data'][0]);
+    isLoading = false;
     notifyListeners();
   }
-
 }

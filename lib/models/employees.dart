@@ -5,8 +5,8 @@ class Employee {
   final String? rating;
   final String? lastName;
   final String? email;
-  final String? passport;
-  final String? nationalId;
+  final String? identity_number;
+  final String? identity_type;
   final String? organisation;
   final String? submittedBy;
   final String? phone;
@@ -19,7 +19,7 @@ class Employee {
     this.firstName,
     this.userId,
     this.lastName,
-    this.nationalId,
+    this.identity_type,
     this.submittedBy,
     this.reasonForSubmission,
     this.submissionTitle,
@@ -27,7 +27,7 @@ class Employee {
     this.employeeId,
     this.email,
     this.organisation,
-    this.passport,
+    this.identity_number,
     this.phone,
     this.rating,
     this.password,
@@ -40,13 +40,13 @@ class Employee {
       userId: json['user_id'],
       email: json['email'],
       password: json['password'],
-      passport: json['passport'],
-      nationalId: json['national_id'],
+      identity_type: json['identity_type'],
+      identity_number: json['identity_number'],
       organisation: json['organisation'],
       submittedBy: json['submitted_by'],
       phone: json['phone'],
       employeeId: json['emp_id'],
-      reasonForSubmission: json['reason_for_submission'],
+      reasonForSubmission: json['reason_of_submission'],
       submissionTitle: json['submission_title'],
       submissionDescription: json['submission_description'],
     );

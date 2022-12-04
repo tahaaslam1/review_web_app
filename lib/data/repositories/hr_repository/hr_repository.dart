@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:review_web_app/logger.dart';
 
 class HrRepository {
   Future<dynamic> signup(String firstname, String lastname, String organisation,
@@ -67,23 +68,23 @@ class HrRepository {
       print(e);
     }
   }
-   
-   Future<dynamic> getUser(String id) async {
+
+  Future<dynamic> getUser(String id) async {
     try {
       var response = await http.post(
-        Uri.parse("http://192.168.3.150:3000/v1/users/updateUser"), //TODO route 
+        Uri.parse(
+            "http://192.168.3.150:3000/v1/users/getEmployeeById"), //TODO route
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
         },
         body: jsonEncode(<String, String>{
-          'user_id': id,
+          'emp_id': id,
         }),
       );
-      return response;
+      return response.body;
     } catch (e) {
       print(e);
     }
   }
-
 }
