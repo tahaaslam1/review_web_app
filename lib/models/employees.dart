@@ -7,8 +7,6 @@ class Employee {
   final String? rating;
   final String? lastName;
   final String? email;
-  final String? passport;
-  final String? nationalId;
   final String? organisation;
   final String? submittedBy;
   final String? phone;
@@ -30,7 +28,6 @@ class Employee {
     this.employeeId,
     this.email,
     this.organisation,
-    
     this.phone,
     this.rating,
     this.password,
