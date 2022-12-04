@@ -26,4 +26,21 @@ class HrRepository {
     );
     return response.body;
   }
+
+  Future<dynamic> login(String email, String password) async {
+    var response = await http.post(
+      Uri.parse("http://192.168.3.150:3000/v1/login"),
+      headers: <String, String>{
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Charset': 'utf-8'
+      },
+      body: jsonEncode(
+        <String, String>{
+          'email': email,
+          'password': password,
+        },
+      ),
+    );
+    return response.body;
+  }
 }

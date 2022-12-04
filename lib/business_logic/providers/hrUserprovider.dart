@@ -27,14 +27,17 @@ class HrProvider extends ChangeNotifier {
       hasError = true;
     }
     print("yahan agya hai");
-
-    // _hrUser = HR.fromJson(decodedData['data']);
-    // if (decodedData['code'] == 200) {
-    //   _hrUser = HR.fromJson(decodedData['data']['res']);
-    //   return decodedData['code'];
-    // } else {
-    //   return decodedData['statusCode'];
-    // }
     notifyListeners();
+  }
+
+  Future<dynamic> tryLogin(String email, String password) async {
+    hasError = false;
+    var response = await _hrRepository.login(email, password);
+    var decodedData = jsonDecode(response);
+    if (decodedData['statusCode'] == 500) {
+      hasError = true;
+    } else {
+      _hrUser = HR.fromJson(decodedData['data']);
+    }
   }
 }
