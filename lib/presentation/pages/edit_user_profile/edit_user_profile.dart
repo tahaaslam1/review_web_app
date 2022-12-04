@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:review_web_app/business_logic/providers/hrUserprovider.dart';
 import 'package:review_web_app/logger.dart';
 import 'package:review_web_app/presentation/pages/admin_screen/admin_screen.dart';
 import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
@@ -27,7 +28,12 @@ class _EditUserProfileState extends State<EditUserProfile> {
   late TextEditingController email = TextEditingController();
   @override
   initState() {
-    response = context.read<AdminProvider>().getUserProfile(widget.user_id!);
+    if (widget.type_id == "1") {
+      response = context.read<HrProvider>().hrUser;
+    } else {
+      response = context.read<AdminProvider>().getUserProfile(widget.user_id);
+    }
+
     firstname.text = response.first_name!;
     lastname.text = response.last_name!;
     organisation.text = response.organisation!;
@@ -159,15 +165,14 @@ class _EditUserProfileState extends State<EditUserProfile> {
                   width: 90,
                   child: ElevatedButton(
                     onPressed: () async {
-                      context.read<AdminProvider>().UpdateHR(
-                          firstname.text,
-                          lastname.text,
-                          phone.text,
-                          country.text,
-                          organisation.text,
-                          widget.user_id);
-
                       if (widget.type_id == "1") {
+                        context.read<HrProvider>().UpdateHR(
+                            firstname.text,
+                            lastname.text,
+                            phone.text,
+                            country.text,
+                            organisation.text,
+                            widget.user_id);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -176,6 +181,13 @@ class _EditUserProfileState extends State<EditUserProfile> {
                           ),
                         );
                       } else {
+                        context.read<AdminProvider>().UpdateHR(
+                            firstname.text,
+                            lastname.text,
+                            phone.text,
+                            country.text,
+                            organisation.text,
+                            widget.user_id);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
