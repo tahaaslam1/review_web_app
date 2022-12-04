@@ -105,9 +105,9 @@ class _AdminScreenState extends State<AdminScreen> {
                           color: const Color.fromRGBO(0, 0, 0, 1),
                         ),
                         children: List<TableRow>.generate(
-                          provider.allHR.length,
+                                                    provider.allHR.length == 0 ? 0 : 1,
                           (index) {
-                            final user = provider.allHR[index];
+                            
 
                             return const TableRow(
                               children: [
@@ -298,11 +298,9 @@ class _AdminScreenState extends State<AdminScreen> {
                           color: const Color.fromRGBO(0, 0, 0, 1),
                         ),
                         children: List<TableRow>.generate(
-                          provider.allHR.length,
+                          provider.allHR.length == 0 ? 0 : 1,
                           (index) {
-                            final user = provider.allHR[index];
-
-                            return const TableRow(
+                              return const TableRow(
                               children: [
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
