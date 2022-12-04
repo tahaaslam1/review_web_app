@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:provider/provider.dart';
+import 'package:review_web_app/business_logic/providers/hrUserprovider.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/drop_down_widget.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/input_data_fields.dart';
+
+import '../../../../business_logic/providers/identity_card_type_selection.dart';
 
 class InsertReviewLargeScreen extends StatefulWidget {
   const InsertReviewLargeScreen({super.key});
@@ -18,7 +22,7 @@ class _InsertReviewLargeScreenState extends State<InsertReviewLargeScreen> {
   final phoneNumberController = TextEditingController();
   final nicPassportController = TextEditingController();
   final countryController = TextEditingController();
-  final submittedByController = TextEditingController();
+  late var submittedByController = TextEditingController();
   final submittionTitleController = TextEditingController();
   final submittionDiscriptionController = TextEditingController();
   final submittionReasonController = TextEditingController();
@@ -52,6 +56,13 @@ class _InsertReviewLargeScreenState extends State<InsertReviewLargeScreen> {
   }
 
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  @override
+  void initState() {
+    submittedByController.text = context.read<HrProvider>().hrUser.first_name! +
+        context.read<HrProvider>().hrUser.last_name!;
+    // print(submittedByController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -154,29 +165,96 @@ class _InsertReviewLargeScreenState extends State<InsertReviewLargeScreen> {
                               onPressed: () {
                                 if (_key.currentState?.validate() == false) {
                                   _failSnackbar('Invalid Credentials');
+                                } else {
+                                  if (context
+                                          .read<IdentityCardTypeSelection>()
+                                          .selectedItem ==
+                                      "Passport") {
+                                    context
+                                        .read<HrProvider>()
+                                        .SubmitEmployeeProfile(
+                                            firstNameController.text,
+                                            lastNameController.text,
+                                            emailController.text,
+                                            phoneNumberController.text,
+                                            nicPassportController.text,
+                                            countryController.text,
+                                            submittedByController.text,
+                                            submittionTitleController.text,
+                                            submittionDiscriptionController
+                                                .text,
+                                            submittionReasonController.text,
+                                            organizationController.text,
+                                            context
+                                                .read<HrProvider>()
+                                                .hrUser
+                                                .user_id!,
+                                            "Passport");
+                                  } else {
+                                    context
+                                        .read<HrProvider>()
+                                        .SubmitEmployeeProfile(
+                                            firstNameController.text,
+                                            lastNameController.text,
+                                            emailController.text,
+                                            phoneNumberController.text,
+                                            nicPassportController.text,
+                                            countryController.text,
+                                            submittedByController.text,
+                                            submittionTitleController.text,
+                                            submittionDiscriptionController
+                                                .text,
+                                            submittionReasonController.text,
+                                            organizationController.text,
+                                            context
+                                                .read<HrProvider>()
+                                                .hrUser
+                                                .user_id!,
+                                            "NIC");
+                                  }
+
+                                  // context)
+                                  //     .read<HrProvider>()
+                                  //     .SubmitEmployeeProfile(
+                                  //       firstNameController.text,
+                                  //       lastNameController.text,
+                                  //       emailController.text,
+                                  //       phoneNumberController.text,
+                                  //       nicPassportController.text,
+                                  //       countryController.text,
+                                  //       submittedByController.text,
+                                  //       submittionTitleController.text,
+                                  //       submittionDiscriptionController.text,
+                                  //       submittionReasonController.text,
+                                  //       organizationController.text,
+                                  //       context
+                                  //           .read<HrProvider>()
+                                  //           .hrUser
+                                  //           .user_id!,
+                                  //     );
                                 }
-                                print(firstNameController.text);
-                                firstNameController.clear();
-                                print(lastNameController.text);
-                                lastNameController.clear();
-                                print(emailController.text);
-                                emailController.clear();
-                                print(nicPassportController.text);
-                                nicPassportController.clear();
-                                print(phoneNumberController.text);
-                                phoneNumberController.clear();
-                                print(countryController.text);
-                                countryController.clear();
-                                print(submittedByController.text);
-                                submittedByController.clear();
-                                print(submittionTitleController.text);
-                                submittionTitleController.clear();
-                                print(submittionDiscriptionController.text);
-                                submittionDiscriptionController.clear();
-                                print(submittionReasonController.text);
-                                submittionReasonController.clear();
-                                print(organizationController.text);
-                                organizationController.clear();
+                                // print(firstNameController.text);
+                                // firstNameController.clear();
+                                // print(lastNameController.text);
+                                // lastNameController.clear();
+                                // print(emailController.text);
+                                // emailController.clear();
+                                // print(nicPassportController.text);
+                                // nicPassportController.clear();
+                                // print(phoneNumberController.text);
+                                // phoneNumberController.clear();
+                                // print(countryController.text);
+                                // countryController.clear();
+                                // print(submittedByController.text);
+                                // submittedByController.clear();
+                                // print(submittionTitleController.text);
+                                // submittionTitleController.clear();
+                                // print(submittionDiscriptionController.text);
+                                // submittionDiscriptionController.clear();
+                                // print(submittionReasonController.text);
+                                // submittionReasonController.clear();
+                                // print(organizationController.text);
+                                // organizationController.clear();
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xff0A66C2),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:review_web_app/business_logic/providers/hrUserprovider.dart';
 import 'package:review_web_app/presentation/pages/home_page/local_widgets/employee_info_widget.dart';
+import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
+import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/insert_review_large_screen.dart';
 
 import '../view_profile_page/view_profile_page.dart';
 
@@ -20,13 +22,13 @@ class HomePage extends StatelessWidget {
           automaticallyImplyLeading: false,
           leading: IconButton(
             onPressed: () async {
-            var response =  await context.read<HrProvider>().hrUser;
+              var response = await context.read<HrProvider>().hrUser;
               // ignore: use_build_context_synchronously
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ViewProfilePage(
-                        response.user_id, response.type_id)),
+                    builder: (context) =>
+                        ViewProfilePage(response.user_id, response.type_id)),
               );
             },
             icon: Icon(Icons.person_outline),
@@ -45,17 +47,20 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          actions: const [
+          actions: [
             Padding(
               padding: EdgeInsets.only(
                 right: 16.0,
               ),
               child: Center(
-                child: Text(
-                  style: TextStyle(
-                    color: Color(0xFF0A66C2),
-                  ),
-                  'ADD REVIEW',
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => InsertReview()),
+                    );
+                  },
+                  child: Text('ADD REVIEW'),
                 ),
               ),
             ),
