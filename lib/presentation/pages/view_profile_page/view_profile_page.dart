@@ -10,7 +10,7 @@ import '../../../business_logic/providers/hrUserprovider.dart';
 class ViewProfilePage extends StatefulWidget {
   static const String route = 'view-profile-page';
   String? user_id;
-  String? type_id;
+  int? type_id;
 
   ViewProfilePage(this.user_id, this.type_id, {super.key});
 

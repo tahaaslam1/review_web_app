@@ -47,7 +47,7 @@ class HrProvider extends ChangeNotifier {
     if (decodedData['statusCode'] == 500) {
       hasError = true;
     } else {
-      _hrUser = HR.fromJson(decodedData['data']);
+      _hrUser = HR.fromJson(decodedData['data'][0]);
       notifyListeners();
     }
   }

@@ -11,7 +11,6 @@ import '../signup-page/signup_page.dart';
 import '../../../business_logic/providers/admin_provide.dart';
 import '../admin_screen/admin_screen.dart';
 
-
 class Playground extends StatelessWidget {
   static const String route = '/';
 
@@ -72,7 +71,7 @@ class Playground extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ViewProfilePage(
-                            "5020b68e-d0a2-4062-8713-cf7cea98d387", "1")),
+                            "5020b68e-d0a2-4062-8713-cf7cea98d387", 1)),
                   );
                   //  tryGettingComp(context);
                 },
@@ -103,7 +102,6 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-      
                   Navigator.pushNamed(context, SignUpPage.route);
                   //Navigate to Insert Review Screen
                 },
@@ -111,7 +109,7 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                Navigator.pushNamed(context, InsertReview.route);
+                  Navigator.pushNamed(context, InsertReview.route);
                 },
                 child: const Text('Go to Insert Review Page'),
               ),

@@ -11,7 +11,7 @@ import '../../../models/hr.dart';
 class EditUserProfile extends StatefulWidget {
   static const String route = 'edit-user-profile';
   late String user_id;
-  late String type_id;
+  late int type_id;
   EditUserProfile({super.key, required this.user_id, required this.type_id});
 
   @override
@@ -28,7 +28,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
   late TextEditingController email = TextEditingController();
   @override
   initState() {
-    if (widget.type_id == "1") {
+    if (widget.type_id == 1) {
       response = context.read<HrProvider>().hrUser;
     } else {
       response = context.read<AdminProvider>().getUserProfile(widget.user_id);
@@ -165,7 +165,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
                   width: 90,
                   child: ElevatedButton(
                     onPressed: () async {
-                      if (widget.type_id == "1") {
+                      if (widget.type_id == 1) {
                         context.read<HrProvider>().UpdateHR(
                             firstname.text,
                             lastname.text,

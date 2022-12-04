@@ -105,10 +105,8 @@ class _AdminScreenState extends State<AdminScreen> {
                           color: const Color.fromRGBO(0, 0, 0, 1),
                         ),
                         children: List<TableRow>.generate(
-                                                    provider.allHR.length == 0 ? 0 : 1,
+                          provider.allHR.length == 0 ? 0 : 1,
                           (index) {
-                            
-
                             return const TableRow(
                               children: [
                                 Padding(
@@ -253,7 +251,7 @@ class _AdminScreenState extends State<AdminScreen> {
                                                   width: 700,
                                                   child: EditUserProfile(
                                                     user_id: user.user_id!,
-                                                    type_id: "0",
+                                                    type_id: 0,
                                                   )),
                                             );
                                           },
@@ -300,7 +298,7 @@ class _AdminScreenState extends State<AdminScreen> {
                         children: List<TableRow>.generate(
                           provider.allHR.length == 0 ? 0 : 1,
                           (index) {
-                              return const TableRow(
+                            return const TableRow(
                               children: [
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
