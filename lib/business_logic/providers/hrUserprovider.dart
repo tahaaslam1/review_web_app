@@ -61,6 +61,37 @@ class HrProvider extends ChangeNotifier {
     updateHRProfile(firstname, lastname, phone, country, organisation, id);
     notifyListeners();
   }
+  Future<void> SubmitEmployeeProfile(
+      String firstName,
+      String lastName,
+      String email,
+      String phoneNumber,
+      String nicPassport,
+      String country,
+      String submittedBy,
+      String submittionTitle,
+      String submittionDiscription,
+      String submittionReason,
+      String organization,
+      String user_id,
+      String identity_type) async {
+    var response = await _hrRepository.employeeProfile(
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        nicPassport,
+        country,
+        submittedBy,
+        submittionTitle,
+        submittionDiscription,
+        submittionReason,
+        organization,
+        user_id,
+        identity_type);
+
+    notifyListeners();
+  }
 
    Future<dynamic> GetUser(String id) async {
     var response = await _hrRepository.getUser(id);

@@ -4,9 +4,9 @@ class Employee {
   final String? employeeId;
   final String? rating;
   final String? lastName;
-  final String? email;
-  final String? passport;
-  final String? nationalId;
+  final String? email;  final String? identity_type;
+  final String? identity_number;
+
   final String? organisation;
   final String? submittedBy;
   final String? phone;
@@ -25,9 +25,10 @@ class Employee {
     this.submissionTitle,
     this.submissionDescription,
     this.employeeId,
-    this.email,
+    this.email,    this.identity_number,
+
     this.organisation,
-    this.passport,
+    this.identity_type,
     this.phone,
     this.rating,
     this.password,
@@ -35,20 +36,20 @@ class Employee {
 
   factory Employee.fromJson(Map<String, dynamic> json) {
     return Employee(
-      firstName: json['first_name'],
-      lastName: json['last_name'],
-      userId: json['user_id'],
-      email: json['email'],
-      password: json['password'],
-      passport: json['passport'],
-      nationalId: json['national_id'],
-      organisation: json['organisation'],
-      submittedBy: json['submitted_by'],
-      phone: json['phone'],
-      employeeId: json['emp_id'],
-      reasonForSubmission: json['reason_for_submission'],
-      submissionTitle: json['submission_title'],
-      submissionDescription: json['submission_description'],
-    );
+        first_name: json['firstname'],
+        last_name: json['last_name'],
+        user_id: json['user_id'],
+        email: json['email'],
+        password: json['password'],
+        identity_number: json['identity_number'],
+        identity_type: json['identity_type'],
+        organisation: json['organisation'],
+        submitted_by: json['submitted_by'],
+        phone: json['phone'],
+        employeeId: json['employee_id'],
+        reason_for_submission: json['reason_of_submission'],
+        submission_title: json['submission_title'],
+        submission_description: json['submission_description']);
+
   }
 }
