@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_web_app/data/repositories/employees_repository/employees_repository.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
 import 'package:provider/provider.dart';
 
@@ -112,6 +113,16 @@ class Playground extends StatelessWidget {
                   Navigator.pushNamed(context, InsertReview.route);
                 },
                 child: const Text('Go to Insert Review Page'),
+              ),
+              TextButton(
+                onPressed: () async {
+                  EmployeesRepository em = EmployeesRepository();
+
+                  em.getSearchedEmployees(value: 'taha aslam');
+
+                  
+                },
+                child: const Text('Check Api'),
               ),
             ],
           ),

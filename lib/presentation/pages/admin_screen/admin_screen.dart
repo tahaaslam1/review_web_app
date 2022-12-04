@@ -55,9 +55,7 @@ class _AdminScreenState extends State<AdminScreen> {
                     child: ElevatedButton(
                       child: const Text('PENDING FOR APPROVAL'),
                       onPressed: () async {
-                        await context
-                            .read<AdminProvider>()
-                            .GetUnapprovedUsers();
+                        await context.read<AdminProvider>().GetUnapprovedUsers();
 
                         Navigator.push(
                           context,
@@ -302,6 +300,7 @@ class _AdminScreenState extends State<AdminScreen> {
                               children: [
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
+
                                   child: Text(
                                     "FIRST NAME",
                                     textAlign: TextAlign.center,
@@ -449,6 +448,7 @@ class _AdminScreenState extends State<AdminScreen> {
                                           .toString(),
                                       style: const TextStyle(fontSize: 18),
                                       textAlign: TextAlign.center),
+
                                 ),
                               ],
                             );
@@ -457,34 +457,34 @@ class _AdminScreenState extends State<AdminScreen> {
                       )
                     ],
                   ),
-                  //   Padding(
-                  //     padding: const EdgeInsets.all(10.0),
-                  //     child: ElevatedButton(
-                  //       onPressed: () {
-                  //         showDialog(
-                  //           context: context,
-                  //           // barrierDismissible: false,
-                  //           builder: (BuildContext context) {
-                  //             return AlertDialog(
-                  //               title: const Text("Add New Employee"),
-                  //               shape: RoundedRectangleBorder(
-                  //                 borderRadius: BorderRadius.circular(20),
-                  //               ),
-                  //               content:
-                  //                   SizedBox(width: 400, child: EmployeeInfo()),
-                  //             );
-                  //           },
-                  //         );
-                  //       },
-                  //       // child: const Icon(Icons.add, color: Colors.white),
-                  //       // style: ElevatedButton.styleFrom(
-                  //       //   shape: const CircleBorder(),
-                  //       //   padding: const EdgeInsets.all(20),
-                  //       //   backgroundColor: Colors.blue, // <-- Button color
-                  //       //   foregroundColor: Colors.red, // <-- Splash color
-                  //       // ),
-                  // //    ),
-                  //   )
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          // barrierDismissible: false,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Add New Employee"),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              content: SizedBox(width: 400, child: EmployeeInfo()),
+                            );
+                          },
+                        );
+                      },
+                      child: Icon(Icons.add, color: Colors.white),
+                      style: ElevatedButton.styleFrom(
+                        shape: CircleBorder(),
+                        padding: EdgeInsets.all(20),
+                        backgroundColor: Colors.blue, // <-- Button color
+                        foregroundColor: Colors.red, // <-- Splash color
+                      ),
+                    ),
+                  )
+
                 ],
               );
             }

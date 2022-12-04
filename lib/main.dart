@@ -14,7 +14,7 @@ void main() {
             create: (_) => IdentityCardTypeSelection()),
         ChangeNotifierProvider<HrProvider>(create: (_) => HrProvider()),
       ],
-      child: App(),
+      child: const App(),
     ),
   );
 }
