@@ -10,20 +10,19 @@ class EmployeesRepository {
 
     final response = await http.get(
       Uri.parse(
-        'http://192.168.3.150:3000/v1/SearchUsers/$value',
+        'http://192.168.1.22:3000/v1/SearchUsers/$value',
       ),
       headers: {'content-type': 'application/json'},
     );
 
     if (response.statusCode != 200) {
       final data = json.decode(response.body);
-      throw Exception(data['data']['error']); //TODO : change here...
+      throw Exception(data['data']['error']);
     } else {
       Map<String, dynamic> data = json.decode(response.body);
 
-      emps = data['data']
-          .map<Employee>((emp) => Employee.fromJson(emp))
-          .toList();
+      emps =
+          data['data'].map<Employee>((emp) => Employee.fromJson(emp)).toList();
 
       return emps;
     }

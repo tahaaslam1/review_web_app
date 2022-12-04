@@ -431,7 +431,7 @@ class _AdminScreenState extends State<AdminScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                      employee.reasonForSubmission.toString(),
+                                      employee.reasonOfSubmission.toString(),
                                       style: const TextStyle(fontSize: 18),
                                       textAlign: TextAlign.center),
                                 ),

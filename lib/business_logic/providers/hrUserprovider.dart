@@ -13,6 +13,9 @@ class HrProvider extends ChangeNotifier {
   bool hasError = false;
   bool isLoading = false;
   late Employee _employee;
+  List<Employee> _allEmp = [];
+
+  List<Employee> get allEmp => _allEmp;
   HR get hrUser => _hrUser;
   Employee get employeeUser => _employee;
 
@@ -64,6 +67,7 @@ class HrProvider extends ChangeNotifier {
     updateHRProfile(firstname, lastname, phone, country, organisation, id);
     notifyListeners();
   }
+
   Future<void> SubmitEmployeeProfile(
       String firstName,
       String lastName,
@@ -101,6 +105,18 @@ class HrProvider extends ChangeNotifier {
     var response = await _hrRepository.getUser(id);
     var decodedData = jsonDecode(response);
     _employee = Employee.fromJson(decodedData['data'][0]);
+    isLoading = false;
+    notifyListeners();
+  }
+
+  Future<dynamic> getEmployeeByUserId(String user_id) async {
+    _allEmp = [];
+    isLoading = true;
+    var response = await _hrRepository.getEmployeeByUserId(user_id);
+    var decodedData = jsonDecode(response);
+    for (var m in decodedData['data']) {
+      allEmp.add(Employee.fromJson(m));
+    }
     isLoading = false;
     notifyListeners();
   }

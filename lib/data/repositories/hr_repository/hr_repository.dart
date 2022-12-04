@@ -7,7 +7,7 @@ class HrRepository {
   Future<dynamic> signup(String firstname, String lastname, String organisation,
       String phone, String country, String email, String password) async {
     var response = await http.post(
-      Uri.parse("http://192.168.3.150:3000/v1/signup"),
+      Uri.parse("http://192.168.1.22:3000/v1/signup"),
       headers: <String, String>{
         'Content-Type': 'application/json;charset=UTF-8',
         'Charset': 'utf-8'
@@ -30,7 +30,7 @@ class HrRepository {
 
   Future<dynamic> login(String email, String password) async {
     var response = await http.post(
-      Uri.parse("http://192.168.3.150:3000/v1/login"),
+      Uri.parse("http://192.168.1.22:3000/v1/login"),
       headers: <String, String>{
         'Content-Type': 'application/json;charset=UTF-8',
         'Charset': 'utf-8'
@@ -61,7 +61,7 @@ class HrRepository {
       String identity_type) async {
     try {
       var response = await http.post(
-        Uri.parse("http://192.168.3.150:3000/v1/users/insertEmployeeData"),
+        Uri.parse("http://192.168.1.22:3000/v1/users/insertEmployeeData"),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
@@ -91,7 +91,7 @@ class HrRepository {
       String country, String organisation, String id) async {
     try {
       var response = await http.put(
-        Uri.parse("http://192.168.3.150:3000/v1/users/updateUser"),
+        Uri.parse("http://192.168.1.22:3000/v1/users/updateUser"),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
@@ -114,15 +114,36 @@ class HrRepository {
   Future<dynamic> getUser(String id) async {
     try {
       var response = await http.post(
-        Uri.parse(
-            "http://192.168.3.150:3000/v1/users/getEmployeeById"), //TODO route
+        Uri.parse("http://192.168.1.22:3000/v1/users/getEmployeeById"),
         headers: <String, String>{
           'Content-Type': 'application/json;charset=UTF-8',
           'Charset': 'utf-8'
         },
-        body: jsonEncode(<String, String>{
-          'emp_id': id,
-        }),
+        body: jsonEncode(
+          <String, String>{
+            'emp_id': id,
+          },
+        ),
+      );
+      return response.body;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<dynamic> getEmployeeByUserId(String id) async {
+    try {
+      var response = await http.post(
+        Uri.parse("http://192.168.1.22:3000/v1/users/getEmployeeByUserId"),
+        headers: <String, String>{
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Charset': 'utf-8'
+        },
+        body: jsonEncode(
+          <String, String>{
+            'user_id': id,
+          },
+        ),
       );
       return response.body;
     } catch (e) {

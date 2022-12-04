@@ -101,6 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                                   if (provider.hasError) {
                                     _failSnackbar('email already registered');
                                   } else {
+                                    await context
+                                        .read<HrProvider>()
+                                        .getEmployeeByUserId(
+                                            provider.hrUser.user_id!);
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

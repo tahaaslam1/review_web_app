@@ -225,7 +225,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                       children: [
                                         Icon(Icons.star),
                                         Text(provider
-                                            .employeeUser.reasonForSubmission!),
+                                            .employeeUser.reasonOfSubmission!),
                                       ],
                                     ),
                                   ),
@@ -256,8 +256,8 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     child: Row(
                                       children: [
                                         Icon(Icons.person),
-                                        // Text(provider
-                                        //     .employeeUser.submittedBy!),
+                                        Text(
+                                            provider.employeeUser.submittedBy!),
                                       ],
                                     ),
                                   ),
@@ -277,7 +277,8 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                   Padding(
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
-                                      provider.employeeUser.identity_type!,
+                                      "identity type",
+                                      // provider.employeeUser.identity_type!,
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold),
@@ -288,8 +289,10 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     child: Row(
                                       children: [
                                         Icon(Icons.perm_identity),
-                                        Text(provider
-                                            .employeeUser.identity_number!),
+                                        Text("identity nmber"
+                                            // provider
+                                            //   .employeeUser.identity_number!
+                                            ),
                                       ],
                                     ),
                                   ),

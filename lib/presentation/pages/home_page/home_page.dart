@@ -154,69 +154,22 @@ class _HomePageState extends State<HomePage> {
                   Radius.circular(10),
                 ),
               ),
-              child: ListView(
-                children: const [
-                  EmployeeInfoWidget(
-                    empName: 'Taha Aslam',
-                    empOrganization: 'Tixsee Labs LLC',
-                    submissonTitle: 'Hello Title',
-                    submissionDescription: 'This is a test description.......',
-                  ),
-                  EmployeeInfoWidget(
-                    empName: 'Taha Aslam',
-                    empOrganization: 'Tixsee Labs LLC',
-                    submissonTitle: 'Hello Title',
-                    submissionDescription: 'This is a test description.......',
-                  ),
-                  EmployeeInfoWidget(
-                    empName: 'Taha Aslam',
-                    empOrganization: 'Tixsee Labs LLC',
-                    submissonTitle: 'Hello Title',
-                    submissionDescription: 'This is a test description.......',
-                  ),
-                  EmployeeInfoWidget(
-                    empName: 'Taha Aslam',
-                    empOrganization: 'Tixsee Labs LLC',
-                    submissonTitle: 'Hello Title',
-                    submissionDescription: 'This is a test description.......',
-                  ),
-                  EmployeeInfoWidget(
-                    empName: 'Taha Aslam',
-                    empOrganization: 'Tixsee Labs LLC',
-                    submissonTitle: 'Hello Title',
-                    submissionDescription: 'This is a test description.......',
-                  ),
-                  EmployeeInfoWidget(
-                    empName: 'Taha Aslam',
-                    empOrganization: 'Tixsee Labs LLC',
-                    submissonTitle: 'Hello Title',
-                    submissionDescription: 'This is a test description.......',
-                  ),
-                  EmployeeInfoWidget(
-                    empName: 'Taha Aslam',
-                    empOrganization: 'Tixsee Labs LLC',
-                    submissonTitle: 'Hello Title',
-                    submissionDescription: 'This is a test description.......',
-                  ),
-                  EmployeeInfoWidget(
-                    empName: 'Taha Aslam',
-                    empOrganization: 'Tixsee Labs LLC',
-                    submissonTitle: 'Hello Title',
-                    submissionDescription: 'This is a test description.......',
-                  ),
-                  EmployeeInfoWidget(
-                    empName: 'Taha Aslam',
-                    empOrganization: 'Tixsee Labs LLC',
-                    submissonTitle: 'Hello Title',
-                    submissionDescription: 'This is a test description.......',
-                  ),
-                  EmployeeInfoWidget(
-                    empName: 'Taha Aslam',
-                    empOrganization: 'Tixsee Labs LLC',
-                    submissonTitle: 'Hello Title',
-                    submissionDescription: 'This is a test description.......',
-                  ),
-                ],
+              child: Consumer<HrProvider>(
+                builder: (context, provider, _) {
+                  return ListView.builder(
+                    itemCount: provider.allEmp.length,
+                    itemBuilder: ((BuildContext context, index) {
+                      return EmployeeInfoWidget(
+                          empName: provider.allEmp[index].firstName! +
+                              provider.allEmp[index].lastName!,
+                          empOrganization: provider.allEmp[index].organisation!,
+                          submissonTitle:
+                              provider.allEmp[index].submissionTitle!,
+                          submissionDescription:
+                              provider.allEmp[index].submissionDescription!);
+                    }),
+                  );
+                },
               ),
             ),
           ),
