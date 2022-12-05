@@ -39,22 +39,13 @@ class _SignUpPageState extends State<SignUpPage> {
 
   TextEditingController passwordController = TextEditingController();
 
+  TextEditingController confirmPasswordController = TextEditingController();
+
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: const Color.fromARGB(255, 248, 247, 246),
-      //   automaticallyImplyLeading: false,
-      //   title: const Text(
-      //     "Review US",
-      //     style: TextStyle(
-      //       color: Color(0xff0A66C2),
-      //       fontFamily: 'Anton',
-      //     ),
-      //   ),
-      // ),
       body: SingleChildScrollView(
         child: Consumer<HrProvider>(
           builder: (context, provider, _) {
@@ -92,114 +83,107 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 40, right: 40),
+                                padding: const EdgeInsets.only(left: 40, right: 40),
                                 child: TextFormField(
                                   keyboardType: TextInputType.text,
-                                  decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: 'First Name'),
+                                  decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'First Name'),
                                   controller: firstameController,
-                                  validator:
-                                      RequiredValidator(errorText: "Required*"),
+                                  validator: RequiredValidator(errorText: "Required*"),
                                 ),
                               ),
                               const SizedBox(
                                 height: 10,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 40, right: 40),
+                                padding: const EdgeInsets.only(left: 40, right: 40),
                                 child: TextFormField(
                                   keyboardType: TextInputType.text,
-                                  decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: 'Last Name'),
+                                  decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Last Name'),
                                   controller: lastameController,
-                                  validator:
-                                      RequiredValidator(errorText: "Required*"),
+                                  validator: RequiredValidator(errorText: "Required*"),
                                 ),
                               ),
                               const SizedBox(
                                 height: 10,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 40, right: 40),
+                                padding: const EdgeInsets.only(left: 40, right: 40),
                                 child: TextFormField(
                                   keyboardType: TextInputType.text,
-                                  decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: 'Company Name'),
+                                  decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Company Name'),
                                   controller: organisationController,
-                                  validator:
-                                      RequiredValidator(errorText: "Required*"),
+                                  validator: RequiredValidator(errorText: "Required*"),
                                 ),
                               ),
                               const SizedBox(
                                 height: 10,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 40, right: 40),
+                                padding: const EdgeInsets.only(left: 40, right: 40),
                                 child: TextFormField(
                                   keyboardType: TextInputType.text,
-                                  decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: 'Phone Number'),
+                                  decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Phone Number'),
                                   controller: phnumberController,
-                                  validator:
-                                      RequiredValidator(errorText: "Required*"),
+                                  validator: RequiredValidator(errorText: "Required*"),
                                 ),
                               ),
                               const SizedBox(
                                 height: 10,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 40, right: 40),
+                                padding: const EdgeInsets.only(left: 40, right: 40),
                                 child: TextFormField(
                                   keyboardType: TextInputType.text,
-                                  decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: 'Country'),
+                                  decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Country'),
                                   controller: countrynameController,
-                                  validator:
-                                      RequiredValidator(errorText: "Required*"),
+                                  validator: RequiredValidator(errorText: "Required*"),
                                 ),
                               ),
                               const SizedBox(
                                 height: 10,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 40, right: 40),
+                                padding: const EdgeInsets.only(left: 40, right: 40),
                                 child: TextFormField(
                                   keyboardType: TextInputType.text,
-                                  decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: 'Email'),
+                                  decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Email'),
                                   controller: emailController,
-                                  validator: EmailValidator(
-                                      errorText: "wrong email format"),
+                                  validator: EmailValidator(errorText: "wrong email format"),
                                 ),
                               ),
                               const SizedBox(
                                 height: 10,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 40, right: 40),
+                                padding: const EdgeInsets.only(left: 40, right: 40),
                                 child: TextFormField(
                                   obscureText: true,
-                                  decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: 'Password'),
+                                  decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Password'),
                                   controller: passwordController,
+                                  validator: (value) {
+                                    if (value != confirmPasswordController.text) {
+                                      return 'Password must match';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                               const SizedBox(
                                 height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 40, right: 40),
+                                child: TextFormField(
+                                  obscureText: true,
+                                  decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Confirm Password'),
+                                  controller: confirmPasswordController,
+                                  validator: (value) {
+                                    if (value != passwordController.text) {
+                                      return 'Password must match';
+                                    }
+                                    return null;
+                                  },
+                                ),
                               ),
                               Center(
                                 child: SizedBox(
@@ -207,23 +191,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                   width: 200,
                                   child: ElevatedButton(
                                     onPressed: () async {
-                                      if (_formkey.currentState?.validate() ==
-                                          false) {
+                                      if (_formkey.currentState?.validate() == false) {
                                         _failSnackbar('Invalid Credentials');
                                       } else {
-                                        await context
-                                            .read<HrProvider>()
-                                            .trySignup(
-                                                firstameController.text,
-                                                lastameController.text,
-                                                organisationController.text,
-                                                phnumberController.text,
-                                                countrynameController.text,
-                                                emailController.text,
-                                                passwordController.text);
+                                        await context.read<HrProvider>().trySignup(firstameController.text, lastameController.text, organisationController.text, phnumberController.text, countrynameController.text, emailController.text, passwordController.text);
                                         if (provider.hasError) {
-                                          _failSnackbar(
-                                              'email already registered');
+                                          _failSnackbar('email already registered');
                                         } else {
                                           Navigator.push(
                                             context,
@@ -283,7 +256,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => LoginPage(),
+                                          builder: (context) => const LoginPage(),
                                         ),
                                       );
                                     },
