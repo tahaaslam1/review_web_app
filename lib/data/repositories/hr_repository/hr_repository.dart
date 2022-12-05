@@ -2,8 +2,12 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:review_web_app/logger.dart';
+import 'package:review_web_app/services/jwt_login_service.dart';
 
 class HrRepository {
+  // Jwt auth call object
+  JwtLoginService loginService = JwtLoginService();
+  // --------------------
   Future<dynamic> signup(String firstname, String lastname, String organisation,
       String phone, String country, String email, String password) async {
     var response = await http.post(
@@ -42,6 +46,14 @@ class HrRepository {
         },
       ),
     );
+    // the responce data has to be pass in these functions
+    if (kIsWeb) {
+      // loginService.pageRouteWeb('token');
+      loginService.loginWeb();
+    } else {
+      // loginService.loginMobile('token');
+      loginService.loginMobile();
+    }
     return response.body;
   }
 

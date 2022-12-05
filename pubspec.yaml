@@ -40,6 +40,8 @@ dependencies:
   logger: ^1.1.0
   form_field_validator: ^1.1.0
   flutter_rating_bar: ^4.0.1
+  universal_html: ^2.0.8
+  flutter_secure_storage: ^6.1.0
 
 dev_dependencies:
   flutter_test:
