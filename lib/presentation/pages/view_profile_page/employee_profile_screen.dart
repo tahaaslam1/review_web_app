@@ -7,14 +7,15 @@ import 'package:provider/provider.dart';
 import '../../../business_logic/providers/hrUserprovider.dart';
 import '../../../logger.dart';
 
-class EmployeeProfileScreen extends StatefulWidget {
-  EmployeeProfileScreen({super.key});
+class EmployeeProfilePage extends StatefulWidget {
+  static const route = 'employee-profile-screen';
+  const EmployeeProfilePage({super.key});
 
   @override
-  State<EmployeeProfileScreen> createState() => _EmployeeProfileScreenState();
+  State<EmployeeProfilePage> createState() => _EmployeeProfilePageState();
 }
 
-class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
+class _EmployeeProfilePageState extends State<EmployeeProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,34 +42,27 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                               children: [
                                 const CircleAvatar(
                                   radius: 50, // Image radius
-                                  backgroundImage: NetworkImage(
-                                      'https://www.shutterstock.com/image-vector/my-account-profile-user-icon-260nw-1700343232.jpg'),
+                                  backgroundImage: NetworkImage('https://www.shutterstock.com/image-vector/my-account-profile-user-icon-260nw-1700343232.jpg'),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Column(
                                     children: [
                                       Text(
-                                        provider.employeeUser.firstName! +
-                                            provider.employeeUser.lastName!,
-                                        style: TextStyle(
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.bold),
+                                        provider.employeeUser.firstName! + provider.employeeUser.lastName!,
+                                        style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                                       ),
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 3.0),
+                                        padding: const EdgeInsets.only(top: 3.0),
                                         child: Row(
                                           children: [
-                                            Icon(
+                                            const Icon(
                                               Icons.email,
                                               size: 10.0,
                                             ),
                                             Text(
                                               provider.employeeUser.email!,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w100,
-                                                  fontSize: 10),
+                                              style: const TextStyle(fontWeight: FontWeight.w100, fontSize: 10),
                                             ),
                                           ],
                                         ),
@@ -88,19 +82,16 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "Company/ Organization:",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Text(
-                                        provider.employeeUser.organisation!),
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Text(provider.employeeUser.organisation!),
                                   ),
                                 ],
                               ),
@@ -119,16 +110,14 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "Phone Number",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(15.0),
+                                    padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.phone),
+                                        const Icon(Icons.phone),
                                         Text(provider.employeeUser.phone!),
                                       ],
                                     ),
@@ -150,18 +139,15 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "Submission Description",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.description),
-                                        Text(provider.employeeUser
-                                            .submissionDescription!),
+                                        const Icon(Icons.description),
+                                        Text(provider.employeeUser.submissionDescription!),
                                       ],
                                     ),
                                   ),
@@ -182,18 +168,15 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "Submission Title",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.star),
-                                        Text(provider
-                                            .employeeUser.submissionTitle!),
+                                        const Icon(Icons.star),
+                                        Text(provider.employeeUser.submissionTitle!),
                                       ],
                                     ),
                                   ),
@@ -214,18 +197,15 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "Reason For submission",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.star),
-                                        Text(provider
-                                            .employeeUser.reasonOfSubmission!),
+                                        const Icon(Icons.star),
+                                        Text(provider.employeeUser.reasonOfSubmission!),
                                       ],
                                     ),
                                   ),
@@ -246,18 +226,15 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "Submitted by:",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.person),
-                                        Text(
-                                            provider.employeeUser.submittedBy!),
+                                        const Icon(Icons.person),
+                                        Text(provider.employeeUser.submittedBy!),
                                       ],
                                     ),
                                   ),
@@ -274,22 +251,20 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "identity type",
                                       // provider.employeeUser.identity_type!,
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.perm_identity),
-                                        Text("identity nmber"
+                                        const Icon(Icons.perm_identity),
+                                        const Text("identity nmber"
                                             // provider
                                             //   .employeeUser.identity_number!
                                             ),
@@ -303,7 +278,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                         ],
                       );
                     } else {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     }
                   },
                 ),

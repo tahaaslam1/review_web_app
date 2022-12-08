@@ -8,12 +8,7 @@ class InputDataFields extends StatelessWidget {
   final bool fullWidth;
   final TextEditingController controller;
   final RequiredValidator validator;
-  const InputDataFields(
-      {super.key,
-      required this.fieldName,
-      required this.fullWidth,
-      required this.controller,
-      required this.validator});
+  const InputDataFields({super.key, required this.fieldName, required this.fullWidth, required this.controller, required this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +31,7 @@ class InputDataFields extends StatelessWidget {
             height: 0.1,
           ),
           SizedBox(
-            width: fullWidth
-                ? MediaQuery.of(context).size.width * 0.9
-                : MediaQuery.of(context).size.width * 0.3,
+            width: fullWidth ? MediaQuery.of(context).size.width * 0.9 : MediaQuery.of(context).size.width * 0.3,
             child: !(fieldName == 'Submitted by')
                 ? TextFormField(
                     decoration: const InputDecoration(
@@ -51,9 +44,7 @@ class InputDataFields extends StatelessWidget {
                     decoration: InputDecoration(
                       enabled: false,
                       border: OutlineInputBorder(),
-                      hintText: context.read<HrProvider>().hrUser.first_name! +
-                          " " +
-                          context.read<HrProvider>().hrUser.last_name!,
+                      hintText: context.read<HrProvider>().hrUser.firstName! + " " + context.read<HrProvider>().hrUser.lastName!,
                     ),
                   ),
           ),

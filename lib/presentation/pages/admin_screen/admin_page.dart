@@ -1,19 +1,19 @@
 // import 'package:checkapp/controller/AdminProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:review_web_app/presentation/pages/accept-reject-screen/accept-reject.dart';
-import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
+import 'package:review_web_app/presentation/pages/accept-reject-screen/accept_reject_page.dart';
+import 'package:review_web_app/presentation/pages/admin_screen/employeeinfo.dart';
 
-import '../../../business_logic/providers/admin_provide.dart';
-import 'employeeinfo.dart';
+import '../../../business_logic/providers/admin_provider.dart';
 
-class AdminScreen extends StatefulWidget {
-  const AdminScreen({super.key});
+class AdminPage extends StatefulWidget {
+  static const route = 'admin-page';
+  const AdminPage({super.key});
   @override
-  State<AdminScreen> createState() => _AdminScreenState();
+  State<AdminPage> createState() => _AdminPageState();
 }
 
-class _AdminScreenState extends State<AdminScreen> {
+class _AdminPageState extends State<AdminPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,14 +55,12 @@ class _AdminScreenState extends State<AdminScreen> {
                     child: ElevatedButton(
                       child: const Text('PENDING FOR APPROVAL'),
                       onPressed: () async {
-                        await context
-                            .read<AdminProvider>()
-                            .GetUnapprovedUsers();
+                        await context.read<AdminProvider>().GetUnapprovedUsers();
 
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AcceptReject(),
+                            builder: (context) => const AcceptRejectPage(),
                           ),
                         );
                       },
@@ -114,66 +112,36 @@ class _AdminScreenState extends State<AdminScreen> {
                                   child: Text(
                                     "FIRST NAME",
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
+                                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("LAST NAME",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("LAST NAME", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("EMAIL",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("EMAIL", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("COUNTRY",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("COUNTRY", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("ORGANISATION",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("ORGANISATION", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("PHONE",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("PHONE", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("STATUS",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("STATUS", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("EDIT/DELETE",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("EDIT/DELETE", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                               ],
                             );
@@ -194,50 +162,37 @@ class _AdminScreenState extends State<AdminScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    user.first_name.toString(),
+                                    user.firstName.toString(),
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(fontSize: 18),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(user.last_name.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.lastName.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(user.email.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.email.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(user.country.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.country.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(user.organisation.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.organisation.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(user.phone.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.phone.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(user.is_approved.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(user.isApproved.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     IconButton(
                                       icon: const Icon(Icons.edit),
@@ -245,14 +200,15 @@ class _AdminScreenState extends State<AdminScreen> {
                                         showDialog(
                                           context: context,
                                           builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              title: const Text('Edit Info'),
-                                              content: SizedBox(
-                                                  width: 700,
-                                                  child: EditUserProfile(
-                                                    user_id: user.user_id!,
-                                                    type_id: 0,
-                                                  )),
+                                            return const AlertDialog(
+                                              title: Text('Edit Info'),
+                                              // content: SizedBox(
+                                              //   width: 700,
+                                              //   child: EditUserProfile(
+                                              //     user_id: user.user_id!,
+                                              //     //   type_id: 0,
+                                              //   ),
+                                              // ),
                                             );
                                           },
                                         );
@@ -261,9 +217,7 @@ class _AdminScreenState extends State<AdminScreen> {
                                     IconButton(
                                       icon: const Icon(Icons.delete),
                                       onPressed: () async {
-                                        await context
-                                            .read<AdminProvider>()
-                                            .DeleteUser(user.user_id!);
+                                        await context.read<AdminProvider>().DeleteUser(user.userId!);
                                       },
                                     ),
                                   ],
@@ -305,9 +259,7 @@ class _AdminScreenState extends State<AdminScreen> {
                                   child: Text(
                                     "FIRST NAME",
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
+                                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 Padding(
@@ -315,66 +267,36 @@ class _AdminScreenState extends State<AdminScreen> {
                                   child: Text(
                                     "LAST NAME",
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
+                                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("EMAIL",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("EMAIL", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("ORGANISATION",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("ORGANISATION", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("SUBMITTED BY",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("SUBMITTED BY", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("PHONE",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("PHONE", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("REASON FOR SUBMISSION",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("REASON FOR SUBMISSION", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("SUBMISSION TITLE",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("SUBMISSION TITLE", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(5.0),
-                                  child: Text("SUBMISSION DESCRIPTION,",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
+                                  child: Text("SUBMISSION DESCRIPTION,", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
                               ],
                             );
@@ -394,60 +316,39 @@ class _AdminScreenState extends State<AdminScreen> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(employee.firstName.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.firstName.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(employee.lastName.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.lastName.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(employee.email.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.email.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(employee.organisation.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.organisation.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(employee.submittedBy.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.submittedBy.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(employee.phone.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.phone.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(
-                                      employee.reasonOfSubmission.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.reasonOfSubmission.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(
-                                      employee.submissionTitle.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.submissionTitle.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text(
-                                      employee.submissionDescription.toString(),
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center),
+                                  child: Text(employee.submissionDescription.toString(), style: const TextStyle(fontSize: 18), textAlign: TextAlign.center),
                                 ),
                               ],
                             );
@@ -456,34 +357,36 @@ class _AdminScreenState extends State<AdminScreen> {
                       )
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          // barrierDismissible: false,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text("Add New Employee"),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              content:
-                                  SizedBox(width: 400, child: EmployeeInfo()),
-                            );
-                          },
-                        );
-                      },
-                      child: Icon(Icons.add, color: Colors.white),
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(20),
-                        backgroundColor: Colors.blue, // <-- Button color
-                        foregroundColor: Colors.red, // <-- Splash color
-                      ),
-                    ),
-                  )
+                  // Padding(
+                  //   padding: const EdgeInsets.all(10.0),
+                  //   child: ElevatedButton(
+                  //     onPressed: () {
+                  //       showDialog(
+                  //         context: context,
+                  //         // barrierDismissible: false,
+                  //         builder: (BuildContext context) {
+                  //           return AlertDialog(
+                  //             title: const Text("Add New Employee"),
+                  //             shape: RoundedRectangleBorder(
+                  //               borderRadius: BorderRadius.circular(20),
+                  //             ),
+                  //             content: SizedBox(
+                  //               width: 400,
+                  //               child: EmployeeInfo(),
+                  //             ),
+                  //           );
+                  //         },
+                  //       );
+                  //     },
+                  //     style: ElevatedButton.styleFrom(
+                  //       shape: const CircleBorder(),
+                  //       padding: const EdgeInsets.all(20),
+                  //       backgroundColor: Colors.blue, // <-- Button color
+                  //       foregroundColor: Colors.red, // <-- Splash color
+                  //     ),
+                  //     child: const Icon(Icons.add, color: Colors.white),
+                  //   ),
+                  // )
                 ],
               );
             }

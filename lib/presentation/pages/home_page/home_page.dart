@@ -32,16 +32,14 @@ class _HomePageState extends State<HomePage> {
           leading: IconButton(
             onPressed: () async {
               var response = await context.read<HrProvider>().hrUser;
-              // ignore: use_build_context_synchronously
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        ViewProfilePage(response.user_id, response.type_id)),
-              );
+              // // ignore: use_build_context_synchronously
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => ViewProfilePage(response.userId, response.typeId)),
+              // );
             },
-            icon: Icon(Icons.person_outline),
-            color: Color(0xFF0A66C2),
+            icon: const Icon(Icons.person_outline),
+            color: const Color(0xFF0A66C2),
           ),
           title: Container(
             color: const Color.fromARGB(255, 200, 212, 248),
@@ -57,8 +55,7 @@ class _HomePageState extends State<HomePage> {
                       if (textEditingValue.text == '') {
                         return const Iterable<Employee>.empty();
                       }
-                      return emp.getSearchedEmployees(
-                          value: textEditingValue.text);
+                      return emp.getSearchedEmployees(value: textEditingValue.text);
                     },
                     optionsViewBuilder: (context, onSelected, options) {
                       return Align(
@@ -75,15 +72,11 @@ class _HomePageState extends State<HomePage> {
                                 final option = options.elementAt(index);
                                 return GestureDetector(
                                   onTap: () async {
-                                    await context
-                                        .read<HrProvider>()
-                                        .GetUser(option.employeeId!);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              EmployeeProfileScreen()),
-                                    );
+                                    // await context.read<HrProvider>().GetUser(option.employeeId!);
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(builder: (context) => EmployeeProfileScreen()),
+                                    // );
                                   },
                                   child: ListTile(
                                     title: Text(
@@ -100,8 +93,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
-                    fieldViewBuilder: (context, textEditingController,
-                        focusNode, onFieldSubmitted) {
+                    fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
                       return TextField(
                         controller: textEditingController,
                         focusNode: focusNode,
@@ -126,7 +118,7 @@ class _HomePageState extends State<HomePage> {
           ),
           actions: [
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 right: 16.0,
               ),
               child: Center(
@@ -134,10 +126,10 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => InsertReview()),
+                      MaterialPageRoute(builder: (context) => const InsertReviewPage()),
                     );
                   },
-                  child: Text('ADD REVIEW'),
+                  child: const Text('ADD REVIEW'),
                 ),
               ),
             ),
@@ -160,13 +152,7 @@ class _HomePageState extends State<HomePage> {
                     itemCount: provider.allEmp.length,
                     itemBuilder: ((BuildContext context, index) {
                       return EmployeeInfoWidget(
-                          empName: provider.allEmp[index].firstName! +
-                              provider.allEmp[index].lastName!,
-                          empOrganization: provider.allEmp[index].organisation!,
-                          submissonTitle:
-                              provider.allEmp[index].submissionTitle!,
-                          submissionDescription:
-                              provider.allEmp[index].submissionDescription!);
+                          empName: provider.allEmp[index].firstName! + provider.allEmp[index].lastName!, empOrganization: provider.allEmp[index].organisation!, submissonTitle: provider.allEmp[index].submissionTitle!, submissionDescription: provider.allEmp[index].submissionDescription!);
                     }),
                   );
                 },

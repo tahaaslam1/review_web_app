@@ -1,42 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:review_web_app/business_logic/providers/admin_provide.dart';
-import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_admin.dart';
+import 'package:review_web_app/business_logic/providers/admin_provider.dart';
+import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_admin_page.dart';
 
-
-class AcceptReject extends StatelessWidget {
-  static const String route = 'accept-reject';
-  const AcceptReject({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Consumer<AdminProvider>(builder: (context, provider, _) {
-      if (!provider.loading) {
-        return ListView.builder(
-          itemCount: provider.allUnapproved.length,
-          itemBuilder: ((BuildContext context, index) {
-            return accept_reject_widget(
-              user_id: provider.allUnapproved[index].user_id,
-              firstname: provider.allUnapproved[index].first_name,
-              lastname: provider.allUnapproved[index].last_name,
-              organisation: provider.allUnapproved[index].organisation,
-            );
-          }),
-        );
-      } else {
-        return CircularProgressIndicator();
-      }
-    }));
-  }
-}
-
-class accept_reject_widget extends StatelessWidget {
+class AcceptRejectWidget extends StatelessWidget {
   String? firstname;
   String? lastname;
   String? organisation;
   String? user_id;
-  accept_reject_widget({
+  AcceptRejectWidget({
     this.firstname,
     this.lastname,
     this.organisation,
@@ -53,7 +25,7 @@ class accept_reject_widget extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              leading: Icon(Icons.album),
+              leading: const Icon(Icons.album),
               title: Text(firstname! + lastname!),
               subtitle: Text(organisation!),
             ),
@@ -80,12 +52,14 @@ class accept_reject_widget extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ViewProfileAdmin(user_id: user_id!),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ViewProfileAdminPage(
+                    //       user_id: user_id!,
+                    //     ),
+                    //   ),
+                    // );
                   },
                   child: const Text('View Profile'),
                 )

@@ -7,16 +7,16 @@ import 'package:form_field_validator/form_field_validator.dart';
 
 const List<String> list = <String>['National Identity Card', 'Passport'];
 
-class InsertReviewScreen extends StatefulWidget {
-  const InsertReviewScreen({
+class InsertReviewSmallScreen extends StatefulWidget {
+  const InsertReviewSmallScreen({
     super.key,
   });
 
   @override
-  State<InsertReviewScreen> createState() => _InsertReviewScreenState();
+  State<InsertReviewSmallScreen> createState() => _InsertReviewSmallScreenState();
 }
 
-class _InsertReviewScreenState extends State<InsertReviewScreen> {
+class _InsertReviewSmallScreenState extends State<InsertReviewSmallScreen> {
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
@@ -70,13 +70,16 @@ class _InsertReviewScreenState extends State<InsertReviewScreen> {
                       validator: RequiredValidator(errorText: 'Required!'),
                     ),
                     InputDataFields(
-                        fieldName: 'Email',
-                        fullWidth: true,
-                        controller: emailController,
-                        validator: RequiredValidator(errorText: 'Required!')),
+                      fieldName: 'Email',
+                      fullWidth: true,
+                      controller: emailController,
+                      validator: RequiredValidator(errorText: 'Required!'),
+                    ),
                     DropDownCustomWidget(
-                        fullWidth: true, controller: nicPassportController,
-                      validator: RequiredValidator(errorText: 'Required!'),),
+                      fullWidth: true,
+                      controller: nicPassportController,
+                      validator: RequiredValidator(errorText: 'Required!'),
+                    ),
                     InputDataFields(
                       fieldName: 'Phone / Mobile',
                       fullWidth: true,
@@ -132,63 +135,50 @@ class _InsertReviewScreenState extends State<InsertReviewScreen> {
                       width: MediaQuery.of(context).size.width * 0.45,
                       child: Column(
                         children: [
-                          Consumer<IdentityCardTypeSelection>(builder: (context , provider , _){
-                            return
-                            Row(
-                            children: [
-                              Expanded(
-                                flex: 2,
-                                child: SizedBox(
-                                  height: 45,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      if (_key.currentState?.validate() == false) {
-                                        _failSnackbar('Invalid Credentials');
-                                      }
-                                      print(firstNameController.text);
-                                      firstNameController.clear();
-                                      print(lastNameController.text);
-                                      lastNameController.clear();
-                                      print(emailController.text);
-                                      emailController.clear();
-                                      print(nicPassportController.text);
-                                      nicPassportController.clear();
-                                      print(phoneNumberController.text);
-                                      phoneNumberController.clear();
-                                      print(countryController.text);
-                                      countryController.clear();
-                                      print(submittedByController.text);
-                                      submittedByController.clear();
-                                      print(submittionTitleController.text);
-                                      submittionTitleController.clear();
-                                      print(submittionDiscriptionController.text);
-                                      submittionDiscriptionController.clear();
-                                      print(submittionReasonController.text);
-                                      submittionReasonController.clear();
-                                      print(organizationController.text);
-                                      organizationController.clear();
-                                      
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xff0A66C2),
-                                      elevation: 10,
-                                    ),
-                                    child: const Text(
-                                      "SUBMIT",
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 0.5,
+                          Consumer<IdentityCardTypeSelection>(
+                            builder: (context, provider, _) {
+                              return Row(
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: SizedBox(
+                                      height: 45,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          if (_key.currentState?.validate() == false) {
+                                            _failSnackbar('Invalid Credentials');
+                                          }
+                                          firstNameController.clear();
+                                          lastNameController.clear();
+                                          emailController.clear();
+                                          nicPassportController.clear();
+                                          phoneNumberController.clear();
+                                          countryController.clear();
+                                          submittedByController.clear();
+                                          submittionTitleController.clear();
+                                          submittionDiscriptionController.clear();
+                                          submittionReasonController.clear();
+                                          organizationController.clear();
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color(0xff0A66C2),
+                                          elevation: 10,
+                                        ),
+                                        child: const Text(
+                                          "SUBMIT",
+                                          style: TextStyle(
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.w600,
+                                            letterSpacing: 0.5,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            ],
-                          );
-                          })
-
-                          
+                                ],
+                              );
+                            },
+                          )
                         ],
                       ),
                     ),

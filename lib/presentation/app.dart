@@ -1,39 +1,50 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:review_web_app/presentation/pages/accept-reject-screen/accept-reject.dart';
-import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
-import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
+import 'package:review_web_app/routes/router.gr.dart';
 
-import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
-import 'package:review_web_app/presentation/pages/playground/playground.dart';
-import 'package:review_web_app/presentation/pages/signup-page/signup_page.dart';
-import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
-
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
 
   @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  final AppRouter _appRouter = AppRouter();
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      routerDelegate: AutoRouterDelegate.declarative(
+        _appRouter,
+        routes: (_) => [
+
+          ///TODO : check states and continue....
+        ],
       ),
-      initialRoute: Playground.route,
-      routes: {
-        Playground.route: (context) => const Playground(),
-        LoginPage.route: (context) => const LoginPage(),
-        InsertReview.route: (context) => const InsertReview(),
-
-      
-        AcceptReject.route: (context) => const AcceptReject(),
-
-     //   ViewProfilePage.route : ( context) => ViewProfilePage(),
-
-        HomePage.route: (context) => const HomePage(),
-        InsertReview.route: (context) => const InsertReview(),
-        SignUpPage.route: (context) => const SignUpPage(),
-      },
+      routeInformationParser: _appRouter.defaultRouteParser(includePrefixMatches: true),
     );
+
+    // MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     primarySwatch: Colors.blue,
+    //   ),
+    //   initialRoute: Playground.route,
+    //   routes: {
+    //     Playground.route: (context) => const Playground(),
+    //     LoginPage.route: (context) => const LoginPage(),
+    //     InsertReviewPage.route: (context) => const InsertReviewPage(),
+
+    //    // AcceptReject.route: (context) => const AcceptReject(),
+
+    //     //   ViewProfilePage.route : ( context) => ViewProfilePage(),
+
+    //     HomePage.route: (context) => const HomePage(),
+    //     InsertReviewPage.route: (context) => const InsertReviewPage(),
+    //     SignUpPage.route: (context) => const SignUpPage(),
+    //   },
+    // );
   }
 }

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:review_web_app/models/hr.dart';
 
-import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
+import 'package:review_web_app/presentation/pages/edit_user_profile_page/edit_user_profile_page.dart';
 
 import '../../../business_logic/providers/hrUserprovider.dart';
 
@@ -32,10 +32,9 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
           elevation: 15.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
+            child: SizedBox(
               height: 500,
               width: 500,
-
               child: SingleChildScrollView(child: Consumer<HrProvider>(
                 builder: (context, provider, _) {
                   return Column(
@@ -51,15 +50,14 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return Expanded(
+                                    return const Expanded(
                                       child: AlertDialog(
                                         title: Text('Edit Info'),
                                         content: SizedBox(
-                                            width: 700,
-                                            child: EditUserProfile(
-                                                user_id: widget.user_id!,
-                                                type_id: widget.type_id!)),
-
+                                          width: 700,
+                                          //  child:
+                                          // EditUserProfilePage(user_id: widget.user_id!), //, type_id: widget.type_id!),
+                                        ),
                                       ),
                                     );
                                   },
@@ -71,41 +69,34 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                         ],
                       ),
 
-                      Container(
+                      SizedBox(
                         width: 500,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const CircleAvatar(
                               radius: 50, // Image radius
-                              backgroundImage: NetworkImage(
-                                  'https://www.shutterstock.com/image-vector/my-account-profile-user-icon-260nw-1700343232.jpg'),
-
+                              backgroundImage: NetworkImage('https://www.shutterstock.com/image-vector/my-account-profile-user-icon-260nw-1700343232.jpg'),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Column(
                                 children: [
                                   Text(
-                                    provider.hrUser.first_name! +
-                                        provider.hrUser.last_name!,
-                                    style: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold),
+                                    provider.hrUser.firstName! + provider.hrUser.lastName!,
+                                    style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 3.0),
                                     child: Row(
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.email,
                                           size: 10.0,
                                         ),
                                         Text(
                                           provider.hrUser.email!,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w100,
-                                              fontSize: 10),
+                                          style: const TextStyle(fontWeight: FontWeight.w100, fontSize: 10),
                                         ),
                                       ],
                                     ),
@@ -119,25 +110,22 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
 
                       Card(
                         elevation: 10.0,
-                        child: Container(
+                        child: SizedBox(
                           height: 100,
                           width: double.infinity,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Padding(
+                              const Padding(
                                 padding: EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   "Company/ Organization:",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 ),
-
                               ),
                               Padding(
-                                padding: EdgeInsets.all(15.0),
+                                padding: const EdgeInsets.all(15.0),
                                 child: Text(provider.hrUser.organisation!),
                               ),
                             ],
@@ -146,28 +134,25 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                       ),
                       Card(
                         elevation: 10.0,
-                        child: Container(
+                        child: SizedBox(
                           height: 100,
                           width: double.infinity,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-
                               const Padding(
                                 padding: EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   "Phone Number",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(15.0),
+                                padding: const EdgeInsets.all(15.0),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.phone),
+                                    const Icon(Icons.phone),
                                     Text(provider.hrUser.phone!),
                                   ],
                                 ),
@@ -178,7 +163,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                       ),
                       Card(
                         elevation: 10.0,
-                        child: Container(
+                        child: SizedBox(
                           height: 100,
                           width: double.infinity,
                           child: Column(
@@ -189,16 +174,14 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                                 padding: EdgeInsets.only(left: 8.0),
                                 child: Text(
                                   "Country",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.location_on),
+                                    const Icon(Icons.location_on),
                                     Text(provider.hrUser.country!),
                                   ],
                                 ),

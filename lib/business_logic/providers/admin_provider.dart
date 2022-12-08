@@ -26,32 +26,30 @@ class AdminProvider extends ChangeNotifier {
   List<Employee> get allEmployees => _allEmployees;
 
   void removeHR(String id) {
-    _allUnapproved.removeWhere((element) => element.user_id == id);
+    _allUnapproved.removeWhere((element) => element.userId == id);
     notifyListeners();
   }
 
   void deleteHR(String id) {
-    _allHR.removeWhere((element) => element.user_id == id);
+    _allHR.removeWhere((element) => element.userId == id);
     notifyListeners();
   }
 
   HR getProfile(String id) {
-    print(id);
-    return _allUnapproved.firstWhere((element) => element.user_id == id);
+    return _allUnapproved.firstWhere((element) => element.userId == id);
   }
 
   HR getUserProfile(String id) {
-    HR a = _allHR.firstWhere((element) => element.user_id == id);
-    
+    HR a = _allHR.firstWhere((element) => element.userId == id);
+
     return a;
   }
 
-  void updateUserProfile(String firstname, String lastname, String phone,
-      String country, String organisation, String id) {
+  void updateUserProfile(String firstname, String lastname, String phone, String country, String organisation, String id) {
     for (int i = 0; i < _allHR.length; ++i) {
-      if (_allHR[i].user_id == id) {
-        _allHR[i].first_name = firstname;
-        _allHR[i].last_name = lastname;
+      if (_allHR[i].userId == id) {
+        _allHR[i].firstName = firstname;
+        _allHR[i].lastName = lastname;
         _allHR[i].country = country;
         _allHR[i].organisation = organisation;
         _allHR[i].phone = phone;
@@ -63,8 +61,8 @@ class AdminProvider extends ChangeNotifier {
 
   void updateUserProfileStatus(String id) {
     for (int i = 0; i < _allHR.length; ++i) {
-      if (_allHR[i].user_id == id) {
-        _allHR[i].is_approved = true;
+      if (_allHR[i].userId == id) {
+        _allHR[i].isApproved = true;
       }
     }
     notifyListeners();
@@ -126,7 +124,7 @@ class AdminProvider extends ChangeNotifier {
   Future<void> RejectUser(String id) async {
     var response = await adminRepository.rejectUser(id);
     removeHR(id);
-    _allHR.removeWhere((element) => element.user_id == id);
+    _allHR.removeWhere((element) => element.userId == id);
 
     notifyListeners();
   }
@@ -138,10 +136,8 @@ class AdminProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> UpdateHR(String firstname, String lastname, String phone,
-      String country, String organisation, String id) async {
-    var response = await adminRepository.updateUser(
-        firstname, lastname, phone, country, organisation, id);
+  Future<void> UpdateHR(String firstname, String lastname, String phone, String country, String organisation, String id) async {
+    var response = await adminRepository.updateUser(firstname, lastname, phone, country, organisation, id);
     updateUserProfile(firstname, lastname, phone, country, organisation, id);
   }
 }

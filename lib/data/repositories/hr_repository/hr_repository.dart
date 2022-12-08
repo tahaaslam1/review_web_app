@@ -90,6 +90,9 @@ class HrRepository {
   Future<dynamic> updateUser(String firstname, String lastname, String phone,
       String country, String organisation, String id) async {
     try {
+
+      //TODO : user ka token jaega .. tu idher access krna he 
+      //TODO : params me token lenge... 
       var response = await http.put(
         Uri.parse("http://192.168.1.22:3000/v1/users/updateUser"),
         headers: <String, String>{

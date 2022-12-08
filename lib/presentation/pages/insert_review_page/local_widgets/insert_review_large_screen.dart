@@ -11,8 +11,7 @@ class InsertReviewLargeScreen extends StatefulWidget {
   const InsertReviewLargeScreen({super.key});
 
   @override
-  State<InsertReviewLargeScreen> createState() =>
-      _InsertReviewLargeScreenState();
+  State<InsertReviewLargeScreen> createState() => _InsertReviewLargeScreenState();
 }
 
 class _InsertReviewLargeScreenState extends State<InsertReviewLargeScreen> {
@@ -58,8 +57,7 @@ class _InsertReviewLargeScreenState extends State<InsertReviewLargeScreen> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   @override
   void initState() {
-    submittedByController.text = context.read<HrProvider>().hrUser.first_name! +
-        context.read<HrProvider>().hrUser.last_name!;
+    submittedByController.text = context.read<HrProvider>().hrUser.firstName! + context.read<HrProvider>().hrUser.lastName!;
     // print(submittedByController.text);
   }
 
@@ -76,65 +74,75 @@ class _InsertReviewLargeScreenState extends State<InsertReviewLargeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InputDataFields(
-                      fieldName: 'First Name',
-                      fullWidth: false,
-                      controller: firstNameController,
-                      validator: RequiredValidator(errorText: 'Required!')),
+                    fieldName: 'First Name',
+                    fullWidth: false,
+                    controller: firstNameController,
+                    validator: RequiredValidator(errorText: 'Required!'),
+                  ),
                   InputDataFields(
-                      fieldName: 'Last Name',
-                      fullWidth: false,
-                      controller: lastNameController,
-                      validator: RequiredValidator(errorText: 'Required!')),
+                    fieldName: 'Last Name',
+                    fullWidth: false,
+                    controller: lastNameController,
+                    validator: RequiredValidator(errorText: 'Required!'),
+                  ),
                   InputDataFields(
-                      fieldName: 'Email',
-                      fullWidth: false,
-                      controller: emailController,
-                      validator: RequiredValidator(errorText: 'Required!')),
+                    fieldName: 'Email',
+                    fullWidth: false,
+                    controller: emailController,
+                    validator: RequiredValidator(errorText: 'Required!'),
+                  ),
                   DropDownCustomWidget(
                     fullWidth: false,
                     controller: nicPassportController,
                     validator: RequiredValidator(errorText: 'Required!'),
                   ),
                   InputDataFields(
-                      fieldName: 'Phone / Mobile',
-                      fullWidth: false,
-                      controller: phoneNumberController,
-                      validator: RequiredValidator(errorText: 'Required!')),
+                    fieldName: 'Phone / Mobile',
+                    fullWidth: false,
+                    controller: phoneNumberController,
+                    validator: RequiredValidator(errorText: 'Required!'),
+                  ),
                   InputDataFields(
-                      fieldName: 'Country',
-                      fullWidth: false,
-                      controller: countryController,
-                      validator: RequiredValidator(errorText: 'Required!'))
+                    fieldName: 'Country',
+                    fullWidth: false,
+                    controller: countryController,
+                    validator: RequiredValidator(errorText: 'Required!'),
+                  )
                 ],
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InputDataFields(
-                      fieldName: 'Submitted by',
-                      fullWidth: false,
-                      controller: submittedByController,
-                      validator: RequiredValidator(errorText: 'Required!')),
+                    fieldName: 'Submitted by',
+                    fullWidth: false,
+                    controller: submittedByController,
+                    validator: RequiredValidator(errorText: 'Required!'),
+                  ),
                   InputDataFields(
-                      fieldName: 'Submission Title',
-                      fullWidth: false,
-                      controller: submittionTitleController,
-                      validator: RequiredValidator(errorText: 'Required!')),
+                    fieldName: 'Submission Title',
+                    fullWidth: false,
+                    controller: submittionTitleController,
+                    validator: RequiredValidator(errorText: 'Required!'),
+                  ),
                   InputDataFields(
-                      fieldName: 'Submission Discription',
-                      fullWidth: false,
-                      controller: submittionDiscriptionController,
-                      validator: RequiredValidator(errorText: 'Required!')),
+                    fieldName: 'Submission Discription',
+                    fullWidth: false,
+                    controller: submittionDiscriptionController,
+                    validator: RequiredValidator(errorText: 'Required!'),
+                  ),
                   InputDataFields(
-                      fieldName: 'Reason of Submission',
-                      fullWidth: false,
-                      controller: submittionReasonController,
-                      validator: RequiredValidator(errorText: 'Required!')),
+                    fieldName: 'Reason of Submission',
+                    fullWidth: false,
+                    controller: submittionReasonController,
+                    validator: RequiredValidator(errorText: 'Required!'),
+                  ),
                   InputDataFields(
-                      fieldName: 'Organization',
-                      fullWidth: false,
-                      controller: organizationController,
-                      validator: RequiredValidator(errorText: 'Required!')),
+                    fieldName: 'Organization',
+                    fullWidth: false,
+                    controller: organizationController,
+                    validator: RequiredValidator(errorText: 'Required!'),
+                  ),
                 ],
               ),
               SizedBox(
@@ -166,51 +174,38 @@ class _InsertReviewLargeScreenState extends State<InsertReviewLargeScreen> {
                                 if (_key.currentState?.validate() == false) {
                                   _failSnackbar('Invalid Credentials');
                                 } else {
-                                  if (context
-                                          .read<IdentityCardTypeSelection>()
-                                          .selectedItem ==
-                                      "Passport") {
-                                    context
-                                        .read<HrProvider>()
-                                        .SubmitEmployeeProfile(
-                                            firstNameController.text,
-                                            lastNameController.text,
-                                            emailController.text,
-                                            phoneNumberController.text,
-                                            nicPassportController.text,
-                                            countryController.text,
-                                            submittedByController.text,
-                                            submittionTitleController.text,
-                                            submittionDiscriptionController
-                                                .text,
-                                            submittionReasonController.text,
-                                            organizationController.text,
-                                            context
-                                                .read<HrProvider>()
-                                                .hrUser
-                                                .user_id!,
-                                            "Passport");
+                                  if (context.read<IdentityCardTypeSelection>().selectedItem == "Passport") {
+                                    context.read<HrProvider>().SubmitEmployeeProfile(
+                                          firstNameController.text,
+                                          lastNameController.text,
+                                          emailController.text,
+                                          phoneNumberController.text,
+                                          nicPassportController.text,
+                                          countryController.text,
+                                          submittedByController.text,
+                                          submittionTitleController.text,
+                                          submittionDiscriptionController.text,
+                                          submittionReasonController.text,
+                                          organizationController.text,
+                                          context.read<HrProvider>().hrUser.userId!,
+                                          "Passport",
+                                        );
                                   } else {
-                                    context
-                                        .read<HrProvider>()
-                                        .SubmitEmployeeProfile(
-                                            firstNameController.text,
-                                            lastNameController.text,
-                                            emailController.text,
-                                            phoneNumberController.text,
-                                            nicPassportController.text,
-                                            countryController.text,
-                                            submittedByController.text,
-                                            submittionTitleController.text,
-                                            submittionDiscriptionController
-                                                .text,
-                                            submittionReasonController.text,
-                                            organizationController.text,
-                                            context
-                                                .read<HrProvider>()
-                                                .hrUser
-                                                .user_id!,
-                                            "NIC");
+                                    context.read<HrProvider>().SubmitEmployeeProfile(
+                                          firstNameController.text,
+                                          lastNameController.text,
+                                          emailController.text,
+                                          phoneNumberController.text,
+                                          nicPassportController.text,
+                                          countryController.text,
+                                          submittedByController.text,
+                                          submittionTitleController.text,
+                                          submittionDiscriptionController.text,
+                                          submittionReasonController.text,
+                                          organizationController.text,
+                                          context.read<HrProvider>().hrUser.userId!,
+                                          "NIC",
+                                        );
                                   }
 
                                   // context)

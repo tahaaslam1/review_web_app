@@ -3,14 +3,14 @@ import 'package:review_web_app/data/repositories/employees_repository/employees_
 import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
 import 'package:provider/provider.dart';
 
-import 'package:review_web_app/presentation/pages/accept-reject-screen/accept-reject.dart';
-import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
+import 'package:review_web_app/presentation/pages/accept-reject-screen/accept_reject_page.dart';
+import 'package:review_web_app/presentation/pages/edit_user_profile_page/edit_user_profile_page.dart';
 import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
 import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
 import '../signup-page/signup_page.dart';
-import '../../../business_logic/providers/admin_provide.dart';
-import '../admin_screen/admin_screen.dart';
+import '../../../business_logic/providers/admin_provider.dart';
+import '../admin_screen/admin_page.dart';
 
 class Playground extends StatelessWidget {
   static const String route = '/';
@@ -39,7 +39,7 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, EditUserProfile.route);
+                  Navigator.pushNamed(context, EditUserProfilePage.route);
                 },
                 child: const Text('Go to edit profile Page'),
               ),
@@ -57,7 +57,7 @@ class Playground extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AdminScreen(),
+                      builder: (context) => AdminPage(),
                     ),
                   );
                   //  tryGettingComp(context);
@@ -70,9 +70,7 @@ class Playground extends StatelessWidget {
                   // ignore: use_build_context_synchronously
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => ViewProfilePage(
-                            "5020b68e-d0a2-4062-8713-cf7cea98d387", 1)),
+                    MaterialPageRoute(builder: (context) => ViewProfilePage("5020b68e-d0a2-4062-8713-cf7cea98d387", 1)),
                   );
                   //  tryGettingComp(context);
                 },
@@ -91,7 +89,7 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AcceptReject.route);
+                  //  Navigator.pushNamed(context, AcceptReject.route);
                 },
                 child: const Text('Go to Accept/Reject Invitations Page'),
               ),
@@ -110,7 +108,7 @@ class Playground extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, InsertReview.route);
+                  Navigator.pushNamed(context, InsertReviewPage.route);
                 },
                 child: const Text('Go to Insert Review Page'),
               ),
@@ -119,8 +117,6 @@ class Playground extends StatelessWidget {
                   EmployeesRepository em = EmployeesRepository();
 
                   em.getSearchedEmployees(value: 'taha aslam');
-
-                  
                 },
                 child: const Text('Check Api'),
               ),
