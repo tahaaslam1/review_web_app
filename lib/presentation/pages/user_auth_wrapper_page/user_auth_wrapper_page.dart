@@ -8,12 +8,9 @@ class UserAuthWrapperPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return AutoRouter.declarative(routes: (_) {
-    //   return
-    // });
     return AutoRouter.declarative(
       routes: (_) {
-        return [const HomeRoute()];
+        return [const UserAuthHackRoute()];
       },
     );
   }

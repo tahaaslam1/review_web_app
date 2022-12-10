@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:review_web_app/data/repositories/auth_repository/auth_repository.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:review_web_app/services/jwt_service.dart';
+import 'package:review_web_app/services/local_storage_helper.dart';
+import 'package:review_web_app/services/mobile_storage_service.dart';
 
-class ClientAuthRepository extends AuthRepository {
+class ServerAuthRepository extends AuthRepository {
   final _controller = StreamController<AuthenticationStatus>();
 
   //TODO : token var..
@@ -61,24 +65,42 @@ class ClientAuthRepository extends AuthRepository {
     if (response.statusCode != 200) {
       throw Exception('Login Exception');
     }
-    _controller.add(AuthenticationStatus.authenticated);
+    //TODO: save token in local storage and  _controller.add(AuthenticationStatus.authenticated);
 
     // return response.body;
-
-    // TODO : token agya....  token save krlia...
   }
 
   @override
-  bool isSignedIn() {
+  Future<bool> isSignedIn() async {
+    JwtService jwtService = JwtService();
+
+    if (kIsWeb) {
+      final token = LocalStorageHelper.getToken('token');
+      if (token != null) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      final token = await MobileStorage.getTokenOnMobile('token');
+      if (token != null) {
+        return true;
+      } else {
+        return true;
+      }
+    }
+
     // TODO: check currenct user -> if response == null return false else return true...
     //TODO : token para wa he ya nahi bs ye check krlou bs... =
-    throw UnimplementedError();
+    // throw UnimplementedError();
+
+    //TODO : check user type if guest return false else return true
   }
 
   @override
   Stream<AuthenticationStatus> get status async* {
     final signedIn = isSignedIn();
-    if (signedIn) {
+    if (await signedIn) {
       _controller.add(AuthenticationStatus.authenticated);
     } else {
       _controller.add(AuthenticationStatus.unauthenticated);
@@ -89,6 +111,8 @@ class ClientAuthRepository extends AuthRepository {
   @override
   Future<void> signOut() {
     // TODO: implement signOut
+    //TODO : remove token from local storage and _controller.add(AuthenticationStatus.unauthenticated)
+
     throw UnimplementedError();
   }
 

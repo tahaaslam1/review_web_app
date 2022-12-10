@@ -6,7 +6,7 @@ import 'package:review_web_app/business_logic/providers/hrUserprovider.dart';
 import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 
 class LoginPage extends StatefulWidget {
-  static const String route = 'Log-in-Page';
+  static const String route = 'login-page';
   const LoginPage({super.key});
 
   @override

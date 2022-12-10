@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:review_web_app/data/repositories/employees_repository/employees_repository.dart';
-import 'package:review_web_app/logger.dart';
 import 'package:review_web_app/models/employees.dart';
-import 'package:review_web_app/presentation/pages/home_page/local_widgets/employee_info_widget.dart';
 import 'package:review_web_app/presentation/pages/insert_review_page/insert_review_page.dart';
-import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/insert_review_large_screen.dart';
-
-import '../../../business_logic/providers/hrUserprovider.dart';
-import '../view_profile_page/employee_profile_screen.dart';
-import '../view_profile_page/view_profile_page.dart';
 
 class HomePage extends StatefulWidget {
   static const String route = 'home-page';
@@ -31,7 +23,7 @@ class _HomePageState extends State<HomePage> {
           automaticallyImplyLeading: false,
           leading: IconButton(
             onPressed: () async {
-              var response = await context.read<HrProvider>().hrUser;
+              //  var response = await context.read<HrProvider>().hrUser;
               // // ignore: use_build_context_synchronously
               // Navigator.push(
               //   context,
@@ -139,25 +131,30 @@ class _HomePageState extends State<HomePage> {
           child: Card(
             elevation: 30.0,
             child: Container(
-              width: MediaQuery.of(context).size.width / 2,
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 248, 247, 246),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
+                width: MediaQuery.of(context).size.width / 2,
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 248, 247, 246),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
                 ),
-              ),
-              child: Consumer<HrProvider>(
-                builder: (context, provider, _) {
-                  return ListView.builder(
-                    itemCount: provider.allEmp.length,
-                    itemBuilder: ((BuildContext context, index) {
-                      return EmployeeInfoWidget(
-                          empName: provider.allEmp[index].firstName! + provider.allEmp[index].lastName!, empOrganization: provider.allEmp[index].organisation!, submissonTitle: provider.allEmp[index].submissionTitle!, submissionDescription: provider.allEmp[index].submissionDescription!);
-                    }),
-                  );
-                },
-              ),
-            ),
+                child: const Text('Change here')
+                // Consumer<HrProvider>(
+                //   builder: (context, provider, _) {
+                //     return ListView.builder(
+                //       itemCount: provider.allEmp.length,
+                //       itemBuilder: ((BuildContext context, index) {
+                //         return EmployeeInfoWidget(
+                //           empName: provider.allEmp[index].firstName! + provider.allEmp[index].lastName!,
+                //           empOrganization: provider.allEmp[index].organisation!,
+                //           submissonTitle: provider.allEmp[index].submissionTitle!,
+                //           submissionDescription: provider.allEmp[index].submissionDescription!,
+                //         );
+                //       }),
+                //     );
+                //   },
+                // ),
+                ),
           ),
         ),
       ),

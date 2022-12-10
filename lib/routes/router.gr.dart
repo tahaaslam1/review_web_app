@@ -11,206 +11,255 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i15;
-import 'package:flutter/material.dart' as _i16;
+import 'package:auto_route/auto_route.dart' as _i18;
+import 'package:flutter/material.dart' as _i19;
 
 import '../presentation/pages/accept-reject-screen/accept_reject_page.dart'
+    as _i13;
+import '../presentation/pages/admin_auth_hack_page/admin_auth_hack_page.dart'
     as _i11;
 import '../presentation/pages/admin_auth_wrapper_page/admin_auth_wrapper_page.dart'
     as _i3;
-import '../presentation/pages/admin_screen/admin_page.dart' as _i10;
+import '../presentation/pages/admin_screen/admin_page.dart' as _i12;
 import '../presentation/pages/edit_user_profile_page/edit_user_profile_page.dart'
-    as _i7;
-import '../presentation/pages/home_page/home_page.dart' as _i5;
+    as _i8;
+import '../presentation/pages/home_page/home_page.dart' as _i6;
 import '../presentation/pages/insert_review_page/insert_review_page.dart'
-    as _i6;
-import '../presentation/pages/landing_page/landing_page.dart' as _i1;
-import '../presentation/pages/login_page/login_page.dart' as _i14;
-import '../presentation/pages/signup-page/signup_page.dart' as _i13;
+    as _i7;
+import '../presentation/pages/landing_page/landing_page.dart' as _i15;
+import '../presentation/pages/login_page/login_page.dart' as _i17;
+import '../presentation/pages/signup-page/signup_page.dart' as _i16;
+import '../presentation/pages/splash_page/splash_page.dart' as _i1;
 import '../presentation/pages/unauth_wrapper_page/unauth_wrapper_page.dart'
     as _i4;
+import '../presentation/pages/user_auth_hack_page/user_auth_hack_page.dart'
+    as _i5;
 import '../presentation/pages/user_auth_wrapper_page/user_auth_wrapper_page.dart'
     as _i2;
 import '../presentation/pages/view_profile_page/employee_profile_screen.dart'
-    as _i8;
+    as _i9;
 import '../presentation/pages/view_profile_page/view_profile_admin_page.dart'
-    as _i12;
-import '../presentation/pages/view_profile_page/view_profile_page.dart' as _i9;
+    as _i14;
+import '../presentation/pages/view_profile_page/view_profile_page.dart' as _i10;
 
-class AppRouter extends _i15.RootStackRouter {
-  AppRouter([_i16.GlobalKey<_i16.NavigatorState>? navigatorKey])
+class AppRouter extends _i18.RootStackRouter {
+  AppRouter([_i19.GlobalKey<_i19.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i15.PageFactory> pagesMap = {
-    LandingRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+  final Map<String, _i18.PageFactory> pagesMap = {
+    SplashRoute.name: (routeData) {
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.LandingPage(),
+        child: const _i1.SplashPage(),
       );
     },
     UserAuthWrapperRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.UserAuthWrapperPage(),
       );
     },
     AdminAuthWrapperRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i3.AdminAuthWrapperPage(),
       );
     },
     UnAuthWrapperRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i4.UnAuthWrapperPage(),
       );
     },
-    HomeRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+    UserAuthHackRoute.name: (routeData) {
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i5.HomePage(),
+        child: const _i5.UserAuthHackPage(),
+      );
+    },
+    HomeRoute.name: (routeData) {
+      return _i18.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i6.HomePage(),
       );
     },
     InsertReviewRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i6.InsertReviewPage(),
+        child: const _i7.InsertReviewPage(),
       );
     },
     EditUserProfileRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i7.EditUserProfilePage(),
+        child: _i8.EditUserProfilePage(),
       );
     },
     EmployeeProfileRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i8.EmployeeProfilePage(),
+        child: const _i9.EmployeeProfilePage(),
       );
     },
     ViewProfileRoute.name: (routeData) {
       final args = routeData.argsAs<ViewProfileRouteArgs>();
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i9.ViewProfilePage(
+        child: _i10.ViewProfilePage(
           args.userid,
           args.typeid,
           key: args.key,
         ),
       );
     },
-    AdminRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+    AdminAuthHackRoute.name: (routeData) {
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i10.AdminPage(),
+        child: const _i11.AdminAuthHackPage(),
+      );
+    },
+    AdminRoute.name: (routeData) {
+      return _i18.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i12.AdminPage(),
       );
     },
     AcceptRejectRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i11.AcceptRejectPage(),
+        child: const _i13.AcceptRejectPage(),
       );
     },
     ViewProfileAdminRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i12.ViewProfileAdminPage(),
+        child: _i14.ViewProfileAdminPage(),
+      );
+    },
+    LandingRoute.name: (routeData) {
+      return _i18.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i15.LandingPage(),
       );
     },
     SignUpRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i13.SignUpPage(),
+        child: const _i16.SignUpPage(),
       );
     },
     LoginRoute.name: (routeData) {
-      return _i15.MaterialPageX<dynamic>(
+      return _i18.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i14.LoginPage(),
+        child: const _i17.LoginPage(),
       );
     },
   };
 
   @override
-  List<_i15.RouteConfig> get routes => [
-        _i15.RouteConfig(
-          LandingRoute.name,
-          path: 'landing-page',
+  List<_i18.RouteConfig> get routes => [
+        _i18.RouteConfig(
+          SplashRoute.name,
+          path: 'splash',
         ),
-        _i15.RouteConfig(
+        _i18.RouteConfig(
           UserAuthWrapperRoute.name,
           path: '/user-auth',
           children: [
-            _i15.RouteConfig(
-              HomeRoute.name,
-              path: 'home-page',
+            _i18.RouteConfig(
+              UserAuthHackRoute.name,
+              path: '',
               parent: UserAuthWrapperRoute.name,
-            ),
-            _i15.RouteConfig(
-              InsertReviewRoute.name,
-              path: 'insert-review-page',
-              parent: UserAuthWrapperRoute.name,
-            ),
-            _i15.RouteConfig(
-              EditUserProfileRoute.name,
-              path: 'edit-user-profile',
-              parent: UserAuthWrapperRoute.name,
-            ),
-            _i15.RouteConfig(
-              EmployeeProfileRoute.name,
-              path: 'employee-profile-screen',
-              parent: UserAuthWrapperRoute.name,
-            ),
-            _i15.RouteConfig(
-              ViewProfileRoute.name,
-              path: 'view-profile-page',
-              parent: UserAuthWrapperRoute.name,
-            ),
+              children: [
+                _i18.RouteConfig(
+                  '#redirect',
+                  path: '',
+                  parent: UserAuthHackRoute.name,
+                  redirectTo: 'home-page',
+                  fullMatch: true,
+                ),
+                _i18.RouteConfig(
+                  HomeRoute.name,
+                  path: 'home-page',
+                  parent: UserAuthHackRoute.name,
+                ),
+                _i18.RouteConfig(
+                  InsertReviewRoute.name,
+                  path: 'insert-review-page',
+                  parent: UserAuthHackRoute.name,
+                ),
+                _i18.RouteConfig(
+                  EditUserProfileRoute.name,
+                  path: 'edit-user-profile',
+                  parent: UserAuthHackRoute.name,
+                ),
+                _i18.RouteConfig(
+                  EmployeeProfileRoute.name,
+                  path: 'employee-profile-screen',
+                  parent: UserAuthHackRoute.name,
+                ),
+                _i18.RouteConfig(
+                  ViewProfileRoute.name,
+                  path: 'view-profile-page',
+                  parent: UserAuthHackRoute.name,
+                ),
+              ],
+            )
           ],
         ),
-        _i15.RouteConfig(
+        _i18.RouteConfig(
           AdminAuthWrapperRoute.name,
           path: '/admin-auth',
           children: [
-            _i15.RouteConfig(
-              AdminRoute.name,
-              path: 'admin-page',
+            _i18.RouteConfig(
+              AdminAuthHackRoute.name,
+              path: '',
               parent: AdminAuthWrapperRoute.name,
-            ),
-            _i15.RouteConfig(
-              AcceptRejectRoute.name,
-              path: 'accept-reject',
-              parent: AdminAuthWrapperRoute.name,
-            ),
-            _i15.RouteConfig(
-              ViewProfileAdminRoute.name,
-              path: 'view-profile-admin-page',
-              parent: AdminAuthWrapperRoute.name,
-            ),
+              children: [
+                _i18.RouteConfig(
+                  AdminRoute.name,
+                  path: 'admin-page',
+                  parent: AdminAuthHackRoute.name,
+                ),
+                _i18.RouteConfig(
+                  AcceptRejectRoute.name,
+                  path: 'accept-reject',
+                  parent: AdminAuthHackRoute.name,
+                ),
+                _i18.RouteConfig(
+                  ViewProfileAdminRoute.name,
+                  path: 'view-profile-admin-page',
+                  parent: AdminAuthHackRoute.name,
+                ),
+              ],
+            )
           ],
         ),
-        _i15.RouteConfig(
+        _i18.RouteConfig(
           UnAuthWrapperRoute.name,
-          path: '/unauth',
+          path: 'unauth',
           children: [
-            _i15.RouteConfig(
+            _i18.RouteConfig(
               '#redirect',
               path: '',
               parent: UnAuthWrapperRoute.name,
-              redirectTo: 'signup-page',
+              redirectTo: 'landing',
               fullMatch: true,
             ),
-            _i15.RouteConfig(
+            _i18.RouteConfig(
+              LandingRoute.name,
+              path: 'landing',
+              parent: UnAuthWrapperRoute.name,
+            ),
+            _i18.RouteConfig(
               SignUpRoute.name,
               path: 'signup-page',
               parent: UnAuthWrapperRoute.name,
             ),
-            _i15.RouteConfig(
+            _i18.RouteConfig(
               LoginRoute.name,
-              path: 'Log-in-Page',
+              path: 'login-page',
               parent: UnAuthWrapperRoute.name,
             ),
           ],
@@ -219,21 +268,21 @@ class AppRouter extends _i15.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.LandingPage]
-class LandingRoute extends _i15.PageRouteInfo<void> {
-  const LandingRoute()
+/// [_i1.SplashPage]
+class SplashRoute extends _i18.PageRouteInfo<void> {
+  const SplashRoute()
       : super(
-          LandingRoute.name,
-          path: 'landing-page',
+          SplashRoute.name,
+          path: 'splash',
         );
 
-  static const String name = 'LandingRoute';
+  static const String name = 'SplashRoute';
 }
 
 /// generated route for
 /// [_i2.UserAuthWrapperPage]
-class UserAuthWrapperRoute extends _i15.PageRouteInfo<void> {
-  const UserAuthWrapperRoute({List<_i15.PageRouteInfo>? children})
+class UserAuthWrapperRoute extends _i18.PageRouteInfo<void> {
+  const UserAuthWrapperRoute({List<_i18.PageRouteInfo>? children})
       : super(
           UserAuthWrapperRoute.name,
           path: '/user-auth',
@@ -245,8 +294,8 @@ class UserAuthWrapperRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.AdminAuthWrapperPage]
-class AdminAuthWrapperRoute extends _i15.PageRouteInfo<void> {
-  const AdminAuthWrapperRoute({List<_i15.PageRouteInfo>? children})
+class AdminAuthWrapperRoute extends _i18.PageRouteInfo<void> {
+  const AdminAuthWrapperRoute({List<_i18.PageRouteInfo>? children})
       : super(
           AdminAuthWrapperRoute.name,
           path: '/admin-auth',
@@ -258,11 +307,11 @@ class AdminAuthWrapperRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.UnAuthWrapperPage]
-class UnAuthWrapperRoute extends _i15.PageRouteInfo<void> {
-  const UnAuthWrapperRoute({List<_i15.PageRouteInfo>? children})
+class UnAuthWrapperRoute extends _i18.PageRouteInfo<void> {
+  const UnAuthWrapperRoute({List<_i18.PageRouteInfo>? children})
       : super(
           UnAuthWrapperRoute.name,
-          path: '/unauth',
+          path: 'unauth',
           initialChildren: children,
         );
 
@@ -270,8 +319,21 @@ class UnAuthWrapperRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.HomePage]
-class HomeRoute extends _i15.PageRouteInfo<void> {
+/// [_i5.UserAuthHackPage]
+class UserAuthHackRoute extends _i18.PageRouteInfo<void> {
+  const UserAuthHackRoute({List<_i18.PageRouteInfo>? children})
+      : super(
+          UserAuthHackRoute.name,
+          path: '',
+          initialChildren: children,
+        );
+
+  static const String name = 'UserAuthHackRoute';
+}
+
+/// generated route for
+/// [_i6.HomePage]
+class HomeRoute extends _i18.PageRouteInfo<void> {
   const HomeRoute()
       : super(
           HomeRoute.name,
@@ -282,8 +344,8 @@ class HomeRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.InsertReviewPage]
-class InsertReviewRoute extends _i15.PageRouteInfo<void> {
+/// [_i7.InsertReviewPage]
+class InsertReviewRoute extends _i18.PageRouteInfo<void> {
   const InsertReviewRoute()
       : super(
           InsertReviewRoute.name,
@@ -294,8 +356,8 @@ class InsertReviewRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.EditUserProfilePage]
-class EditUserProfileRoute extends _i15.PageRouteInfo<void> {
+/// [_i8.EditUserProfilePage]
+class EditUserProfileRoute extends _i18.PageRouteInfo<void> {
   const EditUserProfileRoute()
       : super(
           EditUserProfileRoute.name,
@@ -306,8 +368,8 @@ class EditUserProfileRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.EmployeeProfilePage]
-class EmployeeProfileRoute extends _i15.PageRouteInfo<void> {
+/// [_i9.EmployeeProfilePage]
+class EmployeeProfileRoute extends _i18.PageRouteInfo<void> {
   const EmployeeProfileRoute()
       : super(
           EmployeeProfileRoute.name,
@@ -318,12 +380,12 @@ class EmployeeProfileRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.ViewProfilePage]
-class ViewProfileRoute extends _i15.PageRouteInfo<ViewProfileRouteArgs> {
+/// [_i10.ViewProfilePage]
+class ViewProfileRoute extends _i18.PageRouteInfo<ViewProfileRouteArgs> {
   ViewProfileRoute({
     required String? userid,
     required int? typeid,
-    _i16.Key? key,
+    _i19.Key? key,
   }) : super(
           ViewProfileRoute.name,
           path: 'view-profile-page',
@@ -348,7 +410,7 @@ class ViewProfileRouteArgs {
 
   final int? typeid;
 
-  final _i16.Key? key;
+  final _i19.Key? key;
 
   @override
   String toString() {
@@ -357,8 +419,21 @@ class ViewProfileRouteArgs {
 }
 
 /// generated route for
-/// [_i10.AdminPage]
-class AdminRoute extends _i15.PageRouteInfo<void> {
+/// [_i11.AdminAuthHackPage]
+class AdminAuthHackRoute extends _i18.PageRouteInfo<void> {
+  const AdminAuthHackRoute({List<_i18.PageRouteInfo>? children})
+      : super(
+          AdminAuthHackRoute.name,
+          path: '',
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminAuthHackRoute';
+}
+
+/// generated route for
+/// [_i12.AdminPage]
+class AdminRoute extends _i18.PageRouteInfo<void> {
   const AdminRoute()
       : super(
           AdminRoute.name,
@@ -369,8 +444,8 @@ class AdminRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.AcceptRejectPage]
-class AcceptRejectRoute extends _i15.PageRouteInfo<void> {
+/// [_i13.AcceptRejectPage]
+class AcceptRejectRoute extends _i18.PageRouteInfo<void> {
   const AcceptRejectRoute()
       : super(
           AcceptRejectRoute.name,
@@ -381,8 +456,8 @@ class AcceptRejectRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.ViewProfileAdminPage]
-class ViewProfileAdminRoute extends _i15.PageRouteInfo<void> {
+/// [_i14.ViewProfileAdminPage]
+class ViewProfileAdminRoute extends _i18.PageRouteInfo<void> {
   const ViewProfileAdminRoute()
       : super(
           ViewProfileAdminRoute.name,
@@ -393,8 +468,20 @@ class ViewProfileAdminRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i13.SignUpPage]
-class SignUpRoute extends _i15.PageRouteInfo<void> {
+/// [_i15.LandingPage]
+class LandingRoute extends _i18.PageRouteInfo<void> {
+  const LandingRoute()
+      : super(
+          LandingRoute.name,
+          path: 'landing',
+        );
+
+  static const String name = 'LandingRoute';
+}
+
+/// generated route for
+/// [_i16.SignUpPage]
+class SignUpRoute extends _i18.PageRouteInfo<void> {
   const SignUpRoute()
       : super(
           SignUpRoute.name,
@@ -405,12 +492,12 @@ class SignUpRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i14.LoginPage]
-class LoginRoute extends _i15.PageRouteInfo<void> {
+/// [_i17.LoginPage]
+class LoginRoute extends _i18.PageRouteInfo<void> {
   const LoginRoute()
       : super(
           LoginRoute.name,
-          path: 'Log-in-Page',
+          path: 'login-page',
         );
 
   static const String name = 'LoginRoute';

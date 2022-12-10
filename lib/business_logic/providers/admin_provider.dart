@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:review_web_app/data/repositories/auth_repository/auth_repository.dart';
 import 'package:review_web_app/logger.dart';
 import 'package:review_web_app/models/employees.dart';
 import 'package:review_web_app/models/hr.dart';
@@ -8,6 +9,11 @@ import 'package:review_web_app/models/hr.dart';
 import '../../data/repositories/admin_repository/admin_repo.dart';
 
 class AdminProvider extends ChangeNotifier {
+  AuthRepository _authRepository;
+
+  
+  AdminProvider({required authRepository}) : _authRepository = authRepository;
+
   List<HR> _allHR = [];
   List<Employee> _allEmployees = [];
   List<HR> _allUnapproved = [];

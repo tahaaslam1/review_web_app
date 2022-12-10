@@ -14,7 +14,7 @@ class AuthProvider extends ChangeNotifier {
 
   User _user = User(email: '-', firstName: '-', lastName: '-', userId: '-', userType: UserType.guest);
 
-  AuthenticationStatus _status = AuthenticationStatus.unknown;
+  AuthenticationStatus _status = AuthenticationStatus.authenticated;
 
   AuthProvider({
     required AuthRepository authenticationRepository,
@@ -49,11 +49,18 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  get isLoading => _isLoading;
+  bool get isLoading => _isLoading;
 
   AuthenticationStatus get status => _status;
 
-  Future<User?> tryGetUser() {
-    try {} catch (error) {}
+  User get user => _user;
+
+  Future<User?> tryGetUser() async {
+    try {
+     // final user
+      return null;
+    } catch (error) {
+      throw Exception(error);
+    }
   }
 }

@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:review_web_app/presentation/pages/accept-reject-screen/accept_reject_page.dart';
+import 'package:review_web_app/presentation/pages/admin_auth_hack_page/admin_auth_hack_page.dart';
 import 'package:review_web_app/presentation/pages/admin_auth_wrapper_page/admin_auth_wrapper_page.dart';
 import 'package:review_web_app/presentation/pages/admin_screen/admin_page.dart';
+import 'package:review_web_app/presentation/pages/splash_page/splash_page.dart';
+import 'package:review_web_app/presentation/pages/user_auth_hack_page/user_auth_hack_page.dart';
 import 'package:review_web_app/presentation/pages/user_auth_wrapper_page/user_auth_wrapper_page.dart';
 import 'package:review_web_app/presentation/pages/edit_user_profile_page/edit_user_profile_page.dart';
 import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
@@ -19,21 +22,21 @@ import 'package:review_web_app/presentation/pages/view_profile_page/view_profile
   replaceInRouteName: 'Page,Route',
   routes: [
     AutoRoute(
-      path: LandingPage.route,
-      page: LandingPage,
+      path: SplashPage.route,
+      page: SplashPage,
     ),
     AutoRoute(
       path: UserAuthWrapperPage.route,
       page: UserAuthWrapperPage,
       children: [
         AutoRoute(
-          path: HomePage.route,
-          name: 'HomeRouter',
-          page: EmptyRouterPage,
+          path: UserAuthHackPage.route,
+          page: UserAuthHackPage,
           children: [
             AutoRoute(
-              initial: true,
+              path: HomePage.route,
               page: HomePage,
+              initial: true,
             ),
             AutoRoute(
               path: InsertReviewPage.route,
@@ -52,7 +55,7 @@ import 'package:review_web_app/presentation/pages/view_profile_page/view_profile
               page: ViewProfilePage,
             ),
           ],
-        ),
+        )
       ],
     ),
     AutoRoute(
@@ -60,17 +63,23 @@ import 'package:review_web_app/presentation/pages/view_profile_page/view_profile
       page: AdminAuthWrapperPage,
       children: [
         AutoRoute(
-          path: AdminPage.route,
-          page: AdminPage,
-        ),
-        AutoRoute(
-          path: AcceptRejectPage.route,
-          page: AcceptRejectPage,
-        ),
-        AutoRoute(
-          path: ViewProfileAdminPage.route,
-          page: ViewProfileAdminPage,
-        ),
+          path: AdminAuthHackPage.route,
+          page: AdminAuthHackPage,
+          children: [
+            AutoRoute(
+              path: AdminPage.route,
+              page: AdminPage,
+            ),
+            AutoRoute(
+              path: AcceptRejectPage.route,
+              page: AcceptRejectPage,
+            ),
+            AutoRoute(
+              path: ViewProfileAdminPage.route,
+              page: ViewProfileAdminPage,
+            ),
+          ],
+        )
       ],
     ),
     AutoRoute(
@@ -78,9 +87,13 @@ import 'package:review_web_app/presentation/pages/view_profile_page/view_profile
       page: UnAuthWrapperPage,
       children: [
         AutoRoute(
+          path: LandingPage.route,
+          page: LandingPage,
+          initial: true,
+        ),
+        AutoRoute(
           path: SignUpPage.route,
           page: SignUpPage,
-          initial: true,
         ),
         AutoRoute(
           path: LoginPage.route,

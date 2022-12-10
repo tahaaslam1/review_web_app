@@ -7,11 +7,12 @@ class MobileStorage {
     await mobileStorage.write(key: key, value: token);
   }
 
-  static Future<String?> getTokenOnMobile() {
-    return mobileStorage.read(key: 'key');
+  static Future<String?> getTokenOnMobile(key) {
+    return mobileStorage.read(key: key);
   }
 
-  static void removeTokenFromMobile() {   //TODO : call after signout 
+  static void removeTokenFromMobile() {
+    //TODO : call after signout
     mobileStorage.deleteAll();
   }
 }

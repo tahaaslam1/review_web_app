@@ -6,6 +6,6 @@ abstract class AuthRepository {
   Future<String> signUp(String firstname, String lastname, String organisation, String phone, String country, String email, String password);
   Future<void> login(String email, String password);
   //Future<bool> userAlreadyExists({required String email});
-  bool isSignedIn();
+  Future<bool> isSignedIn();
   void dispose();
 }

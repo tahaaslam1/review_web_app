@@ -57,7 +57,7 @@ class _InsertReviewLargeScreenState extends State<InsertReviewLargeScreen> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   @override
   void initState() {
-    submittedByController.text = context.read<HrProvider>().hrUser.firstName! + context.read<HrProvider>().hrUser.lastName!;
+  //  submittedByController.text = context.read<HrProvider>().hrUser.firstName! + context.read<HrProvider>().hrUser.lastName!;
     // print(submittedByController.text);
   }
 
@@ -171,63 +171,63 @@ class _InsertReviewLargeScreenState extends State<InsertReviewLargeScreen> {
                             height: 45,
                             child: ElevatedButton(
                               onPressed: () {
-                                if (_key.currentState?.validate() == false) {
-                                  _failSnackbar('Invalid Credentials');
-                                } else {
-                                  if (context.read<IdentityCardTypeSelection>().selectedItem == "Passport") {
-                                    context.read<HrProvider>().SubmitEmployeeProfile(
-                                          firstNameController.text,
-                                          lastNameController.text,
-                                          emailController.text,
-                                          phoneNumberController.text,
-                                          nicPassportController.text,
-                                          countryController.text,
-                                          submittedByController.text,
-                                          submittionTitleController.text,
-                                          submittionDiscriptionController.text,
-                                          submittionReasonController.text,
-                                          organizationController.text,
-                                          context.read<HrProvider>().hrUser.userId!,
-                                          "Passport",
-                                        );
-                                  } else {
-                                    context.read<HrProvider>().SubmitEmployeeProfile(
-                                          firstNameController.text,
-                                          lastNameController.text,
-                                          emailController.text,
-                                          phoneNumberController.text,
-                                          nicPassportController.text,
-                                          countryController.text,
-                                          submittedByController.text,
-                                          submittionTitleController.text,
-                                          submittionDiscriptionController.text,
-                                          submittionReasonController.text,
-                                          organizationController.text,
-                                          context.read<HrProvider>().hrUser.userId!,
-                                          "NIC",
-                                        );
-                                  }
+                                // if (_key.currentState?.validate() == false) {
+                                //   _failSnackbar('Invalid Credentials');
+                                // } else {
+                                //   if (context.read<IdentityCardTypeSelection>().selectedItem == "Passport") {
+                                //     context.read<HrProvider>().SubmitEmployeeProfile(
+                                //           firstNameController.text,
+                                //           lastNameController.text,
+                                //           emailController.text,
+                                //           phoneNumberController.text,
+                                //           nicPassportController.text,
+                                //           countryController.text,
+                                //           submittedByController.text,
+                                //           submittionTitleController.text,
+                                //           submittionDiscriptionController.text,
+                                //           submittionReasonController.text,
+                                //           organizationController.text,
+                                //           context.read<HrProvider>().hrUser.userId!,
+                                //           "Passport",
+                                //         );
+                                //   } else {
+                                //     context.read<HrProvider>().SubmitEmployeeProfile(
+                                //           firstNameController.text,
+                                //           lastNameController.text,
+                                //           emailController.text,
+                                //           phoneNumberController.text,
+                                //           nicPassportController.text,
+                                //           countryController.text,
+                                //           submittedByController.text,
+                                //           submittionTitleController.text,
+                                //           submittionDiscriptionController.text,
+                                //           submittionReasonController.text,
+                                //           organizationController.text,
+                                //           context.read<HrProvider>().hrUser.userId!,
+                                //           "NIC",
+                                //         );
+                                //   }
 
-                                  // context)
-                                  //     .read<HrProvider>()
-                                  //     .SubmitEmployeeProfile(
-                                  //       firstNameController.text,
-                                  //       lastNameController.text,
-                                  //       emailController.text,
-                                  //       phoneNumberController.text,
-                                  //       nicPassportController.text,
-                                  //       countryController.text,
-                                  //       submittedByController.text,
-                                  //       submittionTitleController.text,
-                                  //       submittionDiscriptionController.text,
-                                  //       submittionReasonController.text,
-                                  //       organizationController.text,
-                                  //       context
-                                  //           .read<HrProvider>()
-                                  //           .hrUser
-                                  //           .user_id!,
-                                  //     );
-                                }
+                                //   // context)
+                                //   //     .read<HrProvider>()
+                                //   //     .SubmitEmployeeProfile(
+                                //   //       firstNameController.text,
+                                //   //       lastNameController.text,
+                                //   //       emailController.text,
+                                //   //       phoneNumberController.text,
+                                //   //       nicPassportController.text,
+                                //   //       countryController.text,
+                                //   //       submittedByController.text,
+                                //   //       submittionTitleController.text,
+                                //   //       submittionDiscriptionController.text,
+                                //   //       submittionReasonController.text,
+                                //   //       organizationController.text,
+                                //   //       context
+                                //   //           .read<HrProvider>()
+                                //   //           .hrUser
+                                //   //           .user_id!,
+                                //   //     );
+                                // }
                                 // print(firstNameController.text);
                                 // firstNameController.clear();
                                 // print(lastNameController.text);
