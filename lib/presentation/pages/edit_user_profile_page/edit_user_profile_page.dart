@@ -1,9 +1,14 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:developer';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:review_web_app/business_logic/providers/auth_provider.dart';
 import 'package:review_web_app/business_logic/providers/hrUserprovider.dart';
 import 'package:review_web_app/logger.dart';
+import 'package:review_web_app/models/user.dart';
 import 'package:review_web_app/presentation/pages/admin_screen/admin_page.dart';
 import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_page.dart';
 
@@ -12,9 +17,12 @@ import '../../../models/hr.dart';
 
 class EditUserProfilePage extends StatefulWidget {
   static const String route = 'edit-user-profile';
-  late String user_id;
+  late UserType userType;
+  late String? userId;
+
   //late int type_id;
-  //EditUserProfilePage({super.key, required this.user_id, required this.type_id});
+  EditUserProfilePage(
+      {super.key, required this.userType, required this.userId});
 
   //EditUserProfilePage({super.key, required this.user_id});
 
@@ -32,11 +40,11 @@ class _EditUserProfilePageState extends State<EditUserProfilePage> {
   late TextEditingController email = TextEditingController();
   @override
   initState() {
-    // if (widget.type_id == 1) {
-    //   response = context.read<HrProvider>().hrUser;
-    // } else {
-    //   response = context.read<AdminProvider>().getUserProfile(widget.user_id);
-    // }
+    if (widget.userType == UserType.hr) {
+      response = context.read<HrProvider>().hr;
+    } else {
+      response = context.read<AdminProvider>().getUserProfile(widget.userId);
+    }
 
     firstname.text = response.firstName!;
     lastname.text = response.lastName!;
@@ -170,28 +178,31 @@ class _EditUserProfilePageState extends State<EditUserProfilePage> {
                 width: 90,
                 child: ElevatedButton(
                   onPressed: () async {
-                    // if (widget.type_id == 1) {
-                    //   context.read<HrProvider>().UpdateHR(
-                    //         firstname.text,
-                    //         lastname.text,
-                    //         phone.text,
-                    //         country.text,
-                    //         organisation.text,
-                    //         widget.user_id,
-                    //       );
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(builder: (context) => ViewProfilePage(widget.user_id, widget.type_id)),
-                    //   );
+                    if (widget.userType == UserType.hr) {
+                      await context.read<HrProvider>().UpdateHR(
+                            firstname.text,
+                            lastname.text,
+                            phone.text,
+                            country.text,
+                            organisation.text,
+                            Provider.of<AuthProvider>(context, listen: false)
+                                .user
+                                .userId!,
+                          );
+                    } else {
+                      await context.read<AdminProvider>().UpdateHR(
+                            firstname.text,
+                            lastname.text,
+                            phone.text,
+                            country.text,
+                            organisation.text,
+                            widget.userId,
+                          );
+                    }
+
+                    context.router.pop();
                     // } else {
-                    //   context.read<AdminProvider>().UpdateHR(
-                    //         firstname.text,
-                    //         lastname.text,
-                    //         phone.text,
-                    //         country.text,
-                    //         organisation.text,
-                    //         widget.user_id,
-                    //       );
+                    //
                     //   Navigator.push(
                     //     context,
                     //     MaterialPageRoute(

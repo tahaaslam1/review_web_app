@@ -4,11 +4,27 @@ import 'package:review_web_app/business_logic/providers/admin_provider.dart';
 import 'package:review_web_app/presentation/pages/accept-reject-screen/local_widgets/accept_reject_widget.dart';
 import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_admin_page.dart';
 
-class AcceptRejectPage extends StatelessWidget {
+import '../../../logger.dart';
+
+class AcceptRejectPage extends StatefulWidget {
   static const String route = 'accept-reject';
   const AcceptRejectPage({super.key});
 
   @override
+  State<AcceptRejectPage> createState() => _AcceptRejectPageState();
+}
+
+class _AcceptRejectPageState extends State<AcceptRejectPage> {
+  @override
+  void initState() {
+    context
+        .read<AdminProvider>()
+        .GetUnapprovedUsers()
+        .then(((value) => logger.d("sada")));
+
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Consumer<AdminProvider>(

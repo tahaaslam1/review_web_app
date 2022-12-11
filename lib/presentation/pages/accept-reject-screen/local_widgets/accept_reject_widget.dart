@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:review_web_app/business_logic/providers/admin_provider.dart';
+import 'package:review_web_app/business_logic/providers/auth_provider.dart';
 import 'package:review_web_app/presentation/pages/view_profile_page/view_profile_admin_page.dart';
+import 'package:review_web_app/routes/router.gr.dart';
 
 class AcceptRejectWidget extends StatelessWidget {
   String? firstname;
@@ -36,7 +39,11 @@ class AcceptRejectWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 10.0),
                   child: ElevatedButton(
                     onPressed: () async {
-                      await context.read<AdminProvider>().AcceptUser(user_id!);
+                      await context.read<AdminProvider>().AcceptUser(
+                          user_id!,
+                          Provider.of<AuthProvider>(context, listen: false)
+                              .user
+                              .userId!);
                     },
                     child: const Text('Accept'),
                   ),
@@ -52,14 +59,9 @@ class AcceptRejectWidget extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () async {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => ViewProfileAdminPage(
-                    //       user_id: user_id!,
-                    //     ),
-                    //   ),
-                    // );
+                    context.router.push(ViewProfileAdminRoute(
+                      userId: user_id
+                    ));
                   },
                   child: const Text('View Profile'),
                 )

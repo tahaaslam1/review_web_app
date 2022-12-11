@@ -10,7 +10,7 @@ class EmployeesRepository {
 
     final response = await http.get(
       Uri.parse(
-        'http://192.168.1.22:3000/v1/SearchUsers/$value',
+        'http://192.168.3.150:3000/v1/SearchUsers/$value',
       ),
       headers: {'content-type': 'application/json'},
     );

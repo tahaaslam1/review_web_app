@@ -4,6 +4,8 @@ import 'package:review_web_app/presentation/pages/accept-reject-screen/accept_re
 import 'package:review_web_app/presentation/pages/admin_auth_hack_page/admin_auth_hack_page.dart';
 import 'package:review_web_app/presentation/pages/admin_auth_wrapper_page/admin_auth_wrapper_page.dart';
 import 'package:review_web_app/presentation/pages/admin_screen/admin_page.dart';
+import 'package:review_web_app/presentation/pages/guest_wrapper_hack_page/guest_wrapper_hack_page.dart';
+import 'package:review_web_app/presentation/pages/guest_wrapper_page/guest_wrapper_page.dart';
 import 'package:review_web_app/presentation/pages/splash_page/splash_page.dart';
 import 'package:review_web_app/presentation/pages/user_auth_hack_page/user_auth_hack_page.dart';
 import 'package:review_web_app/presentation/pages/user_auth_wrapper_page/user_auth_wrapper_page.dart';
@@ -24,6 +26,25 @@ import 'package:review_web_app/presentation/pages/view_profile_page/view_profile
     AutoRoute(
       path: SplashPage.route,
       page: SplashPage,
+    ),
+    AutoRoute(
+      path: GuestWrapperPage.route,
+      page: GuestWrapperPage,
+      children: [
+        AutoRoute(
+          path: GuestWrapperHackPage.route,
+          page: GuestWrapperHackPage,
+          children: [
+            AutoRoute(
+              path: HomePage.route,
+              page: HomePage,
+              initial: true,
+            ),
+            AutoRoute(
+                path: EmployeeProfilePage.route, page: EmployeeProfilePage)
+          ],
+        )
+      ],
     ),
     AutoRoute(
       path: UserAuthWrapperPage.route,
@@ -69,6 +90,7 @@ import 'package:review_web_app/presentation/pages/view_profile_page/view_profile
             AutoRoute(
               path: AdminPage.route,
               page: AdminPage,
+              initial: true,
             ),
             AutoRoute(
               path: AcceptRejectPage.route,
@@ -77,6 +99,10 @@ import 'package:review_web_app/presentation/pages/view_profile_page/view_profile
             AutoRoute(
               path: ViewProfileAdminPage.route,
               page: ViewProfileAdminPage,
+            ),
+            AutoRoute(
+              path: EditUserProfilePage.route,
+              page: EditUserProfilePage,
             ),
           ],
         )

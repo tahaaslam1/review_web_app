@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:review_web_app/data/repositories/auth_repository/auth_repository.dart';
+import 'package:review_web_app/logger.dart';
 import 'package:review_web_app/models/user.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -10,11 +11,25 @@ class AuthProvider extends ChangeNotifier {
 
   final bool _isLoading = false;
 
-  late StreamSubscription<AuthenticationStatus> _authenticationStatusSubscription;
+  late StreamSubscription<AuthenticationStatus>
+      _authenticationStatusSubscription;
 
-  User _user = User(email: '-', firstName: '-', lastName: '-', userId: '-', userType: UserType.guest);
+  User _user = User(
+    email: '-',
+    firstName: '-',
+    lastName: '-',
+    userId: '-',
+    userType: UserType.unknown,
+  );
 
-  AuthenticationStatus _status = AuthenticationStatus.authenticated;
+  Future<void> setUser(User user) async {
+    logger.i('in set user');
+    
+    _user = user;
+    notifyListeners();
+  }
+
+  AuthenticationStatus _status = AuthenticationStatus.unknown;
 
   AuthProvider({
     required AuthRepository authenticationRepository,
@@ -57,7 +72,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future<User?> tryGetUser() async {
     try {
-     // final user
+      // final user
       return null;
     } catch (error) {
       throw Exception(error);

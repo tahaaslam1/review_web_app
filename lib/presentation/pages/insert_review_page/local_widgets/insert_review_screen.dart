@@ -5,6 +5,10 @@ import 'package:review_web_app/presentation/pages/insert_review_page/local_widge
 import 'package:review_web_app/presentation/pages/insert_review_page/local_widgets/input_data_fields.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
+import '../../../../business_logic/providers/auth_provider.dart';
+import '../../../../business_logic/providers/hrUserprovider.dart';
+import '../../../../logger.dart';
+
 const List<String> list = <String>['National Identity Card', 'Passport'];
 
 class InsertReviewSmallScreen extends StatefulWidget {
@@ -23,7 +27,7 @@ class _InsertReviewSmallScreenState extends State<InsertReviewSmallScreen> {
   final phoneNumberController = TextEditingController();
   final nicPassportController = TextEditingController();
   final countryController = TextEditingController();
-  final submittedByController = TextEditingController();
+  late var submittedByController = TextEditingController();
   final submittionTitleController = TextEditingController();
   final submittionDiscriptionController = TextEditingController();
   final submittionReasonController = TextEditingController();
@@ -40,8 +44,15 @@ class _InsertReviewSmallScreenState extends State<InsertReviewSmallScreen> {
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
-
+@override
+  
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  void initState() {
+   submittedByController.text = context.read<HrProvider>().hr.firstName! +
+        context.read<HrProvider>().hr.lastName!;
+    logger.i(submittedByController.text);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -145,20 +156,56 @@ class _InsertReviewSmallScreenState extends State<InsertReviewSmallScreen> {
                                       height: 45,
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          if (_key.currentState?.validate() == false) {
-                                            _failSnackbar('Invalid Credentials');
-                                          }
-                                          firstNameController.clear();
-                                          lastNameController.clear();
-                                          emailController.clear();
-                                          nicPassportController.clear();
-                                          phoneNumberController.clear();
-                                          countryController.clear();
-                                          submittedByController.clear();
-                                          submittionTitleController.clear();
-                                          submittionDiscriptionController.clear();
-                                          submittionReasonController.clear();
-                                          organizationController.clear();
+                                if (_key.currentState?.validate() == false) {
+                                  _failSnackbar('Invalid Credentials');
+                                } else {
+                                  if (context
+                                          .read<IdentityCardTypeSelection>()
+                                          .selectedItem ==
+                                      "Passport") {
+                                    context
+                                        .read<HrProvider>()
+                                        .SubmitEmployeeProfile(
+                                          firstNameController.text,
+                                          lastNameController.text,
+                                          emailController.text,
+                                          phoneNumberController.text,
+                                          nicPassportController.text,
+                                          countryController.text,
+                                          submittedByController.text,
+                                          submittionTitleController.text,
+                                          submittionDiscriptionController.text,
+                                          submittionReasonController.text,
+                                          organizationController.text,
+                                          Provider.of<AuthProvider>(context,
+                                                  listen: false)
+                                              .user
+                                              .userId!,
+                                          "Passport",
+                                        );
+                                  } else {
+                                    context
+                                        .read<HrProvider>()
+                                        .SubmitEmployeeProfile(
+                                          firstNameController.text,
+                                          lastNameController.text,
+                                          emailController.text,
+                                          phoneNumberController.text,
+                                          nicPassportController.text,
+                                          countryController.text,
+                                          submittedByController.text,
+                                          submittionTitleController.text,
+                                          submittionDiscriptionController.text,
+                                          submittionReasonController.text,
+                                          organizationController.text,
+                                          Provider.of<AuthProvider>(context,
+                                                  listen: false)
+                                              .user
+                                              .userId!,
+                                          "NIC",
+                                        );
+                                  }
+                                }
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: const Color(0xff0A66C2),

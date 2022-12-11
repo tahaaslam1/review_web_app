@@ -8,4 +8,7 @@ class Admin extends User {
     required super.email,
     required super.userType,
   });
+
+
+
 }

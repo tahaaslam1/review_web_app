@@ -22,18 +22,17 @@ class HR extends User {
 
   factory HR.fromJson(Map<String, dynamic> json) {
     return HR(
-      firstName: json['first_name'],
-      lastName: json['last_name'],
-      userId: json['user_id'],
-      email: json['email'],
-      organisation: json['organisation'],
-      phone: json['phone'],
-      adminId: json['admin_id'],
-      country: json['country'],
-      isApproved: json['is_approved'],
-      userType: json['user_type'],
-    );
+        userId: json['user_id'],
+        firstName: json['first_name'],
+        lastName: json['last_name'],
+        email: json['email'],
+        organisation: json['organisation'],
+        phone: json['phone'],
+        userType: UserType.hr,
+        isApproved: json['is_approved'],
+        country: json['country']);
   }
+
   // HR(this.adminId, this.country, this.organisation, this.phone, this.isApproved);
 }
 

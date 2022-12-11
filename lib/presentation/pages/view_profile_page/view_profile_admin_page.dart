@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:review_web_app/business_logic/providers/admin_provider.dart';
+import 'package:review_web_app/business_logic/providers/auth_provider.dart';
+import 'package:review_web_app/data/repositories/auth_repository/auth_repository.dart';
+import 'package:review_web_app/data/repositories/auth_repository/server_auth_repository.dart';
 import 'package:review_web_app/models/hr.dart';
+import 'package:review_web_app/models/user.dart';
 
 class ViewProfileAdminPage extends StatefulWidget {
   static const route = 'view-profile-admin-page';
 
-  String? user_id;
-  // ViewProfileAdminPage({this.user_id, super.key});
+  String? userId;
+  ViewProfileAdminPage({this.userId, super.key});
 
   @override
   State<ViewProfileAdminPage> createState() => _ViewProfileAdminPageState();
@@ -19,8 +23,28 @@ class _ViewProfileAdminPageState extends State<ViewProfileAdminPage> {
 
   @override
   initState() {
-    response = context.read<AdminProvider>().getProfile(widget.user_id!);
-    //  bol = response.type_id as int;
+    WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
+      if (context.read<AdminProvider>().hasError &&
+          context.read<AdminProvider>().errorMessage == 'jwt expired') {
+        Provider.of<ServerAuthRepository>(context, listen: false)
+            .controller
+            .add(AuthenticationStatus.unauthenticated);
+
+        Provider.of<AuthProvider>(context, listen: false).setUser(
+          User(
+            firstName: '-',
+            lastName: '-',
+            userId: '-',
+            email: '-',
+            userType: UserType.unknown,
+          ),
+        );
+
+        context.read<AdminProvider>().reInitialize();
+      }
+    });
+    response = context.read<AdminProvider>().getProfile(widget.userId!);
+
     super.initState();
   }
 
@@ -46,7 +70,8 @@ class _ViewProfileAdminPageState extends State<ViewProfileAdminPage> {
                         children: [
                           const CircleAvatar(
                             radius: 50, // Image radius
-                            backgroundImage: NetworkImage('https://www.shutterstock.com/image-vector/my-account-profile-user-icon-260nw-1700343232.jpg'),
+                            backgroundImage: NetworkImage(
+                                'https://www.shutterstock.com/image-vector/my-account-profile-user-icon-260nw-1700343232.jpg'),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
@@ -54,7 +79,9 @@ class _ViewProfileAdminPageState extends State<ViewProfileAdminPage> {
                               children: [
                                 Text(
                                   response.firstName! + response.lastName!,
-                                  style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                                  style: const TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 3.0),
@@ -93,7 +120,8 @@ class _ViewProfileAdminPageState extends State<ViewProfileAdminPage> {
                               padding: EdgeInsets.only(left: 8.0),
                               child: Text(
                                 "Company/ Organization:",
-                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Padding(
@@ -117,7 +145,8 @@ class _ViewProfileAdminPageState extends State<ViewProfileAdminPage> {
                               padding: EdgeInsets.only(left: 8.0),
                               child: Text(
                                 "Phone Number",
-                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Padding(
@@ -146,7 +175,8 @@ class _ViewProfileAdminPageState extends State<ViewProfileAdminPage> {
                               padding: EdgeInsets.only(left: 8.0),
                               child: Text(
                                 "Country",
-                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Padding(

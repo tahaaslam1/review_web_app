@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
 import 'package:review_web_app/business_logic/providers/hrUserprovider.dart';
 import 'package:review_web_app/business_logic/providers/unauth_wrapper_provider/unauth_wrapper_provider.dart';
 import 'package:review_web_app/presentation/pages/login_page/login_page.dart';
+import 'package:review_web_app/routes/router.gr.dart';
+
+import '../../../business_logic/providers/signup._provider.dart';
 
 class SignUpPage extends StatefulWidget {
   static const String route = 'signup-page';
@@ -53,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
       },
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Consumer<HrProvider>(
+          child: Consumer<SignupProvider>(
             builder: (context, provider, _) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +72,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 800,
                             width: 500,
                             decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
                               color: Color.fromARGB(255, 248, 247, 246),
                             ),
                             child: Column(
@@ -89,85 +94,113 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 40, right: 40),
+                                  padding: const EdgeInsets.only(
+                                      left: 40, right: 40),
                                   child: TextFormField(
                                     keyboardType: TextInputType.text,
-                                    decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'First Name'),
+                                    decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        hintText: 'First Name'),
                                     controller: firstameController,
-                                    validator: RequiredValidator(errorText: "Required*"),
+                                    validator: RequiredValidator(
+                                        errorText: "Required*"),
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 40, right: 40),
+                                  padding: const EdgeInsets.only(
+                                      left: 40, right: 40),
                                   child: TextFormField(
                                     keyboardType: TextInputType.text,
-                                    decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Last Name'),
+                                    decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        hintText: 'Last Name'),
                                     controller: lastameController,
-                                    validator: RequiredValidator(errorText: "Required*"),
+                                    validator: RequiredValidator(
+                                        errorText: "Required*"),
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 40, right: 40),
+                                  padding: const EdgeInsets.only(
+                                      left: 40, right: 40),
                                   child: TextFormField(
                                     keyboardType: TextInputType.text,
-                                    decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Company Name'),
+                                    decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        hintText: 'Company Name'),
                                     controller: organisationController,
-                                    validator: RequiredValidator(errorText: "Required*"),
+                                    validator: RequiredValidator(
+                                        errorText: "Required*"),
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 40, right: 40),
+                                  padding: const EdgeInsets.only(
+                                      left: 40, right: 40),
                                   child: TextFormField(
                                     keyboardType: TextInputType.text,
-                                    decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Phone Number'),
+                                    decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        hintText: 'Phone Number'),
                                     controller: phnumberController,
-                                    validator: RequiredValidator(errorText: "Required*"),
+                                    validator: RequiredValidator(
+                                        errorText: "Required*"),
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 40, right: 40),
+                                  padding: const EdgeInsets.only(
+                                      left: 40, right: 40),
                                   child: TextFormField(
                                     keyboardType: TextInputType.text,
-                                    decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Country'),
+                                    decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        hintText: 'Country'),
                                     controller: countrynameController,
-                                    validator: RequiredValidator(errorText: "Required*"),
+                                    validator: RequiredValidator(
+                                        errorText: "Required*"),
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 40, right: 40),
+                                  padding: const EdgeInsets.only(
+                                      left: 40, right: 40),
                                   child: TextFormField(
                                     keyboardType: TextInputType.text,
-                                    decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Email'),
+                                    decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        hintText: 'Email'),
                                     controller: emailController,
-                                    validator: EmailValidator(errorText: "wrong email format"),
+                                    validator: EmailValidator(
+                                        errorText: "wrong email format"),
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 40, right: 40),
+                                  padding: const EdgeInsets.only(
+                                      left: 40, right: 40),
                                   child: TextFormField(
                                     obscureText: true,
-                                    decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Password'),
+                                    decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        hintText: 'Password'),
                                     controller: passwordController,
                                     validator: (value) {
-                                      if (value != confirmPasswordController.text) {
+                                      if (value !=
+                                          confirmPasswordController.text) {
                                         return 'Password must match';
                                       }
                                       return null;
@@ -178,10 +211,13 @@ class _SignUpPageState extends State<SignUpPage> {
                                   height: 10,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 40, right: 40),
+                                  padding: const EdgeInsets.only(
+                                      left: 40, right: 40),
                                   child: TextFormField(
                                     obscureText: true,
-                                    decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Confirm Password'),
+                                    decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        hintText: 'Confirm Password'),
                                     controller: confirmPasswordController,
                                     validator: (value) {
                                       if (value != passwordController.text) {
@@ -197,24 +233,31 @@ class _SignUpPageState extends State<SignUpPage> {
                                     width: 200,
                                     child: ElevatedButton(
                                       onPressed: () async {
-                                        if (_formkey.currentState?.validate() == false) {
+                                        if (_formkey.currentState?.validate() ==
+                                            false) {
                                           _failSnackbar('Invalid Credentials');
                                         } else {
-                                          await context.read<HrProvider>().trySignup(firstameController.text, lastameController.text, organisationController.text, phnumberController.text, countrynameController.text, emailController.text, passwordController.text);
+                                          await provider.trySignup(
+                                              firstameController.text,
+                                              lastameController.text,
+                                              organisationController.text,
+                                              phnumberController.text,
+                                              countrynameController.text,
+                                              emailController.text,
+                                              passwordController.text);
                                           if (provider.hasError) {
-                                            _failSnackbar('email already registered');
+                                            _failSnackbar(
+                                                provider.errorMessage);
                                           } else {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => LoginPage(),
-                                              ),
-                                            );
+                                            context
+                                                .read<UnAuthWrapperProvider>()
+                                                .navigateToLoginPage();
                                           }
                                         }
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color(0xff0A66C2),
+                                        backgroundColor:
+                                            const Color(0xff0A66C2),
                                         elevation: 10,
                                       ),
                                       child: const Text(
@@ -242,7 +285,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                     ),
                                     Text(
                                       "OR",
-                                      style: TextStyle(color: Color(0xff0A66C2)),
+                                      style:
+                                          TextStyle(color: Color(0xff0A66C2)),
                                     ),
                                     Expanded(
                                       child: Divider(
@@ -262,7 +306,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => const LoginPage(),
+                                            builder: (context) =>
+                                                const LoginPage(),
                                           ),
                                         );
                                       },

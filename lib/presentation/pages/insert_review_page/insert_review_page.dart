@@ -12,7 +12,11 @@ class InsertReviewPage extends StatelessWidget {
     var isLargeScreen = false;
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Insert Review"), backgroundColor: Colors.black),
+      appBar: AppBar(
+        title: const Text("Insert Review"),
+        backgroundColor: Color(0xFF0A66C2),
+        automaticallyImplyLeading: false,
+      ),
       body: OrientationBuilder(
         builder: (context, orientation) {
           if (MediaQuery.of(context).size.width > 600) {
@@ -21,7 +25,9 @@ class InsertReviewPage extends StatelessWidget {
             isLargeScreen = false;
           }
           return SingleChildScrollView(
-            child: isLargeScreen ? const InsertReviewLargeScreen() : const InsertReviewSmallScreen(),
+            child: isLargeScreen
+                ? const InsertReviewLargeScreen()
+                : const InsertReviewSmallScreen(),
           );
         },
       ),

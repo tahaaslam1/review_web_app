@@ -43,6 +43,7 @@ dependencies:
   auto_route: ^5.0.4
   universal_html: ^2.0.8
   flutter_secure_storage: ^4.2.1
+  jwt_decoder: ^2.0.1
 
 dev_dependencies:
   flutter_test:

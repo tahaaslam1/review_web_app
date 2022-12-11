@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:review_web_app/business_logic/providers/hrUserprovider.dart';
+import 'package:review_web_app/business_logic/providers/login_provider.dart';
+import 'package:review_web_app/logger.dart';
 import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -73,7 +75,9 @@ class _LoginPageState extends State<LoginPage> {
                           Padding(
                             padding: const EdgeInsets.only(left: 40, right: 40),
                             child: TextField(
-                              decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Email'),
+                              decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Email'),
                               controller: emailController,
                             ),
                           ),
@@ -81,7 +85,9 @@ class _LoginPageState extends State<LoginPage> {
                             padding: const EdgeInsets.only(left: 40, right: 40),
                             child: TextField(
                               obscureText: true,
-                              decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Password'),
+                              decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Password'),
                               controller: passwordController,
                             ),
                           ),
@@ -91,17 +97,15 @@ class _LoginPageState extends State<LoginPage> {
                               width: 200,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  await context.read<HrProvider>().tryLogin(emailController.text, passwordController.text);
-                                  if (provider.hasError) {
-                                    _failSnackbar('email already registered');
-                                  } else {
-                                    await context.read<HrProvider>().getEmployeeByUserId(provider.hrUser.userId!);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HomePage(),
-                                      ),
-                                    );
+                                  final response =
+                                      await Provider.of<LoginProvider>(context,
+                                              listen: false)
+                                          .tryLogin(emailController.text,
+                                              passwordController.text);
+
+                                  logger.i(response);
+                                  if (response != '') {
+                                    _failSnackbar(response!);
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -109,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                                   elevation: 10,
                                 ),
                                 child: const Text(
-                                  "Register",
+                                  "Login",
                                   style: TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.w900,
