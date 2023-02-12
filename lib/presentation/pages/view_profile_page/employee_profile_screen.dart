@@ -3,19 +3,51 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
+import 'package:review_web_app/business_logic/providers/auth_provider.dart';
+import 'package:review_web_app/data/repositories/auth_repository/auth_repository.dart';
+import 'package:review_web_app/data/repositories/auth_repository/server_auth_repository.dart';
+import 'package:review_web_app/models/user.dart';
 
 import '../../../business_logic/providers/hrUserprovider.dart';
 import '../../../logger.dart';
 
-class EmployeeProfileScreen extends StatefulWidget {
-  EmployeeProfileScreen({super.key});
+class EmployeeProfilePage extends StatefulWidget {
+  static const route = 'employee-profile-screen';
+  final String employeeId;
+  EmployeeProfilePage({super.key, required this.employeeId});
 
   @override
-  State<EmployeeProfileScreen> createState() => _EmployeeProfileScreenState();
+  State<EmployeeProfilePage> createState() => _EmployeeProfilePageState();
 }
 
-class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
+class _EmployeeProfilePageState extends State<EmployeeProfilePage> {
   @override
+  void initState() {
+    WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
+      if (context.read<HrProvider>().hasError &&
+          context.read<HrProvider>().errorMessage == 'jwt expired') {
+        Provider.of<ServerAuthRepository>(context, listen: false)
+            .controller
+            .add(AuthenticationStatus.unauthenticated);
+
+        Provider.of<AuthProvider>(context, listen: false).setUser(
+          User(
+            firstName: '-',
+            lastName: '-',
+            userId: '-',
+            email: '-',
+            userType: UserType.unknown,
+          ),
+        );
+
+        context.read<HrProvider>().reInitialize();
+      }
+    });
+    context.read<HrProvider>().GetEmployee(widget.employeeId);
+
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -30,7 +62,6 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                 child: Consumer<HrProvider>(
                   builder: (context, provider, _) {
                     if (!provider.isLoading) {
-                      logger.d(provider.employeeUser.email);
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -51,7 +82,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                       Text(
                                         provider.employeeUser.firstName! +
                                             provider.employeeUser.lastName!,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 30,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -60,13 +91,13 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                             const EdgeInsets.only(top: 3.0),
                                         child: Row(
                                           children: [
-                                            Icon(
+                                            const Icon(
                                               Icons.email,
                                               size: 10.0,
                                             ),
                                             Text(
                                               provider.employeeUser.email!,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.w100,
                                                   fontSize: 10),
                                             ),
@@ -88,7 +119,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "Company/ Organization:",
@@ -98,7 +129,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(15.0),
+                                    padding: const EdgeInsets.all(15.0),
                                     child: Text(
                                         provider.employeeUser.organisation!),
                                   ),
@@ -125,10 +156,10 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(15.0),
+                                    padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.phone),
+                                        const Icon(Icons.phone),
                                         Text(provider.employeeUser.phone!),
                                       ],
                                     ),
@@ -159,7 +190,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.description),
+                                        const Icon(Icons.description),
                                         Text(provider.employeeUser
                                             .submissionDescription!),
                                       ],
@@ -191,7 +222,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.star),
+                                        const Icon(Icons.star),
                                         Text(provider
                                             .employeeUser.submissionTitle!),
                                       ],
@@ -223,7 +254,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.star),
+                                        const Icon(Icons.star),
                                         Text(provider
                                             .employeeUser.reasonOfSubmission!),
                                       ],
@@ -255,7 +286,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.person),
+                                        const Icon(Icons.person),
                                         Text(
                                             provider.employeeUser.submittedBy!),
                                       ],
@@ -274,7 +305,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "identity type",
@@ -288,8 +319,8 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                                     padding: const EdgeInsets.all(15.0),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.perm_identity),
-                                        Text("identity nmber"
+                                        const Icon(Icons.perm_identity),
+                                        const Text("identity nmber"
                                             // provider
                                             //   .employeeUser.identity_number!
                                             ),
@@ -303,7 +334,7 @@ class _EmployeeProfileScreenState extends State<EmployeeProfileScreen> {
                         ],
                       );
                     } else {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     }
                   },
                 ),

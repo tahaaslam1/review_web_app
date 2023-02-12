@@ -44,8 +44,8 @@ class Employee {
       phone: json['phone'],
       submissionTitle: json['submission_title'],
       submissionDescription: json['submission_description'],
-      // identity_type: json['identity_type'],
-      // identity_number: json['identity_number'],
+      identity_type: json['identity_type'],
+       identity_number: json['identity_number'],
     );
   }
 }

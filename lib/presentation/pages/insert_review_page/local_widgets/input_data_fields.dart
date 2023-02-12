@@ -51,9 +51,9 @@ class InputDataFields extends StatelessWidget {
                     decoration: InputDecoration(
                       enabled: false,
                       border: OutlineInputBorder(),
-                      hintText: context.read<HrProvider>().hrUser.first_name! +
+                      hintText: context.read<HrProvider>().hr.firstName! +
                           " " +
-                          context.read<HrProvider>().hrUser.last_name!,
+                          context.read<HrProvider>().hr.lastName!,
                     ),
                   ),
           ),

@@ -1,28 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:review_web_app/business_logic/providers/admin_provide.dart';
+import 'package:review_web_app/business_logic/providers/admin_provider.dart';
+import 'package:review_web_app/business_logic/providers/auth_provider.dart';
+import 'package:review_web_app/data/repositories/auth_repository/auth_repository.dart';
+import 'package:review_web_app/data/repositories/auth_repository/server_auth_repository.dart';
 import 'package:review_web_app/models/hr.dart';
+import 'package:review_web_app/models/user.dart';
 
-import 'package:review_web_app/presentation/pages/edit_user_profile/edit_user_profile.dart';
+class ViewProfileAdminPage extends StatefulWidget {
+  static const route = 'view-profile-admin-page';
 
-class ViewProfileAdmin extends StatefulWidget {
-  String? user_id;
-  ViewProfileAdmin({this.user_id, super.key});
+  String? userId;
+  ViewProfileAdminPage({this.userId, super.key});
 
   @override
-  State<ViewProfileAdmin> createState() => _ViewProfileAdminState();
+  State<ViewProfileAdminPage> createState() => _ViewProfileAdminPageState();
 }
 
-class _ViewProfileAdminState extends State<ViewProfileAdmin> {
+class _ViewProfileAdminPageState extends State<ViewProfileAdminPage> {
   late HR response;
   late int bol;
 
   @override
   initState() {
-    response = context.read<AdminProvider>().getProfile(widget.user_id!);
-    bol = response.type_id as int;
+    WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
+      if (context.read<AdminProvider>().hasError &&
+          context.read<AdminProvider>().errorMessage == 'jwt expired') {
+        Provider.of<ServerAuthRepository>(context, listen: false)
+            .controller
+            .add(AuthenticationStatus.unauthenticated);
+
+        Provider.of<AuthProvider>(context, listen: false).setUser(
+          User(
+            firstName: '-',
+            lastName: '-',
+            userId: '-',
+            email: '-',
+            userType: UserType.unknown,
+          ),
+        );
+
+        context.read<AdminProvider>().reInitialize();
+      }
+    });
+    response = context.read<AdminProvider>().getProfile(widget.userId!);
+
+    super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -30,14 +56,14 @@ class _ViewProfileAdminState extends State<ViewProfileAdmin> {
           elevation: 15.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
+            child: SizedBox(
               height: 450,
               width: 500,
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 500,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -52,8 +78,8 @@ class _ViewProfileAdminState extends State<ViewProfileAdmin> {
                             child: Column(
                               children: [
                                 Text(
-                                  response.first_name! + response.last_name!,
-                                  style: TextStyle(
+                                  response.firstName! + response.lastName!,
+                                  style: const TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -61,15 +87,16 @@ class _ViewProfileAdminState extends State<ViewProfileAdmin> {
                                   padding: const EdgeInsets.only(top: 3.0),
                                   child: Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.email,
                                         size: 10.0,
                                       ),
                                       Text(
                                         response.email!,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w100,
-                                            fontSize: 10),
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w100,
+                                          fontSize: 10,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -82,14 +109,14 @@ class _ViewProfileAdminState extends State<ViewProfileAdmin> {
                     ),
                     Card(
                       elevation: 10.0,
-                      child: Container(
+                      child: SizedBox(
                         height: 100,
                         width: double.infinity,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(left: 8.0),
                               child: Text(
                                 "Company/ Organization:",
@@ -98,7 +125,7 @@ class _ViewProfileAdminState extends State<ViewProfileAdmin> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.all(15.0),
                               child: Text(response.organisation!),
                             ),
                           ],
@@ -107,7 +134,7 @@ class _ViewProfileAdminState extends State<ViewProfileAdmin> {
                     ),
                     Card(
                       elevation: 10.0,
-                      child: Container(
+                      child: SizedBox(
                         height: 100,
                         width: double.infinity,
                         child: Column(
@@ -123,10 +150,10 @@ class _ViewProfileAdminState extends State<ViewProfileAdmin> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.all(15.0),
                               child: Row(
                                 children: [
-                                  Icon(Icons.phone),
+                                  const Icon(Icons.phone),
                                   Text(response.phone!),
                                 ],
                               ),
@@ -137,7 +164,7 @@ class _ViewProfileAdminState extends State<ViewProfileAdmin> {
                     ),
                     Card(
                       elevation: 10.0,
-                      child: Container(
+                      child: SizedBox(
                         height: 100,
                         width: double.infinity,
                         child: Column(
@@ -156,7 +183,7 @@ class _ViewProfileAdminState extends State<ViewProfileAdmin> {
                               padding: const EdgeInsets.all(15.0),
                               child: Row(
                                 children: [
-                                  Icon(Icons.location_on),
+                                  const Icon(Icons.location_on),
                                   Text(response.country!),
                                 ],
                               ),

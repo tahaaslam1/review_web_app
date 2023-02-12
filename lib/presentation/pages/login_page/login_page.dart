@@ -3,10 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:review_web_app/business_logic/providers/hrUserprovider.dart';
+import 'package:review_web_app/business_logic/providers/login_provider.dart';
+import 'package:review_web_app/logger.dart';
 import 'package:review_web_app/presentation/pages/home_page/home_page.dart';
 
 class LoginPage extends StatefulWidget {
-  static const String route = 'Log-in-Page';
+  static const String route = 'login-page';
   const LoginPage({super.key});
 
   @override
@@ -95,22 +97,15 @@ class _LoginPageState extends State<LoginPage> {
                               width: 200,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  await context.read<HrProvider>().tryLogin(
-                                      emailController.text,
-                                      passwordController.text);
-                                  if (provider.hasError) {
-                                    _failSnackbar('email already registered');
-                                  } else {
-                                    await context
-                                        .read<HrProvider>()
-                                        .getEmployeeByUserId(
-                                            provider.hrUser.user_id!);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HomePage(),
-                                      ),
-                                    );
+                                  final response =
+                                      await Provider.of<LoginProvider>(context,
+                                              listen: false)
+                                          .tryLogin(emailController.text,
+                                              passwordController.text);
+
+                                  logger.i(response);
+                                  if (response != '') {
+                                    _failSnackbar(response!);
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
@@ -118,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                                   elevation: 10,
                                 ),
                                 child: const Text(
-                                  "Register",
+                                  "Login",
                                   style: TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.w900,
